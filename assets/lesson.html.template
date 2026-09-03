@@ -1,0 +1,2752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>__TITLE_EN__ — Reading Lesson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root{
+    --sand:#FBF5E9; --sand-deep:#F2E7D3;
+    --ocean-deep:#0D5A62; --ocean-mid:#16818A; --ocean-light:#DCF0EE;
+    --coral:#E2703A; --coral-light:#FBE4D6;
+    --gold:#E0A233; --gold-light:#FBEBCB;
+    --plum:#6B4E8E; --plum-light:#EDE6F5;
+    --ink:#1C2B2E; --ink-soft:#4B5D60;
+    --white:#FFFFFF; --line:#E4DAC5; --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--sand); color:var(--ink); font-family:system-ui,-apple-system,'Segoe UI',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  body.fonts-ready{ font-family:'Work Sans',system-ui,-apple-system,sans-serif; }
+  .display{ font-family:Georgia,'Times New Roman',serif; }
+  body.fonts-ready .display{ font-family:'Fraunces',Georgia,serif; }
+  .stripe{ height:8px; width:100%; background:repeating-linear-gradient(90deg, var(--coral) 0 24px, var(--gold) 24px 48px, var(--ocean-mid) 48px 72px, var(--ink) 72px 74px); }
+
+  header.hero{ background:linear-gradient(180deg, var(--ocean-deep) 0%, #0A464C 100%); color:var(--sand); padding:32px 24px 28px; }
+  .hero-inner{ max-width:1180px; margin:0 auto; }
+  .hero-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:14px; }
+  .badges{ display:flex; gap:10px; flex-wrap:wrap; }
+  .hero-actions{ display:flex; gap:8px; align-items:center; flex-shrink:0; flex-wrap:wrap; }
+  .hero-btn{ font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:.04em; padding:7px 14px; border-radius:999px; border:1px solid rgba(251,245,233,.4); background:rgba(251,245,233,.12); color:var(--sand); cursor:pointer; transition:background .15s ease, border-color .15s ease; }
+  .hero-btn:hover{ background:rgba(251,245,233,.22); border-color:rgba(251,245,233,.6); }
+  .hero-btn[aria-pressed="true"]{ background:var(--gold); border-color:var(--gold); color:var(--ink); }
+  
+  /* TTS Voice selector in Hero */
+  .tts-voice-wrap{ display:inline-flex; align-items:center; gap:6px; background:rgba(251,245,233,.12); border:1px solid rgba(251,245,233,.4); border-radius:999px; padding:3px 10px 3px 8px; color:var(--sand); }
+  .tts-icon{ font-size:13px; line-height:1; }
+  .tts-voice-select{ background:transparent; border:none; color:var(--sand); font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; outline:none; cursor:pointer; max-width:170px; text-overflow:ellipsis; }
+  .tts-voice-select option{ background:var(--white); color:var(--ink); }
+
+  /* Speaker buttons for passage and words */
+  .para-tts-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:22px; height:22px; border-radius:50%; border:1px solid var(--line);
+    background:var(--sand); color:var(--ocean-deep); cursor:pointer;
+    margin-right:8px; vertical-align:middle; transition:all .15s ease;
+    font-size:11px; line-height:1; flex:none; padding:0; user-select:none;
+  }
+  .para-tts-btn:hover{ background:var(--ocean-light); border-color:var(--ocean-mid); transform:scale(1.12); }
+  .para-tts-btn.speaking{ background:var(--coral); color:var(--white); border-color:var(--coral); animation:pulse 1s infinite; }
+  .para-tts-btn.paused{ background:var(--gold); color:var(--white); border-color:var(--gold); animation:none; }
+
+  .word-tts-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:20px; height:20px; border-radius:50%; border:1px solid var(--line);
+    background:var(--sand); color:var(--ocean-deep); cursor:pointer;
+    margin-right:6px; vertical-align:middle; transition:all .15s ease;
+    font-size:10.5px; line-height:1; flex:none; padding:0; user-select:none;
+  }
+  .word-tts-btn:hover{ background:var(--gold); color:var(--white); border-color:var(--gold); transform:scale(1.12); }
+  .word-tts-btn.speaking{ background:var(--coral); color:var(--white); border-color:var(--coral); animation:pulse 1s infinite; }
+  .word-tts-btn.paused{ background:var(--gold); color:var(--white); border-color:var(--gold); animation:none; }
+
+  @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:.55; } }
+
+  body.edit-mode [contenteditable="true"]{ outline:1px dashed rgba(224,162,51,.55); outline-offset:2px; border-radius:4px; }
+  body.edit-mode [contenteditable="true"]:focus{ outline:2px solid var(--gold); }
+  .badge{ font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:6px 12px; border-radius:999px; border:1px solid rgba(251,245,233,.35); color:var(--sand); background:rgba(251,245,233,.08); }
+  h1.title{ font-size:clamp(26px,4vw,38px); font-weight:600; margin:0 0 12px; letter-spacing:-0.01em; }
+  .objectives{ background:rgba(251,245,233,.08); border:1px solid rgba(251,245,233,.2); border-radius:10px; padding:12px 18px; }
+  .objectives-label{ font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+  .objectives ul{ margin:0; padding-left:18px; font-size:13.5px; color:var(--sand); }
+  .objectives li{ margin-bottom:2px; }
+  .time-est{ font-size:12px; color:var(--ocean-light); margin-top:8px; opacity:.85; }
+
+  .export-wrap{ position:relative; }
+  .export-menu{ position:absolute; right:0; top:calc(100% + 6px); min-width:210px; background:var(--white); border:1px solid var(--line); border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.12); padding:6px; z-index:50; display:none; }
+  .export-menu.open{ display:block; }
+  .export-item{ display:block; width:100%; text-align:left; border:none; background:none; padding:9px 12px; font-family:'Work Sans',sans-serif; font-size:12.5px; font-weight:600; color:var(--ink); border-radius:7px; cursor:pointer; }
+  .export-item:hover{ background:var(--sand); }
+
+  @media print{
+    .hero-actions,.stage-nav,.submit-bar,.export-menu,.stripe,.modal-backdrop,.stage-footer-nav,.tip-btn,.activity-tabs,.subtabs,.light-tabs,.check-actions,.match-reset,.next-btn,.tts-voice-wrap,.para-tts-btn,.word-tts-btn{ display:none !important; }
+    body{ background:#fff; }
+    header.hero{ background:#0D5A62 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    body.printing-current .stage-panel{ display:none !important; }
+    body.printing-current .stage-panel.print-target{ display:block !important; }
+    body.printing-all .stage-panel{ display:block !important; page-break-after:always; }
+    body.printing-all .stage-panel:last-child{ page-break-after:auto; }
+    .passage-pane,.activity-pane,.prompt-box,.exercise-box{ break-inside:avoid; }
+  }
+
+  .stage-nav{ position:sticky; top:0; z-index:30; background:var(--sand); border-bottom:1px solid var(--line); }
+  .stage-nav-inner{ max-width:1180px; margin:0 auto; display:flex; gap:8px; padding:12px 24px; overflow-x:auto; }
+  .stage-tab{ flex:none; display:flex; align-items:center; gap:8px; border:1.5px solid var(--line); background:var(--white); color:var(--ink-soft); padding:9px 16px; border-radius:999px; font-weight:600; font-size:13px; cursor:pointer; white-space:nowrap; transition:all .15s ease; }
+  .stage-tab .dot{ width:6px; height:6px; border-radius:50%; background:var(--line); }
+  .stage-tab.active{ background:var(--ocean-deep); border-color:var(--ocean-deep); color:var(--white); }
+  .stage-tab.active .dot{ background:var(--gold); }
+  .stage-tab:hover:not(.active){ border-color:var(--ocean-mid); }
+
+  main{ max-width:1180px; margin:0 auto; padding:0 24px 100px; }
+  .stage-panel{ display:none; }
+  .stage-panel.active{ display:block; }
+  #panel-while{ padding-top:24px; }
+
+  section{ margin-top:40px; }
+  section:first-child{ margin-top:28px; }
+  .section-head{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .section-num{ font-family:'Fraunces',serif; font-size:14px; font-weight:600; color:var(--coral); border:1.5px solid var(--coral); border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; flex:none; }
+  h2.section-title{ font-family:'Fraunces',serif; font-size:21px; font-weight:600; margin:0; }
+  .section-hint{ font-size:13px; color:var(--ink-soft); margin:-4px 0 16px 40px; }
+
+  .tip-btn{ flex:none; width:24px; height:24px; border-radius:50%; border:1.5px solid var(--plum); background:var(--plum-light); color:var(--plum); font-size:12px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; }
+  .tip-btn:hover{ background:var(--plum); color:var(--white); }
+  .modal-backdrop{ position:fixed; inset:0; background:rgba(20,25,26,.45); display:none; align-items:center; justify-content:center; z-index:200; padding:20px; }
+  .modal-backdrop.show{ display:flex; }
+  .modal-box{ background:var(--white); border-radius:14px; padding:20px 22px; max-width:420px; width:100%; position:relative; box-shadow:0 12px 40px rgba(0,0,0,.2); }
+  .modal-box .modal-label{ font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--plum); margin-bottom:8px; }
+  .modal-box p{ margin:0; font-size:14px; color:var(--ink); line-height:1.6; }
+  .modal-close{ position:absolute; top:10px; right:12px; border:none; background:none; font-size:18px; color:var(--ink-soft); cursor:pointer; line-height:1; }
+
+  .prompt-box{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .prompt-box p.q{ margin:0 0 12px; font-size:15px; }
+  .prompt-box textarea{ width:100%; min-height:64px; resize:vertical; border-radius:8px; border:1px solid var(--line); padding:10px 12px; font-family:'Work Sans',sans-serif; font-size:14px; outline:none; background:var(--sand); }
+  .prompt-box textarea:focus{ border-color:var(--ocean-mid); }
+  .subprompt-label{ font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); margin:14px 0 8px; }
+
+  .side-toggle{ display:flex; gap:10px; margin-bottom:14px; }
+  .side-btn{ flex:1; border:1.5px solid var(--line); background:var(--white); padding:12px; border-radius:10px; font-weight:700; font-size:13.5px; cursor:pointer; color:var(--ink-soft); transition:all .15s ease; }
+  .side-btn:hover{ border-color:var(--ocean-mid); }
+  .side-btn.chosen{ background:var(--ocean-deep); border-color:var(--ocean-deep); color:var(--white); }
+
+  .watch-row{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+  .watch-chip{ background:var(--sand-deep); border:1px solid var(--line); color:var(--ink-soft); font-size:12.5px; font-weight:600; padding:6px 12px; border-radius:999px; }
+  .flash-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  @media (max-width:720px){ .flash-grid{ grid-template-columns:1fr; } }
+  .flash{ perspective:800px; height:110px; cursor:pointer; }
+  .flash-inner{ position:relative; width:100%; height:100%; transition:transform .4s; transform-style:preserve-3d; }
+  .flash.flipped .flash-inner{ transform:rotateY(180deg); }
+  .flash-face{ position:absolute; inset:0; border-radius:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:10px; backface-visibility:hidden; }
+  .flash-front{ background:var(--ocean-deep); color:var(--white); }
+  .flash-front .w{ font-family:'Fraunces',serif; font-size:18px; font-weight:600; }
+  .flash-front .hint{ font-size:11px; opacity:.7; margin-top:6px; }
+  .flash-back{ background:var(--gold-light); color:#6B4A0E; transform:rotateY(180deg); font-size:12px; line-height:1.4; }
+  .flash-back .ex{ font-style:italic; margin-top:6px; opacity:.85; }
+
+  .while-activity-tabs{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:0 0 24px; padding-bottom:16px; border-bottom:1px solid var(--line); }
+  .activity-tab-group{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .while-activity-tabs .subtabs{
+    display:none; gap:6px; flex-wrap:wrap; align-items:center;
+    margin:0 0 0 auto; padding:0; border:none;
+  }
+  .while-mode-details .while-activity-tabs .subtabs{ display:flex; }
+  .while-split{ display:grid; grid-template-columns:1.6fr 1fr; gap:22px; align-items:start; }
+  @media (max-width:900px){ .while-split{ grid-template-columns:1fr; } }
+  .passage-column{ min-width:0; }
+  .while-mode-details .passage-pane-full{ display:none; }
+  .while-mode-gist .section-carousel{ display:none; }
+  .passage-pane{ background:var(--white); border-radius:var(--radius); border:1px solid var(--line); padding:26px 28px; }
+  .passage-pane p{ margin:0; font-size:15.5px; line-height:1.75; }
+  .passage-para{ display:grid; grid-template-columns:28px 1fr; gap:10px; align-items:start; margin:0 0 18px; }
+  .passage-para:last-child{ margin-bottom:0; }
+  .passage-num{ font-family:'Fraunces',serif; font-size:18px; font-weight:600; color:var(--plum); line-height:1.75; text-align:right; user-select:none; }
+  .passage-body{ min-width:0; border-radius:10px; transition:background .25s ease; }
+  .passage-body.plogic-hl{ background:transparent; box-shadow:none; padding:0; margin:0; }
+  .passage-para .para-tts-btn{ margin-left:6px; vertical-align:middle; position:relative; top:-1px; }
+
+  /* Paragraph Logic — discourse markers & wavy steps in passage */
+  .plogic-legend-bar{ display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:0 0 14px; padding:4px 0 12px; border-bottom:1px dashed var(--line); width:100%; }
+  .plogic-legend-bar[hidden]{ display:none !important; }
+  .plogic-legend-chip{ display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; padding:4px 10px 4px 7px; border-radius:999px; border:1.5px solid var(--line); background:var(--white); color:var(--ink); cursor:pointer; font-family:'Work Sans',sans-serif; }
+  .plogic-legend-chip .dot{ width:8px; height:8px; border-radius:50%; flex:none; }
+  .plogic-legend-chip .zh{ font-weight:500; color:var(--ink-soft); }
+  .plogic-legend-chip:hover{ border-color:var(--ink-soft); }
+  .plogic-legend-chip.active{ border-color:var(--chip-deep); background:color-mix(in srgb, var(--chip-light) 45%, white); }
+  .plogic-legend-reset{ font-size:11px; font-weight:700; padding:4px 10px; border-radius:999px; border:1.5px dashed var(--line); background:transparent; color:var(--ink-soft); cursor:pointer; font-family:'Work Sans',sans-serif; }
+  .plogic-legend-reset:hover{ color:var(--ink); border-color:var(--ink-soft); }
+  .plogic-legend-chip.marking{ box-shadow:0 0 0 2px var(--chip-deep); }
+  .plogic-legend-hint{ width:100%; font-size:11px; color:var(--ink-soft); margin:2px 0 0; }
+  .plogic-legend-add-btn{ font-size:14px; font-weight:800; width:28px; height:28px; padding:0; border-radius:999px; border:1.5px dashed var(--line); background:var(--white); color:var(--ink-soft); cursor:pointer; font-family:'Work Sans',sans-serif; line-height:1; flex:none; }
+  .plogic-legend-add-btn:hover{ color:var(--ink); border-color:var(--ink-soft); background:var(--sand); }
+  .plogic-legend-add-form{ display:flex; flex-wrap:wrap; gap:6px; align-items:center; width:100%; margin-top:4px; padding:8px 10px; border-radius:10px; border:1.5px solid var(--line); background:var(--sand); }
+  .plogic-legend-add-form[hidden]{ display:none !important; }
+  .plogic-legend-preset-colors{ display:flex; gap:4px; flex-wrap:wrap; }
+  .plogic-legend-preset-swatch{ width:20px; height:20px; border-radius:50%; border:2px solid var(--white); box-shadow:0 0 0 1px var(--line); cursor:pointer; padding:0; flex:none; }
+  .plogic-legend-preset-swatch:hover{ transform:scale(1.1); }
+  .plogic-legend-add-form input[type="color"]{ width:32px; height:28px; padding:2px; border:1.5px solid var(--line); border-radius:6px; cursor:pointer; background:var(--white); flex:none; }
+  .plogic-legend-add-form input[type="text"]{ flex:1; min-width:90px; font-size:11px; font-family:'Work Sans',sans-serif; padding:5px 8px; border:1.5px solid var(--line); border-radius:6px; background:var(--white); }
+  .plogic-legend-add-confirm,.plogic-legend-add-cancel{ font-size:11px; font-weight:700; padding:5px 10px; border-radius:6px; border:1.5px solid var(--line); cursor:pointer; font-family:'Work Sans',sans-serif; }
+  .plogic-legend-add-confirm{ background:var(--ocean-mid); border-color:var(--ocean-mid); color:var(--white); }
+  .plogic-legend-add-confirm:hover{ filter:brightness(1.06); }
+  .plogic-legend-add-cancel{ background:var(--white); color:var(--ink-soft); }
+  .plogic-legend-add-cancel:hover{ color:var(--ink); }
+  .sent-step.step-active{ text-decoration:underline wavy #C97A3D 2px; text-underline-offset:5px; }
+  .dm{ border-radius:5px; transition:opacity .15s ease, filter .15s ease, background .15s ease, color .15s ease; }
+  .passage-body.plogic-hl .dm[data-cat],
+  .carousel-passage.plogic-hl .dm[data-cat]{ display:inline; padding:1px 5px; font-weight:700; }
+  .passage-body.plogic-hl .dm[data-cat="cause"],
+  .carousel-passage.plogic-hl .dm[data-cat="cause"]{ background:#F9CBA6; color:#C97A3D; }
+  .passage-body.plogic-hl .dm[data-cat="contrast"],
+  .carousel-passage.plogic-hl .dm[data-cat="contrast"]{ background:#F7C6D9; color:#C4577E; }
+  .passage-body.plogic-hl .dm[data-cat="addition"],
+  .carousel-passage.plogic-hl .dm[data-cat="addition"]{ background:#B7E4C7; color:#3F8259; }
+  .passage-body.plogic-hl .dm[data-cat="sequence"],
+  .carousel-passage.plogic-hl .dm[data-cat="sequence"]{ background:#DCF0EE; color:#0D5A62; }
+  .passage-body.plogic-hl .dm[data-cat="hedge"],
+  .carousel-passage.plogic-hl .dm[data-cat="hedge"]{ background:#CBC3E3; color:#6B5A9E; }
+  .passage-body.plogic-filtering .dm[data-cat],
+  .carousel-passage.plogic-filtering .dm[data-cat]{ opacity:.28; filter:grayscale(55%); }
+  .passage-body.plogic-filtering .dm.filter-on,
+  .carousel-passage.plogic-filtering .dm.filter-on{ opacity:1; filter:none; }
+  .dm-float-btn{
+    position:fixed; z-index:1200; width:30px; height:30px; border-radius:50%;
+    border:2px solid #fff; color:#fff; font-size:18px; font-weight:800; line-height:1;
+    display:none; align-items:center; justify-content:center; cursor:pointer;
+    box-shadow:0 6px 18px rgba(26,32,38,.22); font-family:'Work Sans',sans-serif;
+    padding:0; transform:translate(-50%, -120%);
+  }
+  .dm-float-btn.show{ display:flex; }
+  .dm-float-btn:hover{ filter:brightness(1.06); transform:translate(-50%, -120%) scale(1.06); }
+  .vocab{ background:var(--gold-light); color:#7A5610; padding:1px 5px; border-radius:5px; cursor:pointer; font-weight:600; border-bottom:2px solid var(--gold); transition:background .15s ease; }
+  .vocab:hover{ background:var(--gold); color:var(--white); }
+  .cue{ font-weight:700; color:var(--plum); border-bottom:1px dotted var(--plum); }
+  .persist-hl{ background:var(--gold-light) !important; box-shadow:0 0 0 3px var(--gold); border-radius:6px; transition:background .3s ease, box-shadow .3s ease; }
+  p.persist-hl{ padding:6px 8px; margin-left:-8px; margin-right:-8px; }
+  .chip.persist-hl{ box-shadow:0 0 0 3px var(--gold); }
+
+  .activity-pane{ min-width:0; }
+  .activity-tab{ border:1.5px solid var(--line); background:var(--white); color:var(--ink-soft); padding:8px 14px; border-radius:999px; font-weight:700; font-size:13px; cursor:pointer; transition:all .15s ease; }
+  .activity-tab.active{ background:var(--coral); border-color:var(--coral); color:var(--white); }
+  .activity-tab:hover:not(.active){ border-color:var(--coral); }
+  .activity-view{ display:none; } .activity-view.active{ display:block; }
+  .activity-sub{ font-size:12.5px; color:var(--ink-soft); margin-bottom:14px; }
+
+  .subtab{ border:1.5px solid var(--line); background:var(--white); color:var(--ink-soft); padding:6px 12px; border-radius:8px; font-weight:700; font-size:12px; cursor:pointer; }
+  .subtab.active{ background:var(--ocean-mid); border-color:var(--ocean-mid); color:var(--white); }
+  .subview{ display:none; } .subview.active{ display:block; }
+
+  .light-tabs{
+    display:flex; gap:16px; align-items:flex-end;
+    min-height:calc(6px + 1.25em + 10px);
+    margin:0 0 14px; padding:0;
+    border-bottom:1px solid var(--line);
+    box-sizing:content-box;
+  }
+  .light-tab{ border:none; background:none; padding:6px 2px 10px; font-family:'Work Sans',sans-serif; font-size:12.5px; font-weight:700; color:var(--ink-soft); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; }
+  .light-tab.active{ color:var(--coral); border-bottom-color:var(--coral); }
+  .light-tab:hover:not(.active){ color:var(--ink); }
+  .light-view{ display:none; } .light-view.active{ display:block; }
+  .word-list{ display:flex; flex-direction:column; gap:2px; }
+
+  .mcq-list{ display:flex; flex-direction:column; gap:8px; margin-bottom:16px; }
+  .mcq-opt{ display:flex; gap:8px; align-items:flex-start; background:var(--white); border:1.5px solid var(--line); border-radius:10px; padding:10px 12px; cursor:pointer; font-size:13px; transition:all .15s ease; }
+  .mcq-opt:hover{ border-color:var(--ocean-mid); }
+  .mcq-opt .letter{ font-weight:700; color:var(--ocean-mid); flex:none; }
+  .mcq-opt.correct{ border-color:#1F7A4C; background:#EAF6EF; }
+  .mcq-opt.wrong{ border-color:var(--coral); background:var(--coral-light); }
+  .mcq-feedback{ margin:-6px 0 16px; font-size:12.5px; color:var(--ink-soft); display:none; }
+  .mcq-feedback.show{ display:block; }
+
+  .match-wrap.compact{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:18px; }
+  .match-progress{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .match-progress .bar{ flex:1; height:5px; background:var(--sand-deep); border-radius:999px; overflow:hidden; }
+  .match-progress .bar-fill{ height:100%; background:var(--coral); width:0%; transition:width .3s ease; }
+  .match-progress .count{ font-size:12px; font-weight:600; color:var(--ink-soft); white-space:nowrap; }
+  .match-reset{ border:none; background:none; color:var(--ocean-mid); font-size:12px; font-weight:600; cursor:pointer; text-decoration:underline; padding:0; }
+  .match-columns{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .match-col-label{ font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; }
+  .chip{ display:block; width:100%; text-align:left; margin-bottom:7px; background:var(--sand); border:1.5px solid var(--line); border-radius:9px; padding:9px 11px; font-size:12.5px; cursor:pointer; font-family:'Work Sans',sans-serif; color:var(--ink); transition:all .12s ease; }
+  .chip.word{ font-weight:700; }
+  .chip:hover:not(.solved):not(.selected){ border-color:var(--ocean-mid); background:var(--ocean-light); }
+  .chip.selected{ border-color:var(--coral); background:var(--coral-light); }
+  .chip.solved{ border-color:#1F7A4C; background:#EAF6EF; color:#1F7A4C; cursor:default; }
+  .chip.solved::after{ content:" ✓"; }
+  .chip.shake{ animation:shake .35s ease; }
+  @keyframes shake{ 0%,100%{ transform:translateX(0); } 25%{ transform:translateX(-5px); } 75%{ transform:translateX(5px); } }
+  .done-banner{ display:none; margin-top:14px; padding:10px 14px; background:var(--gold-light); border:1px solid var(--gold); border-radius:10px; font-size:13px; color:#7A5610; text-align:center; }
+  .done-banner.show{ display:block; }
+
+  .fcard{ border-radius:12px; border:1px solid var(--line); overflow:hidden; margin-bottom:14px; background:var(--white); }
+  .fcard-header{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; padding:12px 14px; cursor:pointer; }
+  .fcard-header .htext .en{ font-family:'Fraunces',serif; font-weight:600; font-size:15px; }
+  .fcard-header .htext .zh{ font-size:11.5px; color:var(--ink-soft); margin-top:1px; }
+  .fcard-header .tag{ flex:none; font-size:10.5px; font-weight:700; color:var(--ink-soft); background:var(--sand); border-radius:999px; padding:3px 9px; margin-right:6px; }
+  .fcard.structure .fcard-header{ background:var(--plum-light); }
+  .fcard.twcard .fcard-header{ background:var(--ocean-light); cursor:default; }
+  .fcard.twcard .fcard-header .htext .en{ color:var(--ocean-deep); text-decoration:none; }
+  .fcard.twcard .fcard-header .tag{ background:var(--white); color:var(--ocean-deep); margin-right:0; }
+  .tw-header-right{ display:flex; align-items:center; gap:6px; flex:none; }
+  .plogic-btn,.zh-toggle-btn{ flex:none; width:26px; height:26px; border-radius:50%; border:1.5px solid rgba(13,90,98,.28); background:rgba(255,255,255,.75); color:var(--ocean-deep); cursor:pointer; display:inline-flex; align-items:center; justify-content:center; padding:0; line-height:1; transition:background .15s ease, border-color .15s ease, transform .15s ease; font-family:'Work Sans',sans-serif; font-size:12px; font-weight:800; }
+  .plogic-btn svg{ width:14px; height:14px; display:block; }
+  .plogic-btn:hover,.zh-toggle-btn:hover{ background:var(--white); border-color:var(--ocean-mid); }
+  .plogic-btn.active{ background:var(--ocean-deep); border-color:var(--ocean-deep); color:var(--white); }
+  .zh-toggle-btn.active{ background:var(--coral); border-color:var(--coral); color:var(--white); }
+  /* Exploring Content — Chinese on fronts hidden until 中 is toggled */
+  .content-zh{ display:none !important; }
+  body.show-content-zh .content-zh{ display:block !important; }
+  body.show-content-zh .plogic-flow-step .content-zh,
+  body.show-content-zh .content-zh.inline{ display:inline !important; }
+  .tw-qtext .content-zh{ margin-top:6px; font-family:'Work Sans',sans-serif; font-size:12.5px; font-style:normal; color:var(--ink-soft); line-height:1.4; }
+  .front-q .content-zh{ margin-top:8px; font-style:normal; font-size:12.5px; color:var(--ink-soft); }
+  .plogic-panel{ display:none; padding:10px 14px 14px; background:linear-gradient(180deg, #F7FBFA 0%, var(--white) 100%); border-bottom:1px dashed var(--line); }
+  .plogic-panel.open{ display:block; }
+  .plogic-flow-label{ font-size:10.5px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 8px; }
+  .plogic-flow-strip{ display:flex; align-items:center; flex-wrap:wrap; gap:5px; }
+  .plogic-flow-step{ display:inline-flex; align-items:center; gap:6px; padding:6px 11px; border-radius:999px; border:1.5px solid var(--line); background:var(--white); cursor:pointer; font-size:11.5px; font-weight:700; color:var(--ink-soft); font-family:'Work Sans',sans-serif; transition:all .15s ease; }
+  .plogic-flow-step .num{ width:16px; height:16px; border-radius:50%; background:var(--sand); color:var(--ink-soft); display:inline-flex; align-items:center; justify-content:center; font-size:10px; flex:none; }
+  .plogic-flow-step .zh{ font-weight:500; opacity:.85; }
+  .plogic-flow-step .content-zh{ font-weight:500; opacity:.85; margin-left:4px; }
+  .plogic-flow-step:hover{ border-color:var(--coral); color:var(--ink); }
+  .plogic-flow-step.active{ border-color:transparent; background:linear-gradient(135deg, #C97A3D, #C4577E); color:#fff; }
+  .plogic-flow-step.active .num{ background:rgba(255,255,255,.28); color:#fff; }
+  .plogic-flow-arrow{ color:var(--line); font-size:13px; flex:none; }
+  .fcard.ddcard .fcard-header{ background:var(--plum-light); }
+  .flip-icon{ flex:none; width:26px; height:26px; border-radius:50%; border:1.5px solid rgba(0,0,0,.15); background:rgba(255,255,255,.6); font-size:13px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .flip-icon:hover{ background:var(--white); }
+  .fcard-body{ padding:14px 16px; cursor:pointer; transition:transform .22s ease, opacity .22s ease; }
+  .fcard-body.flipping{ transform:rotateY(90deg); opacity:0; }
+  .fcard-face{ display:none; }
+  .fcard-face.active{ display:block; }
+  .front-q{ font-size:13.5px; color:var(--ink); font-style:italic; }
+  .front-hint{ margin-top:10px; font-size:11px; color:var(--ink-soft); }
+  .fcard-body ul{ margin:0 0 8px; padding-left:16px; font-size:12.5px; }
+  .fcard-body li{ margin-bottom:4px; }
+  .card-summary{ font-size:12px; color:var(--ink-soft); }
+  .card-divider{ border-top:1px dashed var(--line); margin:10px 0; }
+  .mindmap-wrap{ width:100%; }
+
+  /* Text Walkthrough — typed question rows (card itself does not flip) */
+  .tw-questions{ padding:0; }
+  .tw-qitem{ border-top:1px dashed var(--line); }
+  .tw-qitem:first-child{ border-top:none; }
+  .tw-qface{ display:none; align-items:flex-start; gap:12px; padding:14px 16px; cursor:pointer; transition:transform .22s ease, opacity .22s ease; }
+  .tw-qface.active{ display:flex; }
+  .tw-qface.flipping{ transform:rotateY(90deg); opacity:0; }
+  .tw-qtext{ flex:1; min-width:0; font-family:'Fraunces',serif; font-size:13.5px; font-style:italic; color:var(--ink); line-height:1.45; }
+  .tw-qtext .qmark{ color:var(--coral); font-style:normal; font-weight:700; margin-right:4px; }
+  .tw-answer{ flex:1; min-width:0; font-size:12.5px; color:var(--ink); line-height:1.55; }
+
+  /* Section carousel — Details mode passage + Text Walkthrough */
+  .section-carousel{ position:relative; }
+  /* Match right-column .light-tabs block height so left card top aligns with TW card top */
+  .carousel-dots{
+    display:flex; justify-content:center; align-items:center; gap:8px;
+    min-height:calc(6px + 1.25em + 10px);
+    margin:0 0 14px; padding:0 0 10px;
+    border-bottom:1px solid transparent;
+    box-sizing:content-box;
+  }
+  .carousel-dot{ width:8px; height:8px; border-radius:50%; border:none; padding:0; background:var(--line); cursor:pointer; transition:transform .2s ease, background .2s ease; }
+  .carousel-dot:hover{ background:var(--ink-soft); }
+  .carousel-dot.active{ background:var(--coral); transform:scale(1.35); }
+  .carousel-viewport{
+    position:relative;
+    overflow:hidden;
+    /* inset card from clip edge so Signpost chips are never cut */
+    padding:16px 0 14px;
+  }
+  .carousel-track-wrap{
+    position:relative; flex:1; min-width:0;
+    overflow:hidden;
+    transition:height .35s ease;
+    padding:0;
+  }
+  .carousel-track{ display:flex; align-items:flex-start; transition:transform .42s cubic-bezier(.4,.0,.2,1); }
+  .carousel-slide{ flex:0 0 100%; min-width:0; padding:0 4px; box-sizing:border-box; }
+  .carousel-slide-inner{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px 24px 20px;
+    box-shadow:0 2px 12px rgba(26,32,38,.06);
+    opacity:.72;
+    transition:box-shadow .35s ease, opacity .35s ease, border-color .35s ease;
+  }
+  .carousel-slide.active .carousel-slide-inner{
+    opacity:1;
+    box-shadow:0 10px 28px rgba(26,32,38,.10), 0 2px 8px rgba(13,90,98,.06);
+    border-color:color-mix(in srgb, var(--ocean-mid) 35%, var(--line));
+  }
+  .carousel-passage{ padding-top:0; }
+  .carousel-passage .passage-para{ margin-bottom:14px; }
+  .carousel-passage .passage-para:last-child{ margin-bottom:0; }
+  .carousel-passage > .plogic-legend-bar{ width:100%; margin:0 0 14px; padding:0 0 12px; }
+  .carousel-plogic-panel{ margin-top:16px; padding-top:14px; border-top:1px dashed var(--line); }
+  .carousel-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:40px; height:40px;
+    border:none; border-radius:50%;
+    background:rgba(255,255,255,.72);
+    color:var(--ink-soft);
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px; line-height:1;
+    backdrop-filter:blur(4px);
+    box-shadow:0 2px 10px rgba(26,32,38,.08);
+    transition:background .15s ease, color .15s ease, box-shadow .15s ease;
+    z-index:3;
+  }
+  .carousel-arrow.prev{ left:10px; }
+  .carousel-arrow.next{ right:10px; }
+  .carousel-arrow:hover:not(:disabled){ background:rgba(255,255,255,.95); color:var(--ocean-deep); box-shadow:0 4px 14px rgba(26,32,38,.12); }
+  .carousel-arrow:disabled{ opacity:.25; cursor:default; pointer-events:none; }
+  @media (max-width:900px){
+    .carousel-arrow{ width:34px; height:34px; font-size:18px; }
+    .carousel-arrow.prev{ left:6px; }
+    .carousel-arrow.next{ right:6px; }
+    .carousel-slide-inner{ padding:22px 16px 18px; }
+    .carousel-viewport{ padding:14px 0 12px; }
+  }
+  .tw-answer ul{ margin:0 0 6px; padding-left:16px; }
+  .tw-answer li{ margin-bottom:3px; }
+  .tw-answer .zh{ margin-top:8px; padding-top:8px; border-top:1px dashed var(--line); color:var(--ink-soft); font-size:12px; }
+  .qtype-badge{ flex:none; display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:700; border-radius:999px; padding:3px 9px 3px 3px; letter-spacing:.01em; line-height:1; white-space:nowrap; margin-top:1px; }
+  .qtype-letter{ display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:50%; font-size:10px; font-weight:800; color:#fff; }
+  .qtype-badge.fact{ background:#D6EAF8; color:#1A6FA0; }
+  .qtype-badge.fact .qtype-letter{ background:#1A6FA0; }
+  .qtype-badge.infer{ background:var(--plum-light); color:#6B4E8E; }
+  .qtype-badge.infer .qtype-letter{ background:#6B4E8E; }
+  .qtype-badge.tone{ background:var(--gold-light); color:#7A5610; }
+  .qtype-badge.tone .qtype-letter{ background:#C48A12; }
+  .qtype-badge.vocabulary{ background:#E8EEF5; color:#3D5A80; }
+  .qtype-badge.vocabulary .qtype-letter{ background:#3D5A80; }
+  .qtype-badge.structure{ background:#D4EDDA; color:#1F7A4C; }
+  .qtype-badge.structure .qtype-letter{ background:#1F7A4C; }
+  .qtype-badge.reflect{ background:#FFE8D1; color:#C45C12; }
+  .qtype-badge.reflect .qtype-letter{ background:#C45C12; }
+
+  .lang-editor-bar{ display:flex; align-items:center; justify-content:flex-end; gap:8px; margin:0 0 10px; }
+  .lang-add-btn,.lang-item-add{
+    border:1.5px dashed var(--line); background:var(--white); color:var(--ocean-mid);
+    font-size:12px; font-weight:700; padding:6px 12px; border-radius:8px; cursor:pointer;
+    font-family:'Work Sans',sans-serif;
+  }
+  .lang-add-btn:hover,.lang-item-add:hover{ border-color:var(--ocean-mid); background:var(--ocean-light); }
+  .vocab-flip{ position:relative; }
+  .lang-card-del,.vocab-card-del,.lang-item-del{
+    flex:none; width:22px; height:22px; border-radius:50%; border:1px solid var(--line);
+    background:var(--white); color:var(--ink-soft); cursor:pointer; font-size:14px; line-height:1;
+    display:inline-flex; align-items:center; justify-content:center; padding:0;
+  }
+  .lang-card-del:hover,.vocab-card-del:hover,.lang-item-del:hover{ color:var(--coral); border-color:var(--coral); background:var(--coral-light); }
+  .vocab-flip-actions{ display:flex; align-items:center; gap:4px; }
+  .lang-add-form{
+    display:none; flex-direction:column; gap:8px; margin:0 0 12px; padding:12px;
+    border:1px dashed var(--line); border-radius:10px; background:var(--sand);
+  }
+  .lang-add-form.open{ display:flex; }
+  .lang-add-form label{ font-size:11px; font-weight:700; color:var(--ink-soft); }
+  .lang-add-form input,.lang-add-form textarea{
+    width:100%; box-sizing:border-box; border:1px solid var(--line); border-radius:8px;
+    padding:7px 10px; font-size:12.5px; font-family:'Work Sans',sans-serif; background:var(--white); color:var(--ink);
+  }
+  .lang-add-form textarea{ min-height:56px; resize:vertical; }
+  .lang-add-form .row{ display:flex; gap:8px; }
+  .lang-add-form .row > *{ flex:1; }
+  .lang-add-actions{ display:flex; gap:8px; justify-content:flex-end; }
+  .lang-add-actions button{
+    border:none; border-radius:8px; padding:6px 12px; font-size:12px; font-weight:700; cursor:pointer;
+    font-family:'Work Sans',sans-serif;
+  }
+  .lang-add-save{ background:var(--ocean-mid); color:#fff; }
+  .lang-add-cancel{ background:var(--white); border:1px solid var(--line) !important; color:var(--ink-soft); }
+  .langcard .fcard-header{ background:var(--gold-light); }
+  .lang-items{ padding:4px 14px 14px; }
+  .lang-item{ display:flex; align-items:center; gap:8px; padding:8px 6px; border-radius:8px; font-size:12.5px; cursor:pointer; }
+  .lang-item:hover{ background:var(--sand); }
+  .lang-item .n{ font-weight:700; color:var(--gold); flex:none; }
+  .lang-item-content{ flex:1; }
+
+  /* Power Word / Phrase — individual flip cards */
+  .vocab-flip-grid{ display:grid; grid-template-columns:1fr; gap:10px; }
+  .vocab-flip{ border:1px solid var(--line); border-radius:12px; background:var(--white); overflow:hidden; }
+  .vocab-flip-face{ display:none; align-items:flex-start; gap:10px; padding:12px 14px; cursor:pointer; transition:transform .22s ease, opacity .22s ease; min-height:64px; }
+  .vocab-flip-face.active{ display:flex; }
+  .vocab-flip-face.flipping{ transform:rotateY(90deg); opacity:0; }
+  .vocab-flip-main{ flex:1; min-width:0; }
+  .vocab-flip-top{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:4px; }
+  .vocab-flip-word{ font-family:'Fraunces',serif; font-size:16px; font-weight:600; color:var(--ocean-deep); }
+  .vocab-flip-pos{ font-size:11.5px; font-weight:600; color:var(--ink-soft); }
+  .vocab-flip-en{ font-size:12.5px; color:var(--ink); line-height:1.45; }
+  .vocab-flip-zh{ font-size:12.5px; color:var(--ink); line-height:1.5; margin-top:6px; }
+  .vocab-trait{ display:inline-flex; align-items:center; font-size:10.5px; font-weight:700; letter-spacing:.02em; border-radius:999px; padding:3px 9px; background:var(--gold-light); color:#7A5610; }
+  .vocab-flip.phrase .vocab-trait{ background:var(--ocean-light); color:var(--ocean-deep); }
+  .vocab-flip-actions{ display:flex; flex-direction:column; gap:6px; flex:none; align-items:center; }
+
+  .tf-list{ display:flex; flex-direction:column; gap:10px; }
+  .tf-item{ background:var(--white); border:1px solid var(--line); border-radius:12px; padding:14px 16px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .tf-text{ flex:1 1 220px; font-size:13.5px; display:flex; align-items:center; gap:8px; }
+  .tf-num{ color:var(--coral); font-weight:700; font-family:'Fraunces',serif; }
+  .tf-buttons{ display:flex; gap:6px; }
+  .tf-btn{ border:1.5px solid var(--line); background:var(--white); color:var(--ink); padding:6px 14px; border-radius:8px; font-weight:600; font-size:12.5px; cursor:pointer; transition:all .15s ease; }
+  .tf-btn:hover{ border-color:var(--ocean-mid); }
+  .tf-btn.picked{ border-color:var(--ocean-mid); background:var(--ocean-light); }
+  .tf-btn.chosen-correct{ background:#1F7A4C; border-color:#1F7A4C; color:var(--white); }
+  .tf-btn.chosen-wrong{ background:var(--coral); border-color:var(--coral); color:var(--white); }
+  .tf-btn.reveal-correct{ border-color:#1F7A4C; color:#1F7A4C; }
+  .tf-feedback{ flex-basis:100%; font-size:12.5px; color:var(--ink-soft); padding-top:6px; border-top:1px dashed var(--line); margin-top:4px; display:none; }
+  .tf-feedback.show{ display:block; }
+  .check-actions{ display:flex; gap:10px; margin-top:16px; align-items:center; }
+  .submit-btn{ background:var(--ocean-deep); color:var(--white); border:none; padding:10px 20px; border-radius:999px; font-weight:700; font-size:13px; cursor:pointer; }
+  .submit-btn:hover{ background:#0A464C; }
+  .check-score{ font-size:13px; font-weight:700; color:var(--ink-soft); display:none; }
+  .check-score.show{ display:inline; }
+  .retry-link{ border:none; background:none; color:var(--ocean-mid); font-size:12.5px; font-weight:600; cursor:pointer; text-decoration:underline; display:none; }
+  .retry-link.show{ display:inline; }
+
+  .speak-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:720px){ .speak-grid{ grid-template-columns:1fr; } }
+  .speak-card{ background:var(--ocean-deep); color:var(--sand); border-radius:var(--radius); padding:22px; }
+  .speak-card .qnum{ font-family:'Fraunces',serif; font-size:32px; opacity:.35; line-height:1; }
+  .speak-card p{ margin:8px 0 14px; font-size:16px; }
+  .speak-card textarea{ width:100%; min-height:70px; resize:vertical; border-radius:8px; border:none; padding:10px 12px; font-family:'Work Sans',sans-serif; font-size:13px; background:rgba(251,245,233,.12); color:var(--sand); outline:none; }
+  .speak-card textarea::placeholder{ color:rgba(251,245,233,.55); }
+  .speak-card textarea:focus{ background:rgba(251,245,233,.2); }
+
+  .match-wrap{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:28px; }
+  .match-wrap .match-columns{ grid-template-columns:1fr 1fr; gap:28px; }
+  .match-wrap .chip{ font-size:14px; padding:11px 14px; }
+
+  .strategy-tag{ display:inline-block; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:4px 10px; border-radius:999px; margin-bottom:10px; }
+  .strategy-tag.self{ background:var(--gold-light); color:#7A5610; }
+  .strategy-tag.world{ background:var(--coral-light); color:#9A3F1B; }
+
+  .stage-footer-nav{ display:flex; justify-content:flex-end; margin-top:44px; }
+  .next-btn{ background:var(--coral); color:var(--white); border:none; padding:12px 22px; border-radius:999px; font-weight:700; font-size:14px; cursor:pointer; }
+  .next-btn:hover{ background:#CC5F30; }
+
+  footer{ text-align:center; font-size:12px; color:var(--ink-soft); padding:30px 24px 50px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner" id="heroInner"></div>
+</header>
+
+<div class="stripe"></div>
+
+<nav class="stage-nav">
+  <div class="stage-nav-inner" id="stageNav">
+    <button class="stage-tab active" data-stage="pre"><span class="dot"></span>1 · Pre-reading 读前</button>
+    <button class="stage-tab" data-stage="while"><span class="dot"></span>2 · While-reading 读中</button>
+    <button class="stage-tab" data-stage="post"><span class="dot"></span>3 · Post-reading 读后</button>
+  </div>
+</nav>
+
+<main>
+
+  <div class="stage-panel active" id="panel-pre">
+    <section id="preLeadIn"></section>
+    <section id="prePrediction"></section>
+    <section>
+      <div class="section-head"><span class="section-num">3</span><h2 class="section-title display">Blocking Words</h2></div>
+      <p class="section-hint">这几个词不是今天的目标生词，但可能影响理解，先扫清障碍。点击卡片翻面查看释义。</p>
+      <div class="flash-grid" id="flashGrid"></div>
+    </section>
+    <div class="stage-footer-nav"><button class="next-btn" data-goto="while">进入读中 While-reading →</button></div>
+  </div>
+
+  <div class="stage-panel while-mode-gist" id="panel-while">
+    <div class="while-activity-tabs" id="activityTabs">
+      <div class="activity-tab-group">
+        <button class="activity-tab active" data-view="gist">1 · Reading for Gist</button>
+        <button class="activity-tab" data-view="details">2 · Reading for Details</button>
+      </div>
+      <div class="subtabs" id="subtabs">
+        <button class="subtab active" data-sub="content">Exploring Content</button>
+        <button class="subtab" data-sub="language">Exploring Language</button>
+        <button class="subtab" data-sub="check">Comprehension Check</button>
+      </div>
+    </div>
+    <div class="while-split">
+      <div class="passage-column">
+        <div class="passage-pane passage-pane-full" id="passagePane"></div>
+        <div class="section-carousel" id="sectionCarousel">
+          <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Section navigation"></div>
+          <div class="carousel-viewport">
+            <div class="carousel-track-wrap">
+              <button type="button" class="carousel-arrow prev" id="carouselPrev" aria-label="Previous section">‹</button>
+              <div class="carousel-track" id="carouselTrack"></div>
+              <button type="button" class="carousel-arrow next" id="carouselNext" aria-label="Next section">›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="activity-pane">
+        <div class="activity-view active" id="view-gist">
+          <p class="activity-sub" id="gistHint"></p>
+          <div class="mcq-list" id="mcqList"></div>
+          <div class="mcq-feedback" id="mcqFeedback"></div>
+          <div class="match-wrap compact">
+            <div class="match-col-label">段落功能匹配 · Match each section to its function</div>
+            <div class="match-progress">
+              <div class="bar"><div class="bar-fill" id="gistBar"></div></div>
+              <span class="count" id="gistCount">0 / 0 matched</span>
+              <button class="match-reset" id="gistReset">Reset</button>
+            </div>
+            <div class="match-columns">
+              <div><div class="match-col-label">Section</div><div id="gistParaCol"></div></div>
+              <div><div class="match-col-label">Function</div><div id="gistFuncCol"></div></div>
+            </div>
+            <div class="done-banner" id="gistDone"></div>
+          </div>
+        </div>
+
+        <div class="activity-view" id="view-details">
+          <div class="subview active" id="sub-content">
+            <div class="light-tabs" id="contentLightTabs">
+              <button class="light-tab active" data-lv="tw">Text Walkthrough</button>
+              <button class="light-tab" data-lv="dd">Deep Dive</button>
+            </div>
+            <div class="light-view active" id="lv-tw"><div id="twList"></div></div>
+            <div class="light-view" id="lv-dd">
+              <div id="ddCard"></div>
+              <div id="structureCard" style="margin-top:16px;"></div>
+            </div>
+          </div>
+
+          <div class="subview" id="sub-language">
+            <div class="light-tabs" id="langLightTabs">
+              <button class="light-tab active" data-lv="power">Power Word</button>
+              <button class="light-tab" data-lv="phrase">Phrase</button>
+              <button class="light-tab" data-lv="structure">Structure</button>
+            </div>
+            <div class="light-view active" id="lv-power">
+              <p class="activity-sub">灵活生动的小词、或者容易搞混的多义词。</p>
+              <div class="lang-editor-bar"><button type="button" class="lang-add-btn" data-add="power">＋ 添加 Power Word</button></div>
+              <div class="lang-add-form" id="powerAddForm"></div>
+              <div class="word-list" id="powerList"></div>
+            </div>
+            <div class="light-view" id="lv-phrase">
+              <p class="activity-sub">实用的固定搭配与短语。翻转查看特点与中文释义；点击卡片可在原文中定位。</p>
+              <div class="lang-editor-bar"><button type="button" class="lang-add-btn" data-add="phrase">＋ 添加 Phrase</button></div>
+              <div class="lang-add-form" id="phraseAddForm"></div>
+              <div class="word-list" id="phraseList"></div>
+            </div>
+            <div class="light-view" id="lv-structure">
+              <p class="activity-sub">按语言现象聚类，点击句子可在左侧原文中定位。可自定义添加或删除结构卡片与例句。</p>
+              <div class="lang-editor-bar"><button type="button" class="lang-add-btn" data-add="structure">＋ 添加 Structure</button></div>
+              <div class="lang-add-form" id="structureAddForm"></div>
+              <div id="langList"></div>
+            </div>
+          </div>
+
+          <div class="subview" id="sub-check">
+            <p class="activity-sub">Read the article again. Mark the sentences True or False, then submit to see your results.</p>
+            <div class="tf-list" id="tfList"></div>
+            <div class="check-actions">
+              <button class="submit-btn" id="tfSubmit">Submit answers</button>
+              <span class="check-score" id="tfScore"></span>
+              <button class="retry-link" id="tfRetry">Try again</button>
+            </div>
+            <div class="match-col-label" style="margin-top:26px;">Vocabulary · Match the meanings</div>
+            <p class="activity-sub" id="vocabMatchHint"></p>
+            <div class="match-wrap compact">
+              <div class="match-progress">
+                <div class="bar"><div class="bar-fill" id="matchBar"></div></div>
+                <span class="count" id="matchCount">0 / 0 matched</span>
+                <button class="match-reset" id="matchReset">Reset</button>
+              </div>
+              <div class="match-columns">
+                <div><div class="match-col-label">Words</div><div id="wordCol"></div></div>
+                <div><div class="match-col-label">Meanings</div><div id="meaningCol"></div></div>
+              </div>
+              <div class="done-banner" id="doneBanner"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="stage-footer-nav"><button class="next-btn" data-goto="post">进入读后 Post-reading →</button></div>
+  </div>
+
+  <div class="stage-panel" id="panel-post"></div>
+
+</main>
+
+<footer id="pageFooter"></footer>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-label">教师提示</div>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<script>
+const INITIAL_DATA = __INITIAL_DATA_JSON__;
+hydrateFromLocalStorageIfNewer();
+
+const meta = INITIAL_DATA.meta;
+const tips = INITIAL_DATA.teacherTips || {};
+const pre = INITIAL_DATA.preReading;
+const whileR = INITIAL_DATA.whileReading;
+const post = INITIAL_DATA.postReading;
+
+function esc(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ---------- Hero ---------- */
+(function renderHero() {
+  const badges = (meta.badges || []).map(b => `<span class="badge">${esc(b)}</span>`).join('');
+  const objs = (meta.objectives || []).map(o => `<li>${esc(o)}</li>`).join('');
+  document.getElementById('heroInner').innerHTML = `
+    <div class="hero-top">
+      <div class="badges">${badges}</div>
+      <div class="hero-actions">
+        <div class="tts-voice-wrap" id="ttsVoiceWrap" title="选择语音朗读音色 · Choose TTS Voice">
+          <span class="tts-icon">🔊</span>
+          <select id="ttsVoiceSelect" class="tts-voice-select">
+            <option value="">Default Voice (默认语音)</option>
+          </select>
+        </div>
+        <button type="button" class="hero-btn" id="editBtn" aria-pressed="false">Edit</button>
+        <div class="export-wrap">
+          <button type="button" class="hero-btn" id="exportBtn" aria-haspopup="true" aria-expanded="false">Export ▾</button>
+          <div class="export-menu" id="exportMenu">
+            <button type="button" class="export-item" data-export="save">Save changes to HTML</button>
+            <button type="button" class="export-item" data-export="html">Export all as HTML</button>
+            <button type="button" class="export-item" data-export="pdf">Export current as PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h1 class="title display">${esc(meta.titleEn)}</h1>
+    <div class="objectives">
+      <div class="objectives-label">Lesson objectives</div>
+      <ul>${objs}</ul>
+      <div class="time-est">${esc(meta.timeEstimate || '')}</div>
+    </div>`;
+  document.getElementById('pageFooter').textContent = meta.footer || 'Reading & Writing courseware · Pre / While / Post lesson flow';
+})();
+
+/* ---------- TTS Engine ---------- */
+let availableVoices = [];
+let selectedVoiceURI = '';
+let currentSpeakingBtn = null;
+
+function setTtsBtnState(btn, state) {
+  if (!btn) return;
+  const isPara = btn.classList.contains('para-tts-btn');
+  const meta = {
+    idle: isPara
+      ? { title: '朗读该段 · Listen to paragraph', aria: 'Listen to paragraph', icon: '🔊' }
+      : { title: '发音 · Pronounce', aria: 'Pronounce', icon: '🔊' },
+    speaking: { title: '暂停朗读 · Pause', aria: 'Pause reading', icon: '⏸' },
+    paused: { title: '继续朗读 · Resume', aria: 'Resume reading', icon: '▶' },
+  };
+  const m = meta[state] || meta.idle;
+  btn.title = m.title;
+  btn.setAttribute('aria-label', m.aria);
+  btn.textContent = m.icon;
+  btn.classList.toggle('speaking', state === 'speaking');
+  btn.classList.toggle('paused', state === 'paused');
+}
+
+function stopSpeaking() {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+  if (currentSpeakingBtn) {
+    setTtsBtnState(currentSpeakingBtn, 'idle');
+    currentSpeakingBtn = null;
+  }
+}
+
+function speakText(text, triggerBtn) {
+  if (!('speechSynthesis' in window)) {
+    alert('Browser Speech Synthesis (TTS) is not supported in this browser.');
+    return;
+  }
+  if (currentSpeakingBtn === triggerBtn) {
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+      setTtsBtnState(triggerBtn, 'speaking');
+      return;
+    }
+    if (window.speechSynthesis.speaking) {
+      window.speechSynthesis.pause();
+      setTtsBtnState(triggerBtn, 'paused');
+      return;
+    }
+  }
+  stopSpeaking();
+
+  const cleanText = text.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+  if (!cleanText) return;
+
+  const utter = new SpeechSynthesisUtterance(cleanText);
+  utter.rate = 0.95;
+  utter.pitch = 1.0;
+  utter.lang = 'en-US';
+
+  if (selectedVoiceURI && availableVoices.length) {
+    const v = availableVoices.find(item => item.voiceURI === selectedVoiceURI);
+    if (v) utter.voice = v;
+  }
+
+  if (triggerBtn) {
+    currentSpeakingBtn = triggerBtn;
+    setTtsBtnState(triggerBtn, 'speaking');
+  }
+
+  utter.onend = () => {
+    if (triggerBtn) setTtsBtnState(triggerBtn, 'idle');
+    if (currentSpeakingBtn === triggerBtn) currentSpeakingBtn = null;
+  };
+  utter.onerror = () => {
+    if (triggerBtn) setTtsBtnState(triggerBtn, 'idle');
+    if (currentSpeakingBtn === triggerBtn) currentSpeakingBtn = null;
+  };
+
+  window.speechSynthesis.speak(utter);
+}
+
+function initTTS() {
+  if (!('speechSynthesis' in window)) {
+    const wrap = document.getElementById('ttsVoiceWrap');
+    if (wrap) wrap.style.display = 'none';
+    return;
+  }
+
+  function populateVoiceList() {
+    const voices = window.speechSynthesis.getVoices() || [];
+    if (!voices.length) return;
+    availableVoices = voices;
+    const sel = document.getElementById('ttsVoiceSelect');
+    if (!sel) return;
+
+    // Prioritize English voices
+    const enVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+    const displayList = enVoices.length ? enVoices : voices;
+
+    sel.innerHTML = '<option value="">Default English Voice</option>' +
+      displayList.map(v => `<option value="${esc(v.voiceURI)}">${esc(v.name)} (${esc(v.lang)})</option>`).join('');
+
+    if (selectedVoiceURI) {
+      sel.value = selectedVoiceURI;
+    } else if (enVoices.length) {
+      const preferred = enVoices.find(v => /natural|samantha|daniel|karen|alex|google/i.test(v.name)) || enVoices[0];
+      if (preferred) {
+        selectedVoiceURI = preferred.voiceURI;
+        sel.value = selectedVoiceURI;
+      }
+    }
+  }
+
+  populateVoiceList();
+  if (window.speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+  const sel = document.getElementById('ttsVoiceSelect');
+  if (sel) {
+    sel.addEventListener('change', (e) => {
+      selectedVoiceURI = e.target.value;
+      if (window.speechSynthesis.speaking) stopSpeaking();
+    });
+  }
+}
+initTTS();
+
+/* ---------- Pre-reading ---------- */
+(function renderPre() {
+  const tipBtn = pre.leadIn.tipKey ? `<button class="tip-btn" data-tip="${esc(pre.leadIn.tipKey)}">i</button>` : '';
+  document.getElementById('preLeadIn').innerHTML = `
+    <div class="section-head"><span class="section-num">1</span><h2 class="section-title display">Lead-in · 导入</h2>${tipBtn}</div>
+    <div class="prompt-box">
+      <p class="q">${esc(pre.leadIn.prompt)}</p>
+      <textarea placeholder="${esc(pre.leadIn.placeholder || '')}"></textarea>
+    </div>`;
+  document.getElementById('prePrediction').innerHTML = `
+    <div class="section-head"><span class="section-num">2</span><h2 class="section-title display">Predict · 预测</h2></div>
+    <p class="section-hint">${esc(pre.prediction.hint || '')}</p>
+    <div class="prompt-box">
+      <p class="q">${esc(pre.prediction.prompt)}</p>
+      <textarea placeholder="${esc(pre.prediction.placeholder || '')}"></textarea>
+    </div>`;
+})();
+
+/* ---------- Post-reading ---------- */
+(function renderPost() {
+  const panel = document.getElementById('panel-post');
+  const speakCards = (post.speaking.prompts || []).map((p, i) => `
+    <div class="speak-card"><div class="qnum display">${i + 1}</div><p>${esc(p.prompt)}</p>
+    <textarea placeholder="${esc(p.placeholder || '')}"></textarea></div>`).join('');
+  const sides = (post.textToWorld.sides || []).map(s =>
+    `<button class="side-btn" data-side="${esc(s.id)}">${esc(s.label)}</button>`).join('');
+  const debateTip = post.textToWorld.tipKey ? `<button class="tip-btn" data-tip="${esc(post.textToWorld.tipKey)}">i</button>` : '';
+  const exitTip = post.exitTicket.tipKey ? `<button class="tip-btn" data-tip="${esc(post.exitTicket.tipKey)}">i</button>` : '';
+  panel.innerHTML = `
+    <section>
+      <div class="section-head"><span class="section-num">1</span><h2 class="section-title display">Check your prediction · 验证预测</h2></div>
+      <div class="prompt-box">
+        <p class="q">${esc(post.predictionCheck.prompt)}</p>
+        <textarea placeholder="${esc(post.predictionCheck.placeholder || '')}"></textarea>
+      </div>
+    </section>
+    <section>
+      <div class="section-head"><span class="section-num">2</span><h2 class="section-title display">Speaking · Work in pairs</h2></div>
+      <p class="section-hint">${esc(post.speaking.hint || '')}</p>
+      <div class="speak-grid">${speakCards}</div>
+    </section>
+    <section>
+      <div class="section-head"><span class="section-num">3</span><h2 class="section-title display">Text-to-Self · 联系自身</h2></div>
+      <div class="prompt-box">
+        <span class="strategy-tag self">Text-to-Self</span>
+        <p class="q">${esc(post.textToSelf.prompt)}</p>
+        <textarea placeholder="${esc(post.textToSelf.placeholder || '')}"></textarea>
+      </div>
+    </section>
+    <section>
+      <div class="section-head"><span class="section-num">4</span><h2 class="section-title display">Text-to-World · 联系现实世界</h2>${debateTip}</div>
+      <div class="prompt-box">
+        <span class="strategy-tag world">Text-to-World</span>
+        <p class="q">${esc(post.textToWorld.prompt)}</p>
+        <div class="side-toggle">${sides}</div>
+        <textarea placeholder="${esc(post.textToWorld.placeholder || '')}"></textarea>
+        <div class="subprompt-label">延伸 · Also consider</div>
+        <p class="q" style="font-size:13.5px;">${esc(post.textToWorld.extensionPrompt || '')}</p>
+        <textarea placeholder="${esc(post.textToWorld.extensionPlaceholder || '')}"></textarea>
+      </div>
+    </section>
+    <section>
+      <div class="section-head"><span class="section-num">5</span><h2 class="section-title display">Exit ticket · 一句话总结</h2>${exitTip}</div>
+      <div class="prompt-box">
+        <p class="q">${esc(post.exitTicket.prompt)}</p>
+        <textarea placeholder="${esc(post.exitTicket.placeholder || '')}"></textarea>
+      </div>
+    </section>`;
+})();
+
+/* ---------- Navigation & tips ---------- */
+const modalBackdrop = document.getElementById('modalBackdrop');
+const modalText = document.getElementById('modalText');
+document.querySelectorAll('.tip-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    modalText.textContent = tips[btn.dataset.tip] || '';
+    modalBackdrop.classList.add('show');
+  });
+});
+document.getElementById('modalClose').addEventListener('click', () => modalBackdrop.classList.remove('show'));
+modalBackdrop.addEventListener('click', (e) => { if (e.target === modalBackdrop) modalBackdrop.classList.remove('show'); });
+
+document.querySelectorAll('.stage-tab').forEach(tab => tab.addEventListener('click', () => goToStage(tab.dataset.stage)));
+document.querySelectorAll('.next-btn').forEach(btn => btn.addEventListener('click', () => goToStage(btn.dataset.goto)));
+function goToStage(stage) {
+  document.querySelectorAll('.stage-tab').forEach(t => t.classList.toggle('active', t.dataset.stage === stage));
+  document.querySelectorAll('.stage-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + stage));
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+function setActivityView(view) {
+  document.querySelectorAll('.activity-tab').forEach(t => t.classList.toggle('active', t.dataset.view === view));
+  document.querySelectorAll('.activity-view').forEach(v => v.classList.toggle('active', v.id === 'view-' + view));
+  const panel = document.getElementById('panel-while');
+  panel.classList.toggle('while-mode-gist', view === 'gist');
+  panel.classList.toggle('while-mode-details', view === 'details');
+  if (view === 'details') {
+    closeParagraphLogic();
+    ensureDetailsReady();
+  }
+}
+function setSubview(sub) {
+  document.querySelectorAll('.subtab').forEach(t => t.classList.toggle('active', t.dataset.sub === sub));
+  document.querySelectorAll('.subview').forEach(v => v.classList.toggle('active', v.id === 'sub-' + sub));
+}
+document.querySelectorAll('.activity-tab').forEach(tab => tab.addEventListener('click', () => setActivityView(tab.dataset.view)));
+document.querySelectorAll('.subtab').forEach(t => t.addEventListener('click', () => setSubview(t.dataset.sub)));
+document.querySelectorAll('.light-tabs').forEach(group => {
+  group.querySelectorAll('.light-tab').forEach(t => {
+    t.addEventListener('click', () => {
+      group.querySelectorAll('.light-tab').forEach(x => x.classList.toggle('active', x === t));
+      group.parentElement.querySelectorAll('.light-view').forEach(v => v.classList.toggle('active', v.id === 'lv-' + t.dataset.lv));
+    });
+  });
+});
+document.querySelectorAll('.side-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.parentElement.querySelectorAll('.side-btn').forEach(b => b.classList.remove('chosen'));
+    btn.classList.add('chosen');
+  });
+});
+
+/* ---------- Passage + highlight + Paragraph TTS ---------- */
+function formatPassageParagraph(p, i) {
+  const withOpen = p.replace(/<p\b([^>]*)>/i, `<div class="passage-para"><span class="passage-num" aria-hidden="true">${i + 1}</span><div class="passage-body"><p$1>`);
+  return withOpen.replace(/<\/p>/i, `<button type="button" class="para-tts-btn" title="朗读该段 · Listen to paragraph" aria-label="Listen to paragraph" data-para-idx="${i}">🔊</button></p></div></div>`);
+}
+function excerptHTMLFromData(targets) {
+  const paragraphs = whileR.passageParagraphs || [];
+  return (targets || []).map(id => {
+    const m = String(id).match(/^para-(\d+)$/);
+    if (!m) return '';
+    const idx = parseInt(m[1], 10) - 1;
+    const p = paragraphs[idx];
+    if (!p) return '';
+    return formatPassageParagraph(p, idx).replace(/\sid=(["'])([^"']+)\1/g, ' data-para-target="$2"');
+  }).join('');
+}
+
+const passagePane = document.getElementById('passagePane');
+passagePane.innerHTML = (whileR.passageParagraphs || []).map((p, i) => formatPassageParagraph(p, i)).join('');
+
+passagePane.querySelectorAll('.para-tts-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const p = btn.closest('p');
+    if (!p) return;
+    const clone = p.cloneNode(true);
+    clone.querySelectorAll('.para-tts-btn').forEach(b => b.remove());
+    speakText(clone.innerText, btn);
+  });
+});
+
+document.querySelectorAll('.vocab').forEach(span => {
+  span.addEventListener('click', () => {
+    setActivityView('details'); setSubview('check');
+    setTimeout(() => {
+      const chip = document.querySelector(`.chip.word[data-word="${span.dataset.word}"]`);
+      setHighlight(chip);
+    }, 200);
+  });
+});
+let lastHighlighted = [];
+function getActiveCarouselSlide() {
+  return document.querySelector('.carousel-slide.active');
+}
+function findTargetElement(id, scope) {
+  if (scope) {
+    const hit = scope.querySelector(`[data-para-target="${id}"]`) || scope.querySelector(`[id="${CSS.escape(id)}"]`);
+    if (hit) return hit;
+  }
+  return document.getElementById(id);
+}
+function getSectionIndexForTarget(el) {
+  const id = el && (el.id || el.getAttribute('data-para-target'));
+  if (!id) return -1;
+  return (whileR.textWalkthrough || []).findIndex(c => (c.targets || []).includes(id));
+}
+function setHighlight(elsOrEl) {
+  const els = (Array.isArray(elsOrEl) ? elsOrEl : [elsOrEl]).filter(Boolean);
+  const panel = document.getElementById('panel-while');
+  const inDetails = panel.classList.contains('while-mode-details');
+  let resolved = els;
+  if (inDetails && els[0]) {
+    const id = els[0].id || els[0].getAttribute('data-para-target');
+    if (id) {
+      const idx = getSectionIndexForTarget({ id });
+      if (idx >= 0 && typeof goToCarouselSlide === 'function') goToCarouselSlide(idx);
+      const slide = getActiveCarouselSlide();
+      const visible = slide && findTargetElement(id, slide);
+      if (visible) resolved = [visible];
+    }
+  }
+  lastHighlighted.forEach(e => e.classList.remove('persist-hl'));
+  lastHighlighted = resolved;
+  lastHighlighted.forEach(e => e.classList.add('persist-hl'));
+  if (lastHighlighted[0] && !inDetails) {
+    lastHighlighted[0].scrollIntoView({ behavior:'smooth', block:'center' });
+  } else if (lastHighlighted[0] && inDetails) {
+    lastHighlighted[0].scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+}
+function highlightTargets(ids) {
+  const scope = document.getElementById('panel-while').classList.contains('while-mode-details')
+    ? getActiveCarouselSlide() : null;
+  setHighlight((ids || []).map(id => findTargetElement(id, scope)).filter(Boolean));
+}
+
+/* ---------- Preteach flashcards ---------- */
+(pre.keyWords || []).forEach(item => {
+  const card = document.createElement('div'); card.className = 'flash';
+  card.innerHTML = `<div class="flash-inner"><div class="flash-face flash-front"><div class="w display">${esc(item.word)}</div><div class="hint">tap to reveal</div></div><div class="flash-face flash-back">${esc(item.meaning)}<div class="ex">"${esc(item.example || '')}"</div></div></div>`;
+  card.addEventListener('click', () => card.classList.toggle('flipped'));
+  document.getElementById('flashGrid').appendChild(card);
+});
+
+/* ---------- Gist MCQ ---------- */
+const gist = whileR.gist;
+document.getElementById('gistHint').textContent = gist.hint || '';
+document.getElementById('gistDone').textContent = gist.doneMessage || '';
+const letters = ['A','B','C','D'];
+(gist.options || []).forEach((opt, i) => {
+  const el = document.createElement('div'); el.className = 'mcq-opt';
+  el.innerHTML = `<span class="letter">${letters[i]}</span><span>${esc(opt)}</span>`;
+  el.addEventListener('click', () => {
+    document.querySelectorAll('.mcq-opt').forEach(o => o.classList.remove('correct','wrong'));
+    if (i === gist.correct) el.classList.add('correct');
+    else { el.classList.add('wrong'); document.getElementById('mcqList').children[gist.correct].classList.add('correct'); }
+    document.getElementById('mcqFeedback').textContent = 'Main idea: ' + gist.options[gist.correct];
+    document.getElementById('mcqFeedback').classList.add('show');
+  });
+  document.getElementById('mcqList').appendChild(el);
+});
+
+function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+const gistParas = gist.paragraphFunctions || [];
+const gistParaCol = document.getElementById('gistParaCol');
+const gistFuncCol = document.getElementById('gistFuncCol');
+let gistSelected = null, gistSolved = 0;
+function buildGist() {
+  gistParaCol.innerHTML = ''; gistFuncCol.innerHTML = ''; gistSolved = 0; gistSelected = null;
+  document.getElementById('gistDone').classList.remove('show'); updateGistProgress();
+  shuffle(gistParas).forEach(g => {
+    const b = document.createElement('button'); b.className = 'chip word'; b.textContent = g.p; b.dataset.p = g.p;
+    b.addEventListener('click', () => onGistParaClick(b, g)); gistParaCol.appendChild(b);
+  });
+  shuffle(gistParas).forEach(g => {
+    const b = document.createElement('button'); b.className = 'chip'; b.textContent = g.label; b.dataset.p = g.p;
+    b.addEventListener('click', () => onGistFuncClick(b, g)); gistFuncCol.appendChild(b);
+  });
+}
+function onGistParaClick(btn, g) {
+  if (btn.classList.contains('solved')) return;
+  gistParaCol.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+  btn.classList.add('selected'); gistSelected = { btn, g };
+}
+function onGistFuncClick(btn, g) {
+  if (btn.classList.contains('solved') || !gistSelected) return;
+  if (gistSelected.g.p === g.p) {
+    btn.classList.add('solved'); btn.classList.remove('selected');
+    gistSelected.btn.classList.add('solved'); gistSelected.btn.classList.remove('selected');
+    gistSelected = null; gistSolved++; updateGistProgress();
+    if (gistSolved === gistParas.length) document.getElementById('gistDone').classList.add('show');
+  } else {
+    btn.classList.add('shake'); gistSelected.btn.classList.add('shake');
+    setTimeout(() => {
+      btn.classList.remove('shake');
+      gistSelected && gistSelected.btn.classList.remove('shake','selected');
+      gistSelected = null;
+      gistParaCol.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+    }, 350);
+  }
+}
+function updateGistProgress() {
+  const n = Math.max(gistParas.length, 1);
+  document.getElementById('gistBar').style.width = (gistSolved / n * 100) + '%';
+  document.getElementById('gistCount').textContent = `${gistSolved} / ${gistParas.length} matched`;
+}
+buildGist();
+document.getElementById('gistReset').addEventListener('click', buildGist);
+
+/* ---------- Flip cards ---------- */
+function syncZhToggleButtons() {
+  const on = document.body.classList.contains('show-content-zh');
+  document.querySelectorAll('.zh-toggle-btn').forEach(btn => {
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+}
+function toggleContentZh(e) {
+  if (e) e.stopPropagation();
+  document.body.classList.toggle('show-content-zh');
+  syncZhToggleButtons();
+  requestAnimationFrame(syncCarouselHeight);
+}
+function zhToggleBtnHTML() {
+  return `<button type="button" class="zh-toggle-btn" title="显示/隐藏中文" aria-label="Toggle Chinese" aria-pressed="false">中</button>`;
+}
+function buildFlipCard(opts) {
+  const el = document.createElement('div'); el.className = 'fcard ' + opts.cls;
+  const qZh = opts.questionZh ? `<div class="content-zh">${opts.questionZh}</div>` : '';
+  const sub = opts.subtitle ? `<div class="zh content-zh">${opts.subtitle}</div>` : '';
+  el.innerHTML = `
+    <div class="fcard-header">
+      <div class="htext"><div class="en display">${opts.title}</div>${sub}</div>
+      <div style="display:flex;align-items:center;gap:6px;">${opts.tag ? `<span class="tag">${opts.tag}</span>` : ''}${zhToggleBtnHTML()}<button class="flip-icon" title="翻面查看">↻</button></div>
+    </div>
+    <div class="fcard-body">
+      <div class="fcard-face front active"><div class="front-q">❓ ${opts.question}${qZh}</div></div>
+      <div class="fcard-face back">${opts.backHTML}</div>
+    </div>`;
+  const flipBtn = el.querySelector('.flip-icon');
+  const body = el.querySelector('.fcard-body');
+  const front = el.querySelector('.front');
+  const back = el.querySelector('.back');
+  el.querySelector('.zh-toggle-btn').addEventListener('click', toggleContentZh);
+  flipBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    body.classList.add('flipping');
+    setTimeout(() => {
+      front.classList.toggle('active'); back.classList.toggle('active');
+      body.classList.remove('flipping');
+    }, 220);
+  });
+  if (opts.onCardClick) body.addEventListener('click', opts.onCardClick);
+  return el;
+}
+
+/* ---------- Structure diagram (layout-aware SVG) ---------- */
+function structureTone(tone) {
+  const fills = { mint:'#DCF0EE', gold:'#FBEBCB', coral:'#FBE4D6', plum:'#EDE6F5' };
+  const texts = { mint:'#0D5A62', gold:'#7A5610', coral:'#9A3F1B', plum:'#6B4E8E' };
+  return { fill: fills[tone] || fills.mint, text: texts[tone] || texts.mint };
+}
+function structureNodeBox(x, y, w, h, n) {
+  const t = structureTone(n.tone);
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="10" fill="${t.fill}"/>
+    <text x="${x + w/2}" y="${y + 18}" text-anchor="middle" fill="${t.text}" font-size="10" font-weight="700" font-family="Work Sans,sans-serif">${esc(n.label)}</text>
+    <text x="${x + w/2}" y="${y + 32}" text-anchor="middle" fill="${t.text}" font-size="9" font-family="Work Sans,sans-serif">${esc(n.sub || '')}</text>`;
+}
+function structureArrow(x1, y1, x2, y2) {
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#8A9AA0" stroke-width="2" marker-end="url(#arrowHead)"/>`;
+}
+function renderStructureSvg(s) {
+  const nodes = s.nodes || [];
+  const layout = s.layout || 'hub';
+  const marker = '<defs><marker id="arrowHead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#8A9AA0"/></marker></defs>';
+  if (layout === 'timeline' || layout === 'sequence') {
+    const count = Math.max(nodes.length, 1);
+    const gap = 16;
+    const boxW = Math.min(92, Math.floor((420 - 40 - gap * (count - 1)) / count));
+    const total = count * boxW + (count - 1) * gap;
+    const startX = (420 - total) / 2;
+    let svg = marker;
+    nodes.forEach((n, i) => {
+      const x = startX + i * (boxW + gap);
+      svg += structureNodeBox(x, 95, boxW, 50, n);
+      if (i < count - 1) svg += structureArrow(x + boxW + 2, 120, x + boxW + gap - 2, 120);
+    });
+    return `<svg viewBox="0 0 420 240" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">${svg}</svg>`;
+  }
+  if (layout === 'compare') {
+    const left = nodes[0] || { label:'Side A', sub:'' };
+    const right = nodes[1] || { label:'Side B', sub:'' };
+    const shared = nodes[2] || { label: (s.centerLines || ['Both'])[0], sub: s.centerSub || '' };
+    return `<svg viewBox="0 0 420 240" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">${marker}
+      ${structureNodeBox(30, 70, 130, 56, left)}
+      ${structureNodeBox(260, 70, 130, 56, right)}
+      <ellipse cx="210" cy="185" rx="72" ry="28" fill="#6B4E8E"/>
+      <text x="210" y="182" text-anchor="middle" fill="white" font-size="10" font-weight="700" font-family="Work Sans,sans-serif">${esc(shared.label)}</text>
+      <text x="210" y="196" text-anchor="middle" fill="#E0D6F0" font-size="9" font-family="Work Sans,sans-serif">${esc(shared.sub || '')}</text>
+      <line x1="160" y1="126" x2="190" y2="160" stroke="#C9BFE0" stroke-width="2"/>
+      <line x1="260" y1="126" x2="230" y2="160" stroke="#C9BFE0" stroke-width="2"/>
+    </svg>`;
+  }
+  if (layout === 'problem-solution') {
+    const problem = nodes[0] || { label:'Problem', sub:'' };
+    const solutions = nodes.slice(1);
+    let svg = marker + structureNodeBox(24, 88, 120, 56, problem) + structureArrow(146, 116, 174, 116);
+    const solCount = Math.max(solutions.length, 1);
+    const boxW = Math.min(110, Math.floor((220 - 16 * (solCount - 1)) / solCount));
+    solutions.forEach((n, i) => {
+      const x = 176 + i * (boxW + 16);
+      svg += structureNodeBox(x, 88, boxW, 56, n);
+    });
+    if (!solutions.length) svg += structureNodeBox(176, 88, 120, 56, { label:'Solution', sub:'', tone:'gold' });
+    return `<svg viewBox="0 0 420 220" width="100%" height="200" xmlns="http://www.w3.org/2000/svg">${svg}</svg>`;
+  }
+  // hub (description / concept map) — default
+  const positions = [{ x:90, y:50 }, { x:330, y:50 }, { x:90, y:210 }, { x:330, y:210 }];
+  let lines = '', rects = '';
+  nodes.slice(0, 4).forEach((n, i) => {
+    const p = positions[i];
+    lines += `<line x1="210" y1="130" x2="${p.x}" y2="${p.y}" stroke="#C9BFE0" stroke-width="2"/>`;
+    rects += structureNodeBox(p.x - 64, p.y - 22, 128, 44, n);
+  });
+  const c1 = esc((s.centerLines || [''])[0] || '');
+  const c2 = esc((s.centerLines || ['', ''])[1] || '');
+  return `<svg viewBox="0 0 420 260" width="100%" height="230" xmlns="http://www.w3.org/2000/svg">
+    ${lines}
+    <ellipse cx="210" cy="130" rx="76" ry="36" fill="#6B4E8E"/>
+    <text x="210" y="123" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="Work Sans,sans-serif">${c1}</text>
+    <text x="210" y="137" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="Work Sans,sans-serif">${c2}</text>
+    <text x="210" y="152" text-anchor="middle" fill="#E0D6F0" font-size="9" font-family="Work Sans,sans-serif">${esc(s.centerSub || '')}</text>
+    ${rects}
+  </svg>`;
+}
+(function renderStructure() {
+  const s = whileR.structure;
+  if (!s) return;
+  const back = `<div class="mindmap-wrap">${renderStructureSvg(s)}<div class="card-summary content-zh">${s.summaryHtml || ''}</div></div>`;
+  document.getElementById('structureCard').appendChild(buildFlipCard({
+    cls:'structure', title: esc(s.cardTitle || 'Text Structure'), subtitle: esc(s.cardSubtitle || '文本结构'),
+    question: esc(s.question), questionZh: esc(s.questionZh || ''), backHTML: back
+  }));
+})();
+
+/* ---------- Text walkthrough (typed per-question flip rows + Paragraph Logic) ---------- */
+const QTYPE_META = {
+  Fact: { letter: 'F', cls: 'fact' },
+  Infer: { letter: 'I', cls: 'infer' },
+  Tone: { letter: 'T', cls: 'tone' },
+  Vocabulary: { letter: 'V', cls: 'vocabulary' },
+  Structure: { letter: 'S', cls: 'structure' },
+  Reflect: { letter: 'R', cls: 'reflect' },
+};
+const PLOGIC_CAT_STYLE = {
+  cause: { light: '#F9CBA6', deep: '#C97A3D' },
+  contrast: { light: '#F7C6D9', deep: '#C4577E' },
+  addition: { light: '#B7E4C7', deep: '#3F8259' },
+  sequence: { light: '#DCF0EE', deep: '#0D5A62' },
+  hedge: { light: '#CBC3E3', deep: '#6B5A9E' },
+};
+const PLOGIC_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M8 7.2 10.8 15M16 7.2 13.2 15"/></svg>`;
+let activePlogicCard = null;
+const customLegendStore = new Map();
+let customLegendCounter = 0;
+
+function legendStoreKey(targets) {
+  return (targets || []).join('|');
+}
+function deriveLightColor(deep) {
+  return `color-mix(in srgb, ${deep} 35%, white)`;
+}
+function registerDmCatStyle(cat, light, deep) {
+  PLOGIC_CAT_STYLE[cat] = { light, deep };
+  const id = `dm-style-${cat}`;
+  let el = document.getElementById(id);
+  if (!el) {
+    el = document.createElement('style');
+    el.id = id;
+    document.head.appendChild(el);
+  }
+  el.textContent = `
+    .passage-body.plogic-hl .dm[data-cat="${cat}"],
+    .carousel-passage.plogic-hl .dm[data-cat="${cat}"]{ background:${light}; color:${deep}; }`;
+}
+function hydrateCustomLegendsFromData() {
+  const legends = whileR.customSignpostLegends || {};
+  Object.entries(legends).forEach(([key, devices]) => {
+    if (!devices || !devices.length) return;
+    customLegendStore.set(key, devices);
+    devices.forEach(d => {
+      if (d.cat && d.light && d.deep) {
+        registerDmCatStyle(d.cat, d.light, d.deep);
+        const m = String(d.cat).match(/^custom-(\d+)$/);
+        if (m) customLegendCounter = Math.max(customLegendCounter, parseInt(m[1], 10));
+      }
+    });
+  });
+}
+hydrateCustomLegendsFromData();
+
+function qtypeMeta(type) {
+  return QTYPE_META[type] || { letter: (type || '?')[0].toUpperCase(), cls: 'fact' };
+}
+function qtypeBadgeHTML(type) {
+  const m = qtypeMeta(type);
+  return `<span class="qtype-badge ${m.cls}"><span class="qtype-letter">${m.letter}</span>${esc(type)}</span>`;
+}
+function renderQuestionAnswerHTML(q) {
+  let html = '';
+  if (q.bulletsEn && q.bulletsEn.length) {
+    html += `<ul>${q.bulletsEn.map(b => `<li><strong>${esc(b[0])}</strong>: ${esc(b[1])}</li>`).join('')}</ul>`;
+  }
+  if (q.answerEn) html += `<div>${esc(q.answerEn)}</div>`;
+  const zhParts = [];
+  if (q.bulletsZh && q.bulletsZh.length) {
+    zhParts.push(`<ul>${q.bulletsZh.map(b => `<li><strong>${esc(b[0])}</strong>：${esc(b[1])}</li>`).join('')}</ul>`);
+  }
+  if (q.answerZh) zhParts.push(`<div>${esc(q.answerZh)}</div>`);
+  if (zhParts.length) html += `<div class="zh content-zh">${zhParts.join('')}</div>`;
+  return html || '<div class="card-summary">（暂无解析）</div>';
+}
+function flipQuestionItem(item) {
+  const faces = item.querySelectorAll('.tw-qface');
+  const active = item.querySelector('.tw-qface.active');
+  if (!active) return;
+  active.classList.add('flipping');
+  setTimeout(() => {
+    faces.forEach(f => f.classList.toggle('active'));
+    active.classList.remove('flipping');
+  }, 220);
+}
+function getPlogicScopeForCard(cardEl) {
+  const panel = document.getElementById('panel-while');
+  if (panel.classList.contains('while-mode-details')) return getActiveCarouselSlide();
+  return cardEl.closest('.carousel-slide') || null;
+}
+function getPlogicPassageRoot(cardEl, c) {
+  const scope = getPlogicScopeForCard(cardEl);
+  if (scope) {
+    const root = scope.querySelector('.carousel-passage');
+    if (root) return root;
+  }
+  const bodies = getPassageBodiesForTargets((c && c.targets) || [], scope);
+  return bodies[0] || null;
+}
+function getPassageBodiesForTargets(targets, scope) {
+  return (targets || []).map(id => {
+    const el = findTargetElement(id, scope);
+    if (!el) return null;
+    return el.closest('.passage-body') || el.closest('.carousel-passage') || el;
+  }).filter(Boolean);
+}
+function getPlogicHighlightRoots(cardEl, c) {
+  const root = getPlogicPassageRoot(cardEl, c);
+  if (root && root.classList.contains('carousel-passage')) {
+    const bodies = [...root.querySelectorAll('.passage-body')];
+    return { root, bodies: bodies.length ? bodies : [root] };
+  }
+  const scope = getPlogicScopeForCard(cardEl);
+  const bodies = getPassageBodiesForTargets((c && c.targets) || [], scope);
+  return { root: root || bodies[0] || null, bodies };
+}
+let activeMarkCat = null;
+let dmFloatBtn = null;
+let dmFloatMode = null; // 'add' | 'remove'
+let dmFloatTarget = null;
+
+function ensureDmFloatBtn() {
+  if (dmFloatBtn) return dmFloatBtn;
+  dmFloatBtn = document.createElement('button');
+  dmFloatBtn.type = 'button';
+  dmFloatBtn.className = 'dm-float-btn';
+  dmFloatBtn.setAttribute('aria-label', 'Toggle signpost mark');
+  document.body.appendChild(dmFloatBtn);
+  dmFloatBtn.addEventListener('mousedown', (e) => e.preventDefault());
+  dmFloatBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (dmFloatMode === 'add' && activeMarkCat) {
+      wrapSelectionWithDm(activeMarkCat);
+    } else if (dmFloatMode === 'remove' && dmFloatTarget) {
+      unwrapDm(dmFloatTarget);
+    }
+    hideDmFloatBtn();
+    window.getSelection()?.removeAllRanges();
+  });
+  return dmFloatBtn;
+}
+function hideDmFloatBtn() {
+  if (!dmFloatBtn) return;
+  dmFloatBtn.classList.remove('show');
+  dmFloatMode = null;
+  dmFloatTarget = null;
+}
+function unwrapDm(dmEl) {
+  if (!dmEl || !dmEl.parentNode) return;
+  const parent = dmEl.parentNode;
+  while (dmEl.firstChild) parent.insertBefore(dmEl.firstChild, dmEl);
+  parent.removeChild(dmEl);
+  parent.normalize();
+  schedulePersist();
+}
+function wrapSelectionWithDm(cat) {
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount) return;
+  const range = sel.getRangeAt(0);
+  if (!range.toString().trim()) return;
+  const span = document.createElement('span');
+  span.className = 'dm';
+  span.dataset.cat = cat;
+  try {
+    range.surroundContents(span);
+  } catch (_) {
+    const frag = range.extractContents();
+    span.appendChild(frag);
+    range.insertNode(span);
+  }
+  // Keep filter state in sync if filtering is on
+  if (span.closest('.plogic-filtering')) {
+    span.classList.toggle('filter-on', span.dataset.cat === activeMarkCat);
+  }
+  schedulePersist();
+}
+function findDmCoveringRange(range) {
+  const startEl = range.startContainer.nodeType === 1 ? range.startContainer : range.startContainer.parentElement;
+  const endEl = range.endContainer.nodeType === 1 ? range.endContainer : range.endContainer.parentElement;
+  if (!startEl || !endEl) return null;
+  const startDm = startEl.closest && startEl.closest('.dm[data-cat]');
+  const endDm = endEl.closest && endEl.closest('.dm[data-cat]');
+  if (startDm && startDm === endDm) return startDm;
+  return null;
+}
+function selectionInPlogicPassage(range) {
+  const node = range.commonAncestorContainer;
+  const el = node.nodeType === 1 ? node : node.parentElement;
+  if (!el) return false;
+  const root = el.closest('.carousel-passage.plogic-hl, .passage-body.plogic-hl');
+  return !!root;
+}
+function updateDmFloatFromSelection() {
+  if (!activePlogicCard) { hideDmFloatBtn(); return; }
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount) { hideDmFloatBtn(); return; }
+  const range = sel.getRangeAt(0);
+  if (!range.toString().trim() || !selectionInPlogicPassage(range)) { hideDmFloatBtn(); return; }
+
+  const btn = ensureDmFloatBtn();
+  const covered = findDmCoveringRange(range);
+  const rect = range.getBoundingClientRect();
+  if (!rect || (!rect.width && !rect.height)) { hideDmFloatBtn(); return; }
+
+  if (covered) {
+    dmFloatMode = 'remove';
+    dmFloatTarget = covered;
+    const st = PLOGIC_CAT_STYLE[covered.dataset.cat] || PLOGIC_CAT_STYLE.addition;
+    btn.textContent = '−';
+    btn.style.background = st.deep;
+    btn.title = 'Remove signpost highlight';
+  } else if (activeMarkCat) {
+    dmFloatMode = 'add';
+    dmFloatTarget = null;
+    const st = PLOGIC_CAT_STYLE[activeMarkCat] || PLOGIC_CAT_STYLE.addition;
+    btn.textContent = '+';
+    btn.style.background = st.deep;
+    btn.title = 'Add signpost highlight';
+  } else {
+    hideDmFloatBtn();
+    return;
+  }
+  btn.style.left = (rect.left + rect.width / 2) + 'px';
+  btn.style.top = rect.top + 'px';
+  btn.classList.add('show');
+}
+function clearPlogicPassageUI() {
+  activeMarkCat = null;
+  hideDmFloatBtn();
+  document.querySelectorAll('.passage-body.plogic-hl, .carousel-passage.plogic-hl').forEach(body => {
+    body.classList.remove('plogic-hl', 'plogic-filtering');
+    body.querySelectorAll('.sent-step').forEach(s => s.classList.remove('step-active'));
+    body.querySelectorAll('.dm').forEach(dm => dm.classList.remove('filter-on'));
+  });
+  document.querySelectorAll('.plogic-legend-bar').forEach(bar => {
+    bar.hidden = true;
+    bar.innerHTML = '';
+    bar.remove();
+  });
+}
+function renderLegendBar(bar) {
+  const custom = customLegendStore.get(bar._legendKey) || [];
+  custom.forEach(d => {
+    if (d.light && d.deep) registerDmCatStyle(d.cat, d.light, d.deep);
+  });
+  const all = [...(bar._baseDevices || []), ...custom];
+  bar.innerHTML = buildLegendHTML(all);
+}
+function ensureSectionLegendBar(targets, scope, devices) {
+  const firstEl = findTargetElement(targets[0], scope);
+  const firstPara = firstEl && firstEl.closest('.passage-para');
+  if (!firstPara) return null;
+  const passage = firstPara.closest('.carousel-passage') || firstPara.parentElement;
+  let bar = passage && passage.querySelector(':scope > .plogic-legend-bar');
+  if (!bar) {
+    bar = firstPara.previousElementSibling;
+    if (!bar || !bar.classList.contains('plogic-legend-bar')) {
+      bar = document.createElement('div');
+      bar.className = 'plogic-legend-bar plogic-legend';
+    }
+  }
+  // Always keep legend as the first child of the passage so it sits under card padding
+  if (passage && passage.firstElementChild !== bar) {
+    passage.insertBefore(bar, passage.firstElementChild);
+  } else if (!bar.parentElement && firstPara) {
+    firstPara.insertAdjacentElement('beforebegin', bar);
+  }
+  const key = legendStoreKey(targets);
+  if (!customLegendStore.has(key)) customLegendStore.set(key, []);
+  bar._legendKey = key;
+  bar._baseDevices = devices || [];
+  renderLegendBar(bar);
+  bar.hidden = false;
+  return bar;
+}
+function bindLegendAddForm(legendBar) {
+  const addBtn = legendBar.querySelector('.plogic-legend-add-btn');
+  const form = legendBar.querySelector('.plogic-legend-add-form');
+  if (!addBtn || !form) return;
+  const colorInput = form.querySelector('.plogic-legend-color');
+  const enInput = form.querySelector('.plogic-legend-label-en');
+  const zhInput = form.querySelector('.plogic-legend-label-zh');
+  const confirmBtn = form.querySelector('.plogic-legend-add-confirm');
+  const cancelBtn = form.querySelector('.plogic-legend-add-cancel');
+
+  addBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    form.hidden = !form.hidden;
+    if (!form.hidden) enInput.focus();
+  });
+  form.querySelectorAll('.plogic-legend-preset-swatch').forEach(sw => {
+    sw.addEventListener('click', (e) => {
+      e.stopPropagation();
+      colorInput.value = sw.dataset.color;
+    });
+  });
+  cancelBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    form.hidden = true;
+  });
+  confirmBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const labelEn = enInput.value.trim();
+    if (!labelEn) { enInput.focus(); return; }
+    const labelZh = zhInput.value.trim();
+    const deep = colorInput.value;
+    const light = deriveLightColor(deep);
+    const cat = `custom-${++customLegendCounter}`;
+    registerDmCatStyle(cat, light, deep);
+    const custom = customLegendStore.get(legendBar._legendKey) || [];
+    custom.push({ cat, labelEn, labelZh, light, deep });
+    customLegendStore.set(legendBar._legendKey, custom);
+    enInput.value = '';
+    zhInput.value = '';
+    form.hidden = true;
+    renderLegendBar(legendBar);
+    bindSectionLegendFilter(legendBar, legendBar._filterRoots || []);
+    const chip = legendBar.querySelector(`[data-cat="${cat}"]`);
+    if (chip) chip.click();
+    schedulePersist();
+  });
+}
+function bindSectionLegendFilter(legendBar, roots) {
+  legendBar._filterRoots = roots;
+  const applyFilter = (cat) => {
+    roots.forEach(b => {
+      if (!cat) {
+        b.classList.remove('plogic-filtering');
+        b.querySelectorAll('.dm').forEach(dm => dm.classList.remove('filter-on'));
+      } else {
+        b.classList.add('plogic-filtering');
+        b.querySelectorAll('.dm').forEach(dm => dm.classList.toggle('filter-on', dm.dataset.cat === cat));
+      }
+    });
+  };
+  const setMarkCat = (cat) => {
+    activeMarkCat = cat;
+    legendBar.querySelectorAll('.plogic-legend-chip').forEach(ch => {
+      const on = !!cat && ch.dataset.cat === cat;
+      ch.classList.toggle('active', on);
+      ch.classList.toggle('marking', on);
+    });
+    applyFilter(cat);
+    hideDmFloatBtn();
+  };
+  legendBar.querySelectorAll('.plogic-legend-chip').forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const cat = chip.dataset.cat;
+      setMarkCat(activeMarkCat === cat ? null : cat);
+    });
+  });
+  legendBar.querySelectorAll('.plogic-legend-reset').forEach(resetBtn => {
+    resetBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setMarkCat(null);
+    });
+  });
+  bindLegendAddForm(legendBar);
+}
+function closeParagraphLogic() {
+  if (activePlogicCard) {
+    activePlogicCard.classList.remove('plogic-open');
+    const btn = activePlogicCard.querySelector('.plogic-btn');
+    if (btn) {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    }
+    const idx = twCardEls.indexOf(activePlogicCard);
+    const slide = idx >= 0 ? carouselSlides[idx] : null;
+    if (slide) {
+      const panel = slide.querySelector('.plogic-panel');
+      if (panel) panel.classList.remove('open');
+      slide.querySelectorAll('.plogic-flow-step').forEach(s => s.classList.remove('active'));
+    }
+    activePlogicCard = null;
+  }
+  clearPlogicPassageUI();
+  schedulePersist();
+  requestAnimationFrame(syncCarouselHeight);
+}
+function buildLegendHTML(devices) {
+  const presetSwatches = Object.entries(PLOGIC_CAT_STYLE).map(([name, st]) =>
+    `<button type="button" class="plogic-legend-preset-swatch" data-color="${st.deep}" style="background:${st.deep}" title="${esc(name)}"></button>`
+  ).join('');
+  const addUI = `<button type="button" class="plogic-legend-add-btn" title="添加图例 · Add legend">＋</button>`
+    + `<div class="plogic-legend-add-form" hidden>`
+    + `<div class="plogic-legend-preset-colors">${presetSwatches}</div>`
+    + `<input type="color" class="plogic-legend-color" value="#C97A3D" />`
+    + `<input type="text" class="plogic-legend-label-en" placeholder="Label (EN)" />`
+    + `<input type="text" class="plogic-legend-label-zh" placeholder="中文标签" />`
+    + `<button type="button" class="plogic-legend-add-confirm">Add</button>`
+    + `<button type="button" class="plogic-legend-add-cancel">Cancel</button>`
+    + `</div>`;
+  if (!devices || !devices.length) {
+    return `<span style="font-size:11px;color:var(--ink-soft);">本段衔接主要靠语义推进，无突出的逻辑标记词。</span>`
+      + addUI
+      + `<div class="plogic-legend-hint">点击 ＋ 可添加自定义图例；选中色块后可用浮动 + / − 手动补标或取消高亮</div>`;
+  }
+  const chips = devices.map(d => {
+    const st = (d.light && d.deep) ? { light: d.light, deep: d.deep } : (PLOGIC_CAT_STYLE[d.cat] || PLOGIC_CAT_STYLE.addition);
+    return `<button type="button" class="plogic-legend-chip" data-cat="${esc(d.cat)}" style="--chip-light:${st.light};--chip-deep:${st.deep}"><span class="dot" style="background:${st.deep}"></span>${esc(d.labelEn)}<span class="zh">${esc(d.labelZh || '')}</span></button>`;
+  }).join('');
+  return chips
+    + addUI
+    + `<button type="button" class="plogic-legend-reset">Show all</button>`
+    + `<div class="plogic-legend-hint">点击色块后选中原文，可用浮动 + / − 手动补标或取消高亮；点击 ＋ 可添加自定义图例</div>`;
+}
+function openParagraphLogic(cardEl, c) {
+  closeParagraphLogic();
+  const logic = c.paragraphLogic || { steps: [], devices: [] };
+  const idx = twCardEls.indexOf(cardEl);
+  const slide = idx >= 0 ? carouselSlides[idx] : null;
+  const panel = slide ? slide.querySelector('.plogic-panel') : null;
+  const btn = cardEl.querySelector('.plogic-btn');
+  cardEl.classList.add('plogic-open');
+  if (btn) {
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+  }
+  if (panel) panel.classList.add('open');
+  activePlogicCard = cardEl;
+
+  lastHighlighted.forEach(e => e.classList.remove('persist-hl'));
+  lastHighlighted = [];
+  const scope = getPlogicScopeForCard(cardEl);
+
+  const { root, bodies } = getPlogicHighlightRoots(cardEl, c);
+  if (root) root.classList.add('plogic-hl');
+  bodies.forEach(body => body.classList.add('plogic-hl'));
+  const legendBar = ensureSectionLegendBar(c.targets, scope, logic.devices);
+  const filterRoots = root && root.classList.contains('carousel-passage') ? [root] : bodies;
+  if (legendBar) bindSectionLegendFilter(legendBar, filterRoots);
+
+  // Default-select first logic step (no scroll — avoids clipping Signpost via overflow scroll)
+  const first = logic.steps && logic.steps[0];
+  if (first) selectPlogicStep(cardEl, c, first.id, false);
+
+  syncCarouselHeight();
+  resetCarouselScroll();
+  requestAnimationFrame(() => {
+    syncCarouselHeight();
+    resetCarouselScroll();
+  });
+}
+function passageParaTargetId(el) {
+  const host = el && el.closest('.passage-para');
+  if (!host) return '';
+  const marked = host.querySelector('[data-para-target]');
+  if (marked) return marked.getAttribute('data-para-target') || '';
+  const p = host.querySelector('p[id]');
+  return (p && p.id) || '';
+}
+function selectPlogicStep(cardEl, c, stepId, allowScroll = true) {
+  const idx = twCardEls.indexOf(cardEl);
+  const slide = idx >= 0 ? carouselSlides[idx] : null;
+  const panel = slide ? slide.querySelector('.plogic-panel') : null;
+  if (panel) {
+    panel.querySelectorAll('.plogic-flow-step').forEach(b => {
+      b.classList.toggle('active', String(b.dataset.step) === String(stepId));
+    });
+  }
+  // Scope to this card's target paragraphs. Step ids must be unique within the section —
+  // never reset data-step="1" on every paragraph's first sentence in a multi-para section.
+  const { root, bodies } = getPlogicHighlightRoots(cardEl, c);
+  const searchRoots = root && root.classList.contains('carousel-passage') ? [root] : bodies;
+  const targetSet = new Set((c.targets || []).map(String));
+  const matches = [];
+  searchRoots.forEach(body => {
+    body.querySelectorAll('.sent-step').forEach(s => {
+      const paraId = passageParaTargetId(s);
+      const inTargets = !targetSet.size || !paraId || targetSet.has(paraId);
+      const on = inTargets && String(s.dataset.step) === String(stepId);
+      s.classList.toggle('step-active', on);
+      if (on) matches.push(s);
+    });
+  });
+  if (matches.length > 1) {
+    console.warn(
+      `[Paragraph Logic] step "${stepId}" matched ${matches.length} spans. ` +
+      `Each data-step id must be unique across the section (do not reuse the same id on every paragraph).`
+    );
+  }
+  if (!allowScroll) return;
+  const hit = matches[0];
+  if (!hit) return;
+  const wrap = document.querySelector('.carousel-track-wrap');
+  const beforeTop = wrap ? wrap.scrollTop : 0;
+  hit.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  requestAnimationFrame(() => {
+    resetCarouselScroll();
+    if (wrap && wrap.scrollTop !== beforeTop) wrap.scrollTop = 0;
+    syncCarouselHeight();
+  });
+}
+function buildPlogicPanel(c) {
+  const logic = c.paragraphLogic || { steps: [], devices: [] };
+  const multiPara = (c.targets || []).length > 1;
+  const flowLabel = multiPara ? 'Section Logic · 整段发展逻辑' : 'Paragraph Logic · 段落发展逻辑';
+  const flowParts = [];
+  (logic.steps || []).forEach((s, idx) => {
+    const zh = s.labelZh ? `<span class="content-zh inline">${esc(s.labelZh)}</span>` : '';
+    flowParts.push(`<button type="button" class="plogic-flow-step" data-step="${esc(s.id)}"><span class="num">${idx + 1}</span>${esc(s.labelEn)}${zh}</button>`);
+    if (idx < logic.steps.length - 1) flowParts.push(`<span class="plogic-flow-arrow" aria-hidden="true">→</span>`);
+  });
+  const panel = document.createElement('div');
+  panel.className = 'plogic-panel carousel-plogic-panel';
+  panel.innerHTML = `
+    <div class="plogic-flow-label">${flowLabel}</div>
+    <div class="plogic-flow-strip">${flowParts.join('') || '<span style="font-size:12px;color:var(--ink-soft);">暂无逻辑步骤</span>'}</div>`;
+  return panel;
+}
+function clearPassageHighlight() {
+  lastHighlighted.forEach(e => e.classList.remove('persist-hl'));
+  lastHighlighted = [];
+}
+function buildWalkthroughCard(c, sectionIdx) {
+  const el = document.createElement('div');
+  el.className = 'fcard twcard';
+  el.dataset.sectionIdx = String(sectionIdx);
+  const questions = c.questions || [];
+  const rows = questions.map((q, qi) => {
+    const badge = qtypeBadgeHTML(q.type || 'Fact');
+    const qZh = q.questionZh ? `<div class="content-zh">${esc(q.questionZh)}</div>` : '';
+    return `<div class="tw-qitem" data-qi="${qi}">
+      <div class="tw-qface front active">
+        ${badge}
+        <div class="tw-qtext"><span class="qmark">?</span>${esc(q.question)}${qZh}</div>
+        <button class="flip-icon" title="翻面查看答案" type="button">↻</button>
+      </div>
+      <div class="tw-qface back">
+        ${badge}
+        <div class="tw-answer">${renderQuestionAnswerHTML(q)}</div>
+        <button class="flip-icon" title="翻回问题" type="button">↻</button>
+      </div>
+    </div>`;
+  }).join('');
+  const sub = c.subtitle ? `<div class="zh content-zh">${esc(c.subtitle)}</div>` : '';
+  el.innerHTML = `
+    <div class="fcard-header">
+      <div class="htext"><div class="en display">${esc(c.title)}</div>${sub}</div>
+      <div class="tw-header-right">
+        <button type="button" class="plogic-btn" title="Paragraph Logic · 段落逻辑" aria-label="Paragraph Logic" aria-pressed="false">${PLOGIC_ICON}</button>
+        ${zhToggleBtnHTML()}
+        ${c.tag ? `<span class="tag">${esc(c.tag)}</span>` : ''}
+      </div>
+    </div>
+    <div class="tw-questions">${rows}</div>`;
+
+  const logicBtn = el.querySelector('.plogic-btn');
+  el.querySelector('.zh-toggle-btn').addEventListener('click', toggleContentZh);
+  logicBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (activePlogicCard === el) {
+      closeParagraphLogic();
+      return;
+    }
+    openParagraphLogic(el, c);
+  });
+  el.querySelectorAll('.tw-qitem').forEach(item => {
+    item.querySelectorAll('.flip-icon').forEach(btn => {
+      btn.addEventListener('click', (e) => { e.stopPropagation(); flipQuestionItem(item); });
+    });
+    item.querySelectorAll('.tw-qface').forEach(face => {
+      face.addEventListener('click', (e) => {
+        if (e.target.closest('.flip-icon')) return;
+        flipQuestionItem(item);
+      });
+    });
+  });
+  return el;
+}
+let twSections = whileR.textWalkthrough || [];
+let carouselIndex = 0;
+const twCardEls = [];
+const carouselSlides = [];
+let detailsReady = false;
+
+function syncCarouselHeight() {
+  const wrap = document.querySelector('.carousel-track-wrap');
+  const viewport = document.querySelector('.carousel-viewport');
+  const activeInner = document.querySelector('.carousel-slide.active .carousel-slide-inner');
+  if (!wrap || !activeInner) return;
+  // Measure with height:auto so newly injected Signpost legend is included
+  wrap.style.height = 'auto';
+  const h = Math.ceil(activeInner.getBoundingClientRect().height);
+  wrap.style.height = h + 'px';
+  // overflow:hidden + scrollIntoView can shift scrollTop and clip the legend — always reset
+  wrap.scrollTop = 0;
+  if (viewport) viewport.scrollTop = 0;
+  activeInner.scrollTop = 0;
+  const passage = activeInner.querySelector('.carousel-passage');
+  if (passage) passage.scrollTop = 0;
+}
+function resetCarouselScroll() {
+  document.querySelectorAll('.carousel-viewport, .carousel-track-wrap, .carousel-slide-inner, .carousel-passage').forEach(el => {
+    el.scrollTop = 0;
+  });
+}
+
+function goToCarouselSlide(idx) {
+  if (idx < 0 || idx >= twSections.length) return;
+  closeParagraphLogic();
+  carouselIndex = idx;
+  updateCarouselUI();
+}
+
+function updateTwVisibility() {
+  twCardEls.forEach((card, i) => {
+    const show = i === carouselIndex;
+    card.hidden = !show;
+    if (!show && activePlogicCard === card) closeParagraphLogic();
+  });
+}
+
+function updateCarouselUI() {
+  const n = twSections.length;
+  const track = document.getElementById('carouselTrack');
+  if (!track) return;
+  track.style.transform = `translateX(-${carouselIndex * 100}%)`;
+  track.querySelectorAll('.carousel-slide').forEach((s, i) => {
+    s.classList.toggle('active', i === carouselIndex);
+  });
+  document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === carouselIndex);
+  });
+  const prev = document.getElementById('carouselPrev');
+  const next = document.getElementById('carouselNext');
+  if (prev) prev.disabled = carouselIndex === 0;
+  if (next) next.disabled = carouselIndex >= n - 1;
+  updateTwVisibility();
+  requestAnimationFrame(syncCarouselHeight);
+}
+
+function bindCarouselInteractions(root) {
+  root.querySelectorAll('.para-tts-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const p = btn.closest('p');
+      if (!p) return;
+      const clone = p.cloneNode(true);
+      clone.querySelectorAll('.para-tts-btn').forEach(b => b.remove());
+      speakText(clone.innerText, btn);
+    });
+  });
+  root.querySelectorAll('.vocab').forEach(span => {
+    span.addEventListener('click', () => {
+      setActivityView('details');
+      setSubview('check');
+      setTimeout(() => {
+        const chip = document.querySelector(`.chip.word[data-word="${span.dataset.word}"]`);
+        setHighlight(chip);
+      }, 200);
+    });
+  });
+}
+
+function buildSectionCarousel() {
+  const track = document.getElementById('carouselTrack');
+  const dots = document.getElementById('carouselDots');
+  if (!track || !dots || !twSections.length) return;
+  track.innerHTML = '';
+  dots.innerHTML = '';
+  carouselSlides.length = 0;
+
+  twSections.forEach((c, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'carousel-slide' + (i === 0 ? ' active' : '');
+    slide.dataset.sectionIdx = String(i);
+
+    const inner = document.createElement('div');
+    inner.className = 'carousel-slide-inner';
+
+    const passageDiv = document.createElement('div');
+    passageDiv.className = 'carousel-passage';
+    passageDiv.innerHTML = excerptHTMLFromData(c.targets);
+
+    const plogicPanel = buildPlogicPanel(c);
+    plogicPanel.querySelectorAll('.plogic-flow-step').forEach(stepBtn => {
+      stepBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const twCard = twCardEls[i];
+        if (!twCard) return;
+        if (activePlogicCard !== twCard) openParagraphLogic(twCard, c);
+        selectPlogicStep(twCard, c, stepBtn.dataset.step);
+      });
+    });
+
+    inner.appendChild(passageDiv);
+    inner.appendChild(plogicPanel);
+    slide.appendChild(inner);
+    track.appendChild(slide);
+    carouselSlides.push(slide);
+
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-label', `Section ${i + 1}: ${c.title}`);
+    dot.addEventListener('click', () => goToCarouselSlide(i));
+    dots.appendChild(dot);
+  });
+
+  bindCarouselInteractions(track);
+  carouselIndex = 0;
+  updateCarouselUI();
+}
+
+function buildTwCards() {
+  const twList = document.getElementById('twList');
+  if (!twList || twCardEls.length) return;
+  twSections.forEach((c, i) => {
+    const card = buildWalkthroughCard(c, i);
+    card.hidden = i !== 0;
+    twCardEls.push(card);
+    twList.appendChild(card);
+  });
+}
+
+function ensureDetailsReady() {
+  if (detailsReady) {
+    requestAnimationFrame(syncCarouselHeight);
+    return;
+  }
+  detailsReady = true;
+  buildTwCards();
+  buildSectionCarousel();
+}
+
+document.getElementById('carouselPrev').addEventListener('click', () => goToCarouselSlide(carouselIndex - 1));
+document.getElementById('carouselNext').addEventListener('click', () => goToCarouselSlide(carouselIndex + 1));
+window.addEventListener('resize', () => { if (detailsReady) syncCarouselHeight(); });
+document.addEventListener('selectionchange', () => {
+  // Defer so selection is settled after mouseup
+  requestAnimationFrame(updateDmFloatFromSelection);
+});
+document.addEventListener('scroll', hideDmFloatBtn, true);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') hideDmFloatBtn();
+});
+
+/* ---------- Deep dive ---------- */
+(function() {
+  const d = whileR.deepDive;
+  if (!d) return;
+  const ddBack = `
+    <ul>${d.bulletsEn.map(b => `<li><strong>${esc(b[0])}</strong>: ${esc(b[1])}</li>`).join('')}</ul>
+    <div class="card-summary">${esc(d.summaryEn)}</div>
+    <div class="content-zh">
+      <div class="card-divider"></div>
+      <ul>${d.bulletsZh.map(b => `<li><strong>${esc(b[0])}</strong>：${esc(b[1])}</li>`).join('')}</ul>
+      <div class="card-summary">${esc(d.summaryZh)}</div>
+    </div>`;
+  document.getElementById('ddCard').appendChild(buildFlipCard({
+    cls:'ddcard', title:esc(d.title), subtitle:esc(d.subtitle || ''), question:esc(d.question),
+    questionZh: esc(d.questionZh || ''), backHTML:ddBack
+  }));
+})();
+
+/* ---------- Language cards with TTS ---------- */
+function extractItemSpeakText(it) {
+  if (it.word) return String(it.word).replace(/\s*\/\s*/g, ' ').trim();
+  if (it.target) {
+    const targetEl = document.getElementById(it.target);
+    if (targetEl) return targetEl.innerText;
+  }
+  const raw = it.html || it.text || '';
+  const matchStrong = raw.match(/<strong>(.*?)<\/strong>/i);
+  if (matchStrong) return matchStrong[1].replace(/<[^>]*>/g, '').trim();
+  return raw.replace(/<[^>]*>/g, '').split(/[:：—]/)[0].trim();
+}
+
+function flipVocabCard(card) {
+  const faces = card.querySelectorAll('.vocab-flip-face');
+  const active = card.querySelector('.vocab-flip-face.active');
+  if (!active) return;
+  active.classList.add('flipping');
+  setTimeout(() => {
+    faces.forEach(f => f.classList.toggle('active'));
+    active.classList.remove('flipping');
+  }, 220);
+}
+
+function buildVocabFlipCard(it, kind) {
+  const card = document.createElement('div');
+  card.className = 'vocab-flip' + (kind === 'phrase' ? ' phrase' : '');
+  card.dataset.target = it.target || '';
+  const pos = it.pos ? `<span class="vocab-flip-pos">${esc(it.pos)}</span>` : '';
+  card.innerHTML = `
+    <div class="vocab-flip-face front active">
+      <div class="vocab-flip-main">
+        <div class="vocab-flip-top">
+          <span class="vocab-flip-word display">${esc(it.word || '')}</span>
+          ${pos}
+        </div>
+        <div class="vocab-flip-en">${esc(it.meaningEn || '')}</div>
+      </div>
+      <div class="vocab-flip-actions">
+        <button type="button" class="word-tts-btn" title="发音 · Pronounce" aria-label="Pronounce">🔊</button>
+        <button type="button" class="flip-icon" title="翻面查看" aria-label="Flip">↻</button>
+        <button type="button" class="vocab-card-del" title="删除卡片" aria-label="Delete">×</button>
+      </div>
+    </div>
+    <div class="vocab-flip-face back">
+      <div class="vocab-flip-main">
+        <div class="vocab-flip-top">
+          <span class="vocab-flip-word display">${esc(it.word || '')}</span>
+          <span class="vocab-trait">${esc(it.trait || '')}</span>
+        </div>
+        <div class="vocab-flip-zh">${esc(it.meaningZh || '')}</div>
+      </div>
+      <div class="vocab-flip-actions">
+        <button type="button" class="flip-icon" title="翻回正面" aria-label="Flip back">↻</button>
+        <button type="button" class="vocab-card-del" title="删除卡片" aria-label="Delete">×</button>
+      </div>
+    </div>`;
+  const locate = () => {
+    if (it.target) setHighlight(document.getElementById(it.target));
+  };
+  card.querySelectorAll('.vocab-card-del').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      card.remove();
+      schedulePersist();
+    });
+  });
+  card.querySelectorAll('.flip-icon').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      locate();
+      flipVocabCard(card);
+    });
+  });
+  const ttsBtn = card.querySelector('.word-tts-btn');
+  if (ttsBtn) {
+    ttsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      locate();
+      speakText(extractItemSpeakText(it), ttsBtn);
+    });
+  }
+  card.querySelectorAll('.vocab-flip-face').forEach(face => {
+    face.addEventListener('click', (e) => {
+      if (e.target.closest('.flip-icon') || e.target.closest('.word-tts-btn') || e.target.closest('.vocab-card-del')) return;
+      locate();
+      flipVocabCard(card);
+    });
+  });
+  return card;
+}
+
+function buildVocabFlipGrid(container, items, kind) {
+  container.innerHTML = '';
+  const grid = document.createElement('div');
+  grid.className = 'vocab-flip-grid';
+  grid.dataset.kind = kind;
+  (items || []).forEach(it => grid.appendChild(buildVocabFlipCard(it, kind)));
+  container.appendChild(grid);
+  return grid;
+}
+
+function renumberLangItems(card) {
+  card.querySelectorAll('.lang-item .n').forEach((n, i) => { n.textContent = String(i + 1); });
+}
+
+function buildLangCard(container, title, subtitle, tag, items) {
+  const el = document.createElement('div'); el.className = 'fcard langcard';
+  el.innerHTML = `
+    <div class="fcard-header">
+      <div class="htext"><div class="en display">${title}</div><div class="zh">${subtitle || ''}</div></div>
+      <div style="display:flex;align-items:center;gap:6px;">${tag ? `<span class="tag">${tag}</span>` : ''}<button type="button" class="lang-card-del" title="删除结构卡片" aria-label="Delete">×</button></div>
+    </div>
+    <div class="lang-items">${(items || []).map((it,i) => `
+      <div class="lang-item" data-target="${esc(it.target || '')}">
+        <span class="n">${i+1}</span>
+        <span class="lang-item-content">${it.html || esc(it.text || '')}</span>
+        <button type="button" class="lang-item-del" title="删除例句" aria-label="Delete item">×</button>
+      </div>`).join('')}
+    </div>
+    <div style="padding:0 14px 14px;"><button type="button" class="lang-item-add">＋ 添加例句</button></div>`;
+  el.querySelector('.lang-card-del').addEventListener('click', (e) => {
+    e.stopPropagation();
+    el.remove();
+    schedulePersist();
+  });
+  el.querySelectorAll('.lang-item').forEach((row) => {
+    row.querySelector('.lang-item-del').addEventListener('click', (e) => {
+      e.stopPropagation();
+      row.remove();
+      renumberLangItems(el);
+      schedulePersist();
+    });
+    row.addEventListener('click', (e) => {
+      if (e.target.closest('.lang-item-del')) return;
+      if (row.dataset.target) setHighlight(document.getElementById(row.dataset.target));
+    });
+  });
+  el.querySelector('.lang-item-add').addEventListener('click', () => {
+    const text = window.prompt('输入例句或结构示例：');
+    if (!text || !text.trim()) return;
+    const itemsWrap = el.querySelector('.lang-items');
+    const row = document.createElement('div');
+    row.className = 'lang-item';
+    row.dataset.target = '';
+    row.innerHTML = `<span class="n"></span><span class="lang-item-content">${esc(text.trim())}</span><button type="button" class="lang-item-del" title="删除例句" aria-label="Delete item">×</button>`;
+    row.querySelector('.lang-item-del').addEventListener('click', (e) => {
+      e.stopPropagation();
+      row.remove();
+      renumberLangItems(el);
+      schedulePersist();
+    });
+    itemsWrap.appendChild(row);
+    renumberLangItems(el);
+    schedulePersist();
+  });
+  container.appendChild(el);
+  return el;
+}
+
+function closeAllLangAddForms() {
+  document.querySelectorAll('.lang-add-form').forEach(f => {
+    f.classList.remove('open');
+    f.innerHTML = '';
+  });
+}
+
+function openVocabAddForm(kind) {
+  const form = document.getElementById(kind === 'phrase' ? 'phraseAddForm' : 'powerAddForm');
+  if (!form) return;
+  closeAllLangAddForms();
+  form.classList.add('open');
+  form.innerHTML = `
+    <div class="row">
+      <div><label>${kind === 'phrase' ? 'Phrase' : 'Word'}</label><input data-f="word" placeholder="${kind === 'phrase' ? 'e.g. keep alive' : 'e.g. catalogue'}"></div>
+      <div><label>词性 Pos</label><input data-f="pos" placeholder="n. / v. / phr."></div>
+    </div>
+    <div><label>English meaning</label><input data-f="meaningEn" placeholder="English gloss"></div>
+    <div><label>中文释义</label><input data-f="meaningZh" placeholder="中文释义"></div>
+    <div><label>特点 Trait</label><input data-f="trait" placeholder="${kind === 'phrase' ? '固定搭配' : '熟词僻义'}"></div>
+    <div class="lang-add-actions">
+      <button type="button" class="lang-add-cancel">取消</button>
+      <button type="button" class="lang-add-save">添加</button>
+    </div>`;
+  form.querySelector('.lang-add-cancel').addEventListener('click', closeAllLangAddForms);
+  form.querySelector('.lang-add-save').addEventListener('click', () => {
+    const val = (name) => (form.querySelector(`[data-f="${name}"]`)?.value || '').trim();
+    const word = val('word');
+    if (!word) { form.querySelector('[data-f="word"]').focus(); return; }
+    const it = {
+      word,
+      pos: val('pos'),
+      meaningEn: val('meaningEn') || word,
+      meaningZh: val('meaningZh'),
+      trait: val('trait') || (kind === 'phrase' ? '固定搭配' : '自定义'),
+      target: ''
+    };
+    const listId = kind === 'phrase' ? 'phraseList' : 'powerList';
+    let grid = document.querySelector(`#${listId} .vocab-flip-grid`);
+    if (!grid) grid = buildVocabFlipGrid(document.getElementById(listId), [], kind);
+    grid.appendChild(buildVocabFlipCard(it, kind));
+    closeAllLangAddForms();
+    schedulePersist();
+  });
+}
+
+function openStructureAddForm() {
+  const form = document.getElementById('structureAddForm');
+  if (!form) return;
+  closeAllLangAddForms();
+  form.classList.add('open');
+  form.innerHTML = `
+    <div><label>Title</label><input data-f="title" placeholder="e.g. Contrast markers"></div>
+    <div class="row">
+      <div><label>Subtitle</label><input data-f="subtitle" placeholder="转折与让步"></div>
+      <div><label>Tag</label><input data-f="tag" placeholder="Despite / Although"></div>
+    </div>
+    <div><label>首条例句（可选）</label><textarea data-f="example" placeholder="Example sentence..."></textarea></div>
+    <div class="lang-add-actions">
+      <button type="button" class="lang-add-cancel">取消</button>
+      <button type="button" class="lang-add-save">添加</button>
+    </div>`;
+  form.querySelector('.lang-add-cancel').addEventListener('click', closeAllLangAddForms);
+  form.querySelector('.lang-add-save').addEventListener('click', () => {
+    const val = (name) => (form.querySelector(`[data-f="${name}"]`)?.value || '').trim();
+    const title = val('title');
+    if (!title) { form.querySelector('[data-f="title"]').focus(); return; }
+    const example = val('example');
+    const items = example ? [{ text: example, target: '' }] : [];
+    buildLangCard(document.getElementById('langList'), esc(title), esc(val('subtitle')), esc(val('tag')), items);
+    closeAllLangAddForms();
+    schedulePersist();
+  });
+}
+
+document.querySelectorAll('.lang-add-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const kind = btn.dataset.add;
+    if (kind === 'structure') openStructureAddForm();
+    else openVocabAddForm(kind);
+  });
+});
+
+(whileR.structures || []).forEach(c => buildLangCard(document.getElementById('langList'), esc(c.title), esc(c.subtitle), esc(c.tag), c.items));
+buildVocabFlipGrid(document.getElementById('powerList'), whileR.powerWords || [], 'power');
+buildVocabFlipGrid(document.getElementById('phraseList'), whileR.phrases || [], 'phrase');
+
+/* ---------- True / False ---------- */
+const tfItems = whileR.trueFalse || [];
+const tfState = {};
+tfItems.forEach(item => {
+  const row = document.createElement('div'); row.className = 'tf-item';
+  row.innerHTML = `
+    <div class="tf-text"><span class="tf-num">${item.n}</span> ${esc(item.text)}</div>
+    <div class="tf-buttons"><button class="tf-btn" data-choice="true">True</button><button class="tf-btn" data-choice="false">False</button></div>
+    <div class="tf-feedback"></div>`;
+  const buttons = row.querySelectorAll('.tf-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (row.dataset.submitted) return;
+      buttons.forEach(b => b.classList.remove('picked'));
+      btn.classList.add('picked');
+      tfState[item.n] = btn.dataset.choice === 'true';
+    });
+  });
+  document.getElementById('tfList').appendChild(row);
+});
+document.getElementById('tfSubmit').addEventListener('click', () => {
+  let correctCount = 0;
+  const tfList = document.getElementById('tfList');
+  tfItems.forEach((item, idx) => {
+    const row = tfList.children[idx];
+    row.dataset.submitted = '1';
+    const buttons = row.querySelectorAll('.tf-btn');
+    const feedback = row.querySelector('.tf-feedback');
+    const picked = tfState[item.n];
+    buttons.forEach(b => b.classList.remove('picked'));
+    if (picked === undefined) {
+      feedback.textContent = 'No answer selected. ' + (item.answer ? 'True. ' : 'False. ') + item.reason;
+    } else {
+      const correct = picked === item.answer;
+      if (correct) correctCount++;
+      buttons.forEach(b => {
+        if ((b.dataset.choice === 'true') === picked) b.classList.add(correct ? 'chosen-correct' : 'chosen-wrong');
+        if (!correct && (b.dataset.choice === 'true') === item.answer) b.classList.add('reveal-correct');
+      });
+      feedback.textContent = (item.answer ? 'True. ' : 'False. ') + item.reason;
+    }
+    feedback.classList.add('show');
+  });
+  document.getElementById('tfScore').textContent = `${correctCount} / ${tfItems.length} correct`;
+  document.getElementById('tfScore').classList.add('show');
+  document.getElementById('tfSubmit').style.display = 'none';
+  document.getElementById('tfRetry').classList.add('show');
+});
+document.getElementById('tfRetry').addEventListener('click', () => {
+  Object.keys(tfState).forEach(k => delete tfState[k]);
+  Array.from(document.getElementById('tfList').children).forEach(row => {
+    delete row.dataset.submitted;
+    row.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('picked','chosen-correct','chosen-wrong','reveal-correct'));
+    const fb = row.querySelector('.tf-feedback'); fb.classList.remove('show'); fb.textContent = '';
+  });
+  document.getElementById('tfScore').classList.remove('show');
+  document.getElementById('tfSubmit').style.display = 'inline-block';
+  document.getElementById('tfRetry').classList.remove('show');
+});
+
+/* ---------- Vocab match ---------- */
+const vocab = whileR.vocabMatch || [];
+document.getElementById('vocabMatchHint').textContent = whileR.vocabMatchHint || '';
+document.getElementById('doneBanner').textContent = whileR.vocabDoneMessage || '🎉 All matched!';
+const wordCol = document.getElementById('wordCol');
+const meaningCol = document.getElementById('meaningCol');
+let selectedWord = null, solvedCount = 0;
+function buildMatch() {
+  wordCol.innerHTML = ''; meaningCol.innerHTML = ''; solvedCount = 0; selectedWord = null;
+  document.getElementById('doneBanner').classList.remove('show'); updateProgress();
+  shuffle(vocab).forEach(v => {
+    const b = document.createElement('button'); b.className = 'chip word'; b.textContent = v.word; b.dataset.word = v.word;
+    b.addEventListener('click', () => onWordClick(b, v)); wordCol.appendChild(b);
+  });
+  shuffle(vocab).forEach(v => {
+    const b = document.createElement('button'); b.className = 'chip meaning'; b.textContent = v.meaning; b.dataset.word = v.word;
+    b.addEventListener('click', () => onMeaningClick(b, v)); meaningCol.appendChild(b);
+  });
+}
+function onWordClick(btn, v) {
+  if (btn.classList.contains('solved')) return;
+  wordCol.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+  btn.classList.add('selected'); selectedWord = { btn, v };
+}
+function onMeaningClick(btn, v) {
+  if (btn.classList.contains('solved') || !selectedWord) return;
+  if (selectedWord.v.word === v.word) {
+    btn.classList.add('solved'); btn.classList.remove('selected');
+    selectedWord.btn.classList.add('solved'); selectedWord.btn.classList.remove('selected');
+    selectedWord = null; solvedCount++; updateProgress();
+    if (solvedCount === vocab.length) document.getElementById('doneBanner').classList.add('show');
+  } else {
+    btn.classList.add('shake'); selectedWord.btn.classList.add('shake');
+    setTimeout(() => {
+      btn.classList.remove('shake');
+      selectedWord && selectedWord.btn.classList.remove('shake','selected');
+      selectedWord = null;
+      wordCol.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+    }, 350);
+  }
+}
+function updateProgress() {
+  const n = Math.max(vocab.length, 1);
+  document.getElementById('matchBar').style.width = (solvedCount / n * 100) + '%';
+  document.getElementById('matchCount').textContent = `${solvedCount} / ${vocab.length} matched`;
+}
+document.getElementById('matchReset').addEventListener('click', buildMatch);
+buildMatch();
+
+/* ---------- Persist user edits into INITIAL_DATA ---------- */
+function hydrateFromLocalStorageIfNewer() {
+  try {
+    const stem = INITIAL_DATA.meta?.filenameStem;
+    if (!stem) return;
+    const raw = localStorage.getItem(`lesson:${stem}`);
+    if (!raw) return;
+    const saved = JSON.parse(raw);
+    if ((saved._savedAt || 0) > (INITIAL_DATA._savedAt || 0)) {
+      Object.keys(INITIAL_DATA).forEach(k => delete INITIAL_DATA[k]);
+      Object.assign(INITIAL_DATA, JSON.parse(JSON.stringify(saved)));
+    }
+  } catch (_) {}
+}
+
+function extractPassagePHtml(p) {
+  const clone = p.cloneNode(true);
+  clone.querySelectorAll('.para-tts-btn').forEach(b => b.remove());
+  return clone.outerHTML;
+}
+
+function collectPassageParagraphs() {
+  const carouselParas = new Map();
+  document.querySelectorAll('.carousel-passage .passage-para').forEach(para => {
+    const p = para.querySelector('.passage-body p');
+    const id = p?.id || para.querySelector('[data-para-target]')?.getAttribute('data-para-target');
+    if (id && p) carouselParas.set(id, extractPassagePHtml(p));
+  });
+  const pane = document.getElementById('passagePane');
+  if (!pane) return whileR.passageParagraphs || [];
+  return [...pane.querySelectorAll('.passage-para')].map(para => {
+    const p = para.querySelector('.passage-body p');
+    if (!p) return '';
+    if (p.id && carouselParas.has(p.id)) return carouselParas.get(p.id);
+    return extractPassagePHtml(p);
+  });
+}
+
+function collectVocabItems(kind) {
+  const listId = kind === 'phrase' ? 'phraseList' : 'powerList';
+  const grid = document.querySelector(`#${listId} .vocab-flip-grid`);
+  if (!grid) return [];
+  return [...grid.querySelectorAll('.vocab-flip')].map(card => ({
+    target: card.dataset.target || '',
+    word: card.querySelector('.vocab-flip-face.front .vocab-flip-word')?.textContent.trim() || '',
+    pos: card.querySelector('.vocab-flip-face.front .vocab-flip-pos')?.textContent.trim() || '',
+    meaningEn: card.querySelector('.vocab-flip-face.front .vocab-flip-en')?.textContent.trim() || '',
+    meaningZh: card.querySelector('.vocab-flip-face.back .vocab-flip-zh')?.textContent.trim() || '',
+    trait: card.querySelector('.vocab-flip-face.back .vocab-trait')?.textContent.trim() || '',
+  })).filter(it => it.word);
+}
+
+function collectStructures() {
+  return [...document.querySelectorAll('#langList .langcard')].map(card => ({
+    title: card.querySelector('.fcard-header .en')?.textContent.trim() || '',
+    subtitle: card.querySelector('.fcard-header .zh')?.textContent.trim() || '',
+    tag: card.querySelector('.fcard-header .tag')?.textContent.trim() || '',
+    items: [...card.querySelectorAll('.lang-item')].map(row => ({
+      target: row.dataset.target || '',
+      text: row.querySelector('.lang-item-content')?.textContent.trim() || '',
+    })).filter(it => it.text),
+  })).filter(c => c.title);
+}
+
+function collectCustomSignpostLegends() {
+  const out = {};
+  customLegendStore.forEach((devices, key) => {
+    if (devices && devices.length) out[key] = devices.map(d => ({ ...d }));
+  });
+  return out;
+}
+
+function collectTextWalkthrough() {
+  return (whileR.textWalkthrough || []).map((c, i) => {
+    const card = twCardEls[i];
+    if (!card) return JSON.parse(JSON.stringify(c));
+    const updated = JSON.parse(JSON.stringify(c));
+    updated.title = card.querySelector('.fcard-header .en')?.textContent.trim() || updated.title;
+    updated.subtitle = card.querySelector('.fcard-header .zh')?.textContent.trim() || updated.subtitle;
+    card.querySelectorAll('.tw-qitem').forEach((item, qi) => {
+      if (!updated.questions || !updated.questions[qi]) return;
+      const qtext = item.querySelector('.tw-qface.front .tw-qtext');
+      if (qtext) {
+        const clone = qtext.cloneNode(true);
+        clone.querySelector('.qmark')?.remove();
+        clone.querySelectorAll('.content-zh').forEach(el => el.remove());
+        updated.questions[qi].question = clone.textContent.replace(/\s+/g, ' ').trim();
+        const qZh = qtext.querySelector('.content-zh');
+        if (qZh) updated.questions[qi].questionZh = qZh.textContent.trim();
+      }
+    });
+    return updated;
+  });
+}
+
+function collectEditableFields(data) {
+  const t = (sel) => document.querySelector(sel)?.textContent.trim();
+  if (data.meta) {
+    data.meta.titleEn = t('h1.title') || data.meta.titleEn;
+    data.meta.timeEstimate = t('.time-est') || data.meta.timeEstimate;
+    data.meta.footer = document.getElementById('pageFooter')?.textContent.trim() || data.meta.footer;
+    const objs = [...document.querySelectorAll('.objectives li')].map(li => li.textContent.trim()).filter(Boolean);
+    if (objs.length) data.meta.objectives = objs;
+  }
+  if (data.preReading?.leadIn) {
+    data.preReading.leadIn.prompt = t('#preLeadIn .prompt-box .q') || data.preReading.leadIn.prompt;
+  }
+  if (data.preReading?.prediction) {
+    data.preReading.prediction.hint = t('#prePrediction .section-hint') || data.preReading.prediction.hint;
+    data.preReading.prediction.prompt = t('#prePrediction .prompt-box .q') || data.preReading.prediction.prompt;
+  }
+  if (data.postReading?.predictionCheck) {
+    data.postReading.predictionCheck.prompt = t('#panel-post section:nth-child(1) .prompt-box .q') || data.postReading.predictionCheck.prompt;
+  }
+  if (data.postReading?.textToSelf) {
+    data.postReading.textToSelf.prompt = t('#panel-post section:nth-child(3) .prompt-box .q') || data.postReading.textToSelf.prompt;
+  }
+  if (data.postReading?.textToWorld) {
+    const panel = document.getElementById('panel-post');
+    const worldSection = panel?.querySelector('section:nth-child(4)');
+    if (worldSection) {
+      const qs = worldSection.querySelectorAll('.prompt-box .q');
+      if (qs[0]) data.postReading.textToWorld.prompt = qs[0].textContent.trim();
+      if (qs[1]) data.postReading.textToWorld.extensionPrompt = qs[1].textContent.trim();
+    }
+  }
+  if (data.postReading?.exitTicket) {
+    data.postReading.exitTicket.prompt = t('#panel-post section:nth-child(5) .prompt-box .q') || data.postReading.exitTicket.prompt;
+  }
+  return data;
+}
+
+function collectLessonState() {
+  const data = JSON.parse(JSON.stringify(INITIAL_DATA));
+  collectEditableFields(data);
+  data.whileReading.passageParagraphs = collectPassageParagraphs();
+  data.whileReading.powerWords = collectVocabItems('power');
+  data.whileReading.phrases = collectVocabItems('phrase');
+  data.whileReading.structures = collectStructures();
+  data.whileReading.customSignpostLegends = collectCustomSignpostLegends();
+  data.whileReading.textWalkthrough = collectTextWalkthrough();
+  data._savedAt = Date.now();
+  return data;
+}
+
+function replaceInitialDataInScript(scriptText, newData) {
+  const marker = 'const INITIAL_DATA = ';
+  const start = scriptText.indexOf(marker);
+  if (start < 0) return scriptText;
+  const jsonStart = start + marker.length;
+  let depth = 0;
+  let inString = false;
+  let escape = false;
+  let quote = '';
+  for (let i = jsonStart; i < scriptText.length; i++) {
+    const ch = scriptText[i];
+    if (inString) {
+      if (escape) escape = false;
+      else if (ch === '\\') escape = true;
+      else if (ch === quote) inString = false;
+      continue;
+    }
+    if (ch === '"' || ch === "'") { inString = true; quote = ch; continue; }
+    if (ch === '{') depth++;
+    if (ch === '}') {
+      depth--;
+      if (depth === 0) return scriptText.slice(0, jsonStart) + JSON.stringify(newData) + scriptText.slice(i + 1);
+    }
+  }
+  return scriptText;
+}
+
+function applyLessonStateToMemory(state) {
+  Object.keys(INITIAL_DATA).forEach(k => delete INITIAL_DATA[k]);
+  Object.assign(INITIAL_DATA, JSON.parse(JSON.stringify(state)));
+  whileR.passageParagraphs = INITIAL_DATA.whileReading.passageParagraphs;
+  whileR.powerWords = INITIAL_DATA.whileReading.powerWords;
+  whileR.phrases = INITIAL_DATA.whileReading.phrases;
+  whileR.structures = INITIAL_DATA.whileReading.structures;
+  whileR.customSignpostLegends = INITIAL_DATA.whileReading.customSignpostLegends;
+  whileR.textWalkthrough = INITIAL_DATA.whileReading.textWalkthrough;
+  twSections = whileR.textWalkthrough || [];
+}
+
+let persistTimer = null;
+function schedulePersist() {
+  clearTimeout(persistTimer);
+  persistTimer = setTimeout(() => persistLessonState(), 500);
+}
+
+function persistLessonState() {
+  const state = collectLessonState();
+  applyLessonStateToMemory(state);
+  document.querySelectorAll('script').forEach(script => {
+    if (script.textContent.includes('const INITIAL_DATA = ')) {
+      script.textContent = replaceInitialDataInScript(script.textContent, state);
+    }
+  });
+  try {
+    localStorage.setItem(`lesson:${meta.filenameStem}`, JSON.stringify(state));
+  } catch (_) {}
+  return state;
+}
+
+function rebuildPassagePane() {
+  const pane = document.getElementById('passagePane');
+  if (!pane) return;
+  pane.innerHTML = (whileR.passageParagraphs || []).map((p, i) => formatPassageParagraph(p, i)).join('');
+  pane.querySelectorAll('.para-tts-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const p = btn.closest('p');
+      if (!p) return;
+      const clone = p.cloneNode(true);
+      clone.querySelectorAll('.para-tts-btn').forEach(b => b.remove());
+      speakText(clone.innerText, btn);
+    });
+  });
+  document.querySelectorAll('.vocab').forEach(span => {
+    span.addEventListener('click', () => {
+      setActivityView('details'); setSubview('check');
+      setTimeout(() => {
+        const chip = document.querySelector(`.chip.word[data-word="${span.dataset.word}"]`);
+        setHighlight(chip);
+      }, 200);
+    });
+  });
+}
+
+function rebuildLanguagePanels() {
+  const langList = document.getElementById('langList');
+  if (langList) {
+    langList.innerHTML = '';
+    (whileR.structures || []).forEach(c => buildLangCard(langList, esc(c.title), esc(c.subtitle), esc(c.tag), c.items));
+  }
+  buildVocabFlipGrid(document.getElementById('powerList'), whileR.powerWords || [], 'power');
+  buildVocabFlipGrid(document.getElementById('phraseList'), whileR.phrases || [], 'phrase');
+}
+
+/* ---------- Edit & Export ---------- */
+const EDITABLE_SEL = [
+  'h1','h2','p','li','.badge','.section-hint','.activity-sub','.time-est','.objectives-label',
+  '.flash-back','.flash-front .w','.fcard-header .en','.fcard-header .zh','.front-q','.front-hint',
+  '.tw-qtext','.tw-answer','.vocab-flip-word','.vocab-flip-en','.vocab-flip-zh','.vocab-trait',
+  '.card-summary','.lang-item-content','.match-col-label','.done-banner','footer',
+  '.speak-card p','.mcq-opt span:last-child','.tf-text','.prompt-box .q','.subprompt-label',
+  '.strategy-tag','.modal-label','.modal-box p','.mcq-feedback','.tf-feedback','.check-score',
+  '.chip','.stage-tab','.activity-tab','.subtab','.light-tab','.next-btn','.submit-btn',
+  '#passagePane p','#passagePane span:not(.vocab)'
+].join(',');
+
+let editMode = false;
+function setEditMode(on) {
+  editMode = on;
+  const editBtn = document.getElementById('editBtn');
+  editBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  editBtn.textContent = on ? 'Done' : 'Edit';
+  document.body.classList.toggle('edit-mode', on);
+  document.querySelectorAll(EDITABLE_SEL).forEach(el => {
+    el.contentEditable = on ? 'true' : 'false';
+  });
+  if (!on) {
+    persistLessonState();
+    rebuildPassagePane();
+    rebuildLanguagePanels();
+    customLegendStore.clear();
+    hydrateCustomLegendsFromData();
+    if (detailsReady) {
+      document.querySelectorAll('.carousel-slide').forEach((slide, i) => {
+        const passageDiv = slide.querySelector('.carousel-passage');
+        const c = twSections[i];
+        if (passageDiv && c) passageDiv.innerHTML = excerptHTMLFromData(c.targets);
+      });
+    }
+  }
+}
+document.getElementById('editBtn').addEventListener('click', () => setEditMode(!editMode));
+
+const exportMenu = document.getElementById('exportMenu');
+const exportBtn = document.getElementById('exportBtn');
+function closeExportMenu() {
+  exportMenu.classList.remove('open');
+  exportBtn.setAttribute('aria-expanded', 'false');
+}
+exportBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = exportMenu.classList.toggle('open');
+  exportBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+document.addEventListener('click', closeExportMenu);
+exportMenu.addEventListener('click', (e) => e.stopPropagation());
+
+function exportLessonHtml(downloadName) {
+  closeExportMenu();
+  const wasEditing = editMode;
+  if (wasEditing) setEditMode(false);
+  const state = persistLessonState();
+  const clone = document.documentElement.cloneNode(true);
+  if (wasEditing) setEditMode(true);
+  clone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+  clone.querySelector('body')?.classList.remove('edit-mode');
+  const eb = clone.querySelector('#editBtn');
+  if (eb) { eb.textContent = 'Edit'; eb.setAttribute('aria-pressed', 'false'); }
+  const menu = clone.querySelector('#exportMenu');
+  if (menu) menu.classList.remove('open');
+  clone.querySelectorAll('script').forEach(script => {
+    if (script.textContent.includes('const INITIAL_DATA = ')) {
+      script.textContent = replaceInitialDataInScript(script.textContent, state);
+    }
+  });
+  const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = downloadName || ((meta.filenameStem || 'lesson') + '_Reading_Lesson.html');
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function exportLessonPdf() {
+  closeExportMenu();
+  document.body.classList.remove('printing-all');
+  document.body.classList.add('printing-current');
+  document.querySelectorAll('.stage-panel').forEach(p => p.classList.remove('print-target'));
+  const active = document.querySelector('.stage-panel.active');
+  if (active) active.classList.add('print-target');
+  const cleanup = () => {
+    document.body.classList.remove('printing-current');
+    document.querySelectorAll('.print-target').forEach(p => p.classList.remove('print-target'));
+    window.removeEventListener('afterprint', cleanup);
+  };
+  window.addEventListener('afterprint', cleanup);
+  window.print();
+}
+
+exportMenu.querySelectorAll('.export-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.dataset.export === 'save') exportLessonHtml((meta.filenameStem || 'lesson') + '_Reading_Lesson.html');
+    else if (item.dataset.export === 'html') exportLessonHtml();
+    else exportLessonPdf();
+  });
+});
+
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(() => document.body.classList.add('fonts-ready'));
+} else {
+  document.body.classList.add('fonts-ready');
+}
+</script>
+
+</body>
+</html>

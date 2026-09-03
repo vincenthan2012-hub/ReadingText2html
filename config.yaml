@@ -1,0 +1,11 @@
+name: reading-courseware
+version: 1.5.9
+description: Transform English reading materials into interactive HTML courseware (Pre/While/Post) and a matched student worksheet.
+category: education
+triggers:
+  - reading 课件
+  - 互动阅读课
+  - worksheet
+  - 练习册
+  - 教材截图转课件
+  - reading courseware

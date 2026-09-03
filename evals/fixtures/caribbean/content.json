@@ -1,0 +1,676 @@
+{
+  "meta": {
+    "titleEn": "Storytelling in the Caribbean",
+    "titleZh": "读前 · 读中 · 读后：加勒比讲故事传统",
+    "filenameStem": "Storytelling_in_the_Caribbean",
+    "lessonType": "reading_and_writing",
+    "badges": [
+      "Reading & Writing",
+      "Storytelling in the Caribbean"
+    ],
+    "objectives": [
+      "通过略读识别文章的篇章结构（总-分-例）",
+      "通过精读理解细节、识别衔接手段等语言特征",
+      "从语境推断8个目标生词的含义",
+      "就口头传统在当代社会的延续问题进行有依据的思辨表达"
+    ],
+    "timeEstimate": "建议用时：读前 ~6分钟 · 读中 ~20分钟 · 读后 ~16分钟",
+    "footer": "Reading & Writing courseware · Pre / While / Post lesson flow"
+  },
+  "teacherTips": {
+    "leadin": "课堂上可先请1–2位学生口头分享，用2分钟左右快速导入话题，营造\"听故事\"的课堂氛围，再进入下一环节。自学模式下学生可直接写下自己的想法。",
+    "debate": "可先让学生个人表态，再按立场分组做小型辩论，2分钟准备后各组陈述理由。下面的呼应形式对比可作为辩论后的收束追问。",
+    "exit": "可作为下课前的快速检验：请学生用今天学到的一个生词造句，教师快速抽查2–3位。"
+  },
+  "preReading": {
+    "leadIn": {
+      "prompt": "Think of a story that has been told in your family for generations. Who usually tells it? When do you hear it?",
+      "placeholder": "Write a few sentences...",
+      "tipKey": "leadin"
+    },
+    "prediction": {
+      "hint": "Look at the title and think about the Caribbean setting.",
+      "prompt": "Based on the title \"Storytelling in the Caribbean\", what connection do you think the article will make between the environment and storytelling traditions? Jot down a quick guess — you'll check it after reading.",
+      "placeholder": "My prediction..."
+    },
+    "keyWords": [
+      {
+        "word": "ancestors",
+        "meaning": "people from earlier generations of your family",
+        "example": "Their ancestors came from West Africa."
+      },
+      {
+        "word": "myths",
+        "meaning": "traditional stories, often about gods or heroes, that may not be true",
+        "example": "Every culture has its own myths."
+      },
+      {
+        "word": "conteur",
+        "meaning": "French word used in the text for \"storyteller\" (used in St Lucia)",
+        "example": "The conteur shouts \"Crick!\" to begin."
+      },
+      {
+        "word": "tales",
+        "meaning": "stories, especially ones that are told rather than read",
+        "example": "They shared tales with new audiences."
+      },
+      {
+        "word": "originating",
+        "meaning": "coming from a particular place or source",
+        "example": "People originating from many African countries."
+      },
+      {
+        "word": "community centres",
+        "meaning": "local buildings where people gather for shared activities",
+        "example": "They performed for larger crowds in community centres."
+      }
+    ]
+  },
+  "whileReading": {
+    "passageParagraphs": [
+      "<p id=\"para-1\"><span class=\"sent-step\" data-step=\"1\">Storytelling plays a big part in the childhood of most people growing up on the Caribbean Islands.</span> <span class=\"sent-step\" data-step=\"2\" id=\"sent-rel-1\">It is a tradition <span class=\"cue\">that</span> was brought over from Africa by their ancestors many years ago and is a way of <span id=\"phrase-keep-alive\">keeping their shared <span class=\"vocab\" data-word=\"culture\">culture</span> alive</span>.</span> <span class=\"sent-step\" data-step=\"3\">The stories are a way of remembering the past and making sure it's not forgotten in the future.</span></p>",
+      "<p id=\"para-2\"><span class=\"sent-step\" data-step=\"1\" id=\"sent-contrast-1\">And <span class=\"cue dm\" data-cat=\"contrast\">despite</span> the modern <span class=\"vocab\" data-word=\"distractions\">distractions</span> of television and video games, many Caribbean families <span class=\"dm\" data-cat=\"contrast\">still</span> gather on the steps outside their homes, with the full moon in the sky and the wind blowing <span id=\"pw-gently\">gently</span> through the palm trees, to hear stories that they have already heard many times before.</span></p>",
+      "<p id=\"para-3\"><span class=\"sent-step\" data-step=\"1\">The storyteller has an important <span id=\"pw-position\">position</span> in Caribbean society.</span> <span class=\"sent-step\" data-step=\"2\" id=\"sent-contrast-2\"><span class=\"cue dm\" data-cat=\"contrast\">But</span> it is not an art that is learned quickly.</span> <span class=\"sent-step\" data-step=\"3\">Good storytellers <span id=\"phrase-take-years\">take years to <span id=\"pw-perfect\">perfect</span> their performances</span>. <span class=\"dm\" data-cat=\"sequence\">First</span>, they must collect a <span id=\"pw-catalogue\" class=\"vocab\" data-word=\"catalogue\">catalogue</span> of good stories, which are often short and simple and should work well for people of all ages. They must <span class=\"dm\" data-cat=\"sequence\">then</span> practise these on family members to test out their material before moving on to larger <span class=\"vocab\" data-word=\"crowds\">crowds</span> in local community centres. <span class=\"dm\" data-cat=\"sequence\">From there</span> they may choose to become travelling storytellers and move from town to town looking for new audiences to share their tales with. And the very best storytellers <span id=\"phrase-international-stage\">make it onto the international stage</span> and travel the world.</span> <span class=\"sent-step\" data-step=\"4\"><span class=\"dm\" data-cat=\"addition\">More recently</span> many storytellers have started using film to reach even more people.</span></p>",
+      "<p id=\"para-4\"><span class=\"sent-step\" data-step=\"1\">With many Caribbean islands and people originating from many African countries, there are lots of types of stories to be told. One common feature though is the performance tradition known as 'crick crack'.</span> <span class=\"sent-step\" data-step=\"2\" id=\"sent-contrast-4\"><span class=\"cue dm\" data-cat=\"contrast\">Although</span> this may differ a little in each country, the basic idea is that the audience <span id=\"pw-participates\" class=\"vocab\" data-word=\"participates\">participates</span> in the storytelling.</span> <span class=\"sent-step\" data-step=\"3\" id=\"sent-rel-3\"><span class=\"dm\" data-cat=\"addition\">For example</span>, in St Lucia, <span class=\"cue\">where</span> stories are usually told in French, the storyteller (known as the 'conteur') announces that he or she wants to tell a story by shouting out 'Crick!' and the audience show they want to listen by responding 'Crack!' Throughout the performance, the storyteller continues to involve the audience by inviting them to answer questions and <span class=\"vocab\" data-word=\"riddles\">riddles</span> and to make comments.</span> <span class=\"sent-step\" data-step=\"4\"><span class=\"dm\" data-cat=\"hedge\">In this way</span>, the storyteller and the audience become an almost equally important part of the whole experience.</span></p>",
+      "<p id=\"para-5\"><span class=\"sent-step\" data-step=\"5\" id=\"sent-contrast-3\"><span class=\"cue dm\" data-cat=\"contrast\">But</span> as well as the many traditional tales and myths there are to be told, storytellers also create their own characters, and the most successful of these have become part of cultural life.</span> <span class=\"sent-step\" data-step=\"6\" id=\"sent-rel-2\">One of the most famous storytellers in the West Indies is Paul Keens-Douglas, <span class=\"cue\">who</span> was born in Trinidad but grew up in Grenada.</span> <span class=\"sent-step\" data-step=\"7\">Probably his most popular character, Tanti Merle, is known throughout the region and <span class=\"vocab\" data-word=\"appears\">appears</span> in many of his stories. <span id=\"sent-rel-4\">Tanti Merle is a woman <span class=\"cue\">who</span> is not afraid to say what she thinks and Keens-Douglas uses her as a <span id=\"pw-lovable\">lovable</span> comic figure to <span id=\"phrase-make-comments\">make comments on <span class=\"vocab\" data-word=\"everyday\">everyday</span> life</span> in the Caribbean.</span></span></p>"
+    ],
+    "gist": {
+      "hint": "先限时1–2分钟快速通读全文，不逐词读，抓住大意。",
+      "question": "What is the main idea of this article?",
+      "options": [
+        "Caribbean storytelling is a dying tradition that young people are no longer interested in.",
+        "Storytelling is a living tradition in Caribbean culture, passed down through generations and shaped by unique performance styles.",
+        "Storytellers in the Caribbean only perform for tourists as entertainment.",
+        "Caribbean stories are always written down rather than spoken aloud."
+      ],
+      "correct": 1,
+      "paragraphFunctions": [
+        {
+          "p": "¶1",
+          "label": "Origins and Purpose 起源与意义"
+        },
+        {
+          "p": "¶2",
+          "label": "Storytelling Today 讲故事的今天"
+        },
+        {
+          "p": "¶3",
+          "label": "Becoming a Storyteller 成为说书人的旅程"
+        },
+        {
+          "p": "¶4–5",
+          "label": "Ritual and a Modern Legend 表演仪式与当代传奇"
+        }
+      ],
+      "doneMessage": "✓ 结构梳理完成——这是一篇\"总起-分述-举例收束\"的说明文。"
+    },
+    "structure": {
+      "cardTitle": "Text Structure",
+      "cardSubtitle": "分说式结构 · Description",
+      "layout": "hub",
+      "question": "How is this article organised overall? (Hint: it is not a single chronological sequence.)",
+      "centerLines": [
+        "Storytelling in",
+        "the Caribbean"
+      ],
+      "centerSub": "Description structure",
+      "nodes": [
+        {
+          "label": "Origins ¶1",
+          "sub": "Africa → culture",
+          "tone": "mint"
+        },
+        {
+          "label": "Today ¶2",
+          "sub": "despite distractions",
+          "tone": "mint"
+        },
+        {
+          "label": "Journey ¶3",
+          "sub": "Sequence: family→world",
+          "tone": "gold"
+        },
+        {
+          "label": "Ritual & Legacy ¶4–5",
+          "sub": "crick-crack + example",
+          "tone": "mint"
+        }
+      ],
+      "summaryHtml": "全文整体是<strong>Description（分说式）结构</strong>——围绕\"讲故事传统\"从5个方面展开；其中第3段内部单独构成一个<strong>Sequence（顺序）</strong>子结构，讲述说书人从家庭到国际舞台的成长路径。",
+      "questionZh": "全文整体如何组织？（提示：并非单一时间顺序）"
+    },
+    "textWalkthrough": [
+      {
+        "title": "Origins and Purpose",
+        "subtitle": "起源与意义",
+        "tag": "¶1",
+        "targets": [
+          "para-1"
+        ],
+        "paragraphLogic": {
+          "steps": [
+            {
+              "id": "1",
+              "labelEn": "Open claim",
+              "labelZh": "提出主张"
+            },
+            {
+              "id": "2",
+              "labelEn": "Origin",
+              "labelZh": "追溯起源"
+            },
+            {
+              "id": "3",
+              "labelEn": "Purpose",
+              "labelZh": "说明功能"
+            }
+          ],
+          "devices": []
+        },
+        "questions": [
+          {
+            "type": "Fact",
+            "question": "Where did Caribbean storytelling come from, and what two jobs does it do for the community?",
+            "answerEn": "It was brought from Africa by ancestors. Stories help people remember the past and keep their shared culture alive for the future.",
+            "answerZh": "传统由祖先从非洲带来。故事帮助人们记住过去，并让共同的文化在未来继续流传。",
+            "questionZh": "加勒比讲故事传统来自哪里？它对社群有哪两件“工作”？"
+          },
+          {
+            "type": "Structure",
+            "question": "How is this opening paragraph organised — what comes first, and what follows?",
+            "answerEn": "It opens with a broad claim (storytelling matters in Caribbean childhood), then adds origin (Africa) and purpose (memory + culture). Logic: origin + function.",
+            "answerZh": "先下结论（讲故事在童年中很重要），再补充起源（非洲）与功能（记忆与文化）。段内逻辑是「起源 + 功能」。",
+            "questionZh": "开篇段落如何组织——先写什么，后写什么？"
+          },
+          {
+            "type": "Vocabulary",
+            "question": "In “keeping their shared culture alive”, what does “alive” suggest about culture?",
+            "answerEn": "“Alive” treats culture as something that can fade or die unless people actively sustain it through stories — not a static museum piece.",
+            "answerZh": "alive 把文化看作若不主动维系就会消亡的东西——不是博物馆里的静态展品。",
+            "questionZh": "在 “keeping their shared culture alive” 中，alive 暗示文化怎样？"
+          }
+        ]
+      },
+      {
+        "title": "Storytelling Today",
+        "subtitle": "讲故事的今天",
+        "tag": "¶2",
+        "targets": [
+          "para-2"
+        ],
+        "paragraphLogic": {
+          "steps": [
+            {
+              "id": "1",
+              "labelEn": "Concede → persist",
+              "labelZh": "让步后强调延续"
+            }
+          ],
+          "devices": [
+            {
+              "cat": "contrast",
+              "labelEn": "Contrast",
+              "labelZh": "转折/让步"
+            }
+          ]
+        },
+        "questions": [
+          {
+            "type": "Fact",
+            "question": "What modern distractions does the writer name, and where do families still gather to hear stories?",
+            "answerEn": "Television and video games. Families still gather on the steps outside their homes, under the full moon with wind in the palm trees.",
+            "answerZh": "电视与电子游戏。家庭仍在屋外台阶上聚会，月圆之夜，风吹棕榈。",
+            "questionZh": "作者点名了哪些现代干扰？家庭仍在哪里听故事？"
+          },
+          {
+            "type": "Structure",
+            "question": "How does the “despite… still…” pattern shape the paragraph’s argument?",
+            "answerEn": "It concedes modern entertainment first, then stresses that the outdoor storytelling ritual continues anyway — contrast that highlights resilience.",
+            "answerZh": "先承认现代娱乐的存在，再强调户外讲故事仪式依然延续——用让步突出传统的韧性。",
+            "questionZh": "“despite… still…” 句式如何塑造本段论点？"
+          },
+          {
+            "type": "Tone",
+            "question": "What mood does the night-time outdoor scene create, and why might the writer choose that imagery?",
+            "answerEn": "Warm, communal, almost timeless. Moonlight and palm trees make the tradition feel rooted in place and atmosphere, not just a habit that competes with screens.",
+            "answerZh": "温暖、社群、近乎永恒。月光与棕榈让传统扎根于地方与氛围，而不只是与屏幕竞争的习惯。",
+            "questionZh": "夜户外场景营造了什么氛围？作者为何选用这些意象？"
+          }
+        ]
+      },
+      {
+        "title": "Becoming a Storyteller",
+        "subtitle": "成为说书人的旅程",
+        "tag": "¶3",
+        "targets": [
+          "para-3"
+        ],
+        "paragraphLogic": {
+          "steps": [
+            {
+              "id": "1",
+              "labelEn": "Status claim",
+              "labelZh": "点明地位"
+            },
+            {
+              "id": "2",
+              "labelEn": "Turn: hard craft",
+              "labelZh": "转折：非速成"
+            },
+            {
+              "id": "3",
+              "labelEn": "Sequence of stages",
+              "labelZh": "成长路径"
+            },
+            {
+              "id": "4",
+              "labelEn": "New medium",
+              "labelZh": "新媒介延伸"
+            }
+          ],
+          "devices": [
+            {
+              "cat": "contrast",
+              "labelEn": "Contrast",
+              "labelZh": "转折"
+            },
+            {
+              "cat": "sequence",
+              "labelEn": "Sequence",
+              "labelZh": "顺序"
+            },
+            {
+              "cat": "addition",
+              "labelEn": "Addition",
+              "labelZh": "补充"
+            }
+          ]
+        },
+        "questions": [
+          {
+            "type": "Fact",
+            "question": "List the main stages on the path from beginner to international storyteller.",
+            "answerEn": "Collect a catalogue of short, simple stories → practise on family → perform in community centres → travel town to town → the best reach the international stage (and some use film).",
+            "answerZh": "积累短小故事库 → 在家人面前练习 → 社区中心演出 → 城镇巡回 → 最优秀者登上国际舞台（也有人用电影扩大受众）。",
+            "questionZh": "列出从初学者到国际说书人的主要阶段。"
+          },
+          {
+            "type": "Structure",
+            "question": "What organisational pattern does this paragraph use that other paragraphs do not?",
+            "answerEn": "A clear Sequence / process: skills and stages widen step by step. It is the article’s only full chronological career path.",
+            "answerZh": "清晰的 Sequence（顺序）结构：技艺与舞台逐步扩大。这是全文唯一完整的生涯时间线段落。",
+            "questionZh": "本段使用了其他段落没有的哪种组织模式？"
+          },
+          {
+            "type": "Infer",
+            "question": "Why must storytellers test material on family before larger crowds?",
+            "answerEn": "Family is a safe rehearsal space: short stories for all ages need feedback before community or travelling audiences — craft is refined before stakes rise.",
+            "answerZh": "家人是安全的试演场：面向各年龄的短故事需要反馈；技艺先打磨，再提高舞台风险。",
+            "questionZh": "为何必须先在家人面前试演，再到更大人群？"
+          }
+        ]
+      },
+      {
+        "title": "Ritual and a Modern Legend",
+        "subtitle": "表演仪式与当代传奇",
+        "tag": "¶4–5",
+        "targets": [
+          "para-4",
+          "para-5"
+        ],
+        "paragraphLogic": {
+          "steps": [
+            {
+              "id": "1",
+              "labelEn": "Name the ritual",
+              "labelZh": "提出仪式"
+            },
+            {
+              "id": "2",
+              "labelEn": "Core rule",
+              "labelZh": "核心规则"
+            },
+            {
+              "id": "3",
+              "labelEn": "Example",
+              "labelZh": "举例说明"
+            },
+            {
+              "id": "4",
+              "labelEn": "Shared roles",
+              "labelZh": "共同完成"
+            },
+            {
+              "id": "5",
+              "labelEn": "Turn: new characters",
+              "labelZh": "转折：原创角色"
+            },
+            {
+              "id": "6",
+              "labelEn": "Name a figure",
+              "labelZh": "举出人物"
+            },
+            {
+              "id": "7",
+              "labelEn": "Social comedy",
+              "labelZh": "喜剧评论生活"
+            }
+          ],
+          "devices": [
+            {
+              "cat": "contrast",
+              "labelEn": "Contrast",
+              "labelZh": "转折/让步"
+            },
+            {
+              "cat": "addition",
+              "labelEn": "Addition",
+              "labelZh": "举例"
+            },
+            {
+              "cat": "hedge",
+              "labelEn": "Conclusion",
+              "labelZh": "收束"
+            }
+          ]
+        },
+        "questions": [
+          {
+            "type": "Fact",
+            "question": "In the “crick crack” tradition, what does the storyteller shout, and how does the audience reply?",
+            "answerEn": "The storyteller shouts “Crick!”; the audience answers “Crack!” to show they want to listen. The audience also answers questions, riddles, and comments throughout.",
+            "answerZh": "说书人喊 “Crick!”，听众回 “Crack!” 表示想听。表演中听众还会答题、猜谜、发表评论。",
+            "questionZh": "在 “crick crack” 传统中，说书人喊什么？听众如何回应？"
+          },
+          {
+            "type": "Infer",
+            "question": "Why does the writer say storyteller and audience become “almost equally important”?",
+            "answerEn": "Performance is co-created: without the call-and-response and ongoing participation, the ritual (and the experience) would collapse into a one-way lecture.",
+            "answerZh": "表演是共同完成的：没有一呼一应与持续参与，仪式就会变成单向讲述。",
+            "questionZh": "作者为何说说书人与听众变得“几乎同等重要”？"
+          },
+          {
+            "type": "Reflect",
+            "question": "Paul Keens-Douglas uses Tanti Merle to comment on everyday Caribbean life. Do you think comedy is a strong way to discuss social issues? Why or why not?",
+            "answerEn": "Open response — strong answers note that a lovable comic figure can lower defences, reach wide audiences, and still critique daily life; weaker answers ignore the social-comment function.",
+            "answerZh": "开放性思考——有力回答会指出可爱的喜剧角色能降低防备、扩大受众，同时评论日常生活；较弱回答会忽略社会评论功能。",
+            "questionZh": "Paul Keens-Douglas 用 Tanti Merle 评论加勒比日常生活。你认为喜剧是讨论社会议题的有力方式吗？为什么？"
+          }
+        ]
+      }
+    ],
+    "deepDive": {
+      "title": "Four Threads Through the Text",
+      "subtitle": "贯穿全文的四条线索",
+      "question": "What four themes does the writer weave through the whole article — not just three \"big ideas\"?",
+      "bulletsEn": [
+        [
+          "Heritage",
+          "storytelling was brought from Africa and keeps shared culture alive across generations."
+        ],
+        [
+          "Resilience",
+          "despite modern distractions, families still gather to hear familiar tales outdoors."
+        ],
+        [
+          "Craft & career",
+          "becoming a storyteller takes years — building a catalogue, testing on family, then reaching wider audiences."
+        ],
+        [
+          "Living performance",
+          "crick-crack rituals and characters like Tanti Merle show the tradition still evolves with its audience."
+        ]
+      ],
+      "summaryEn": "The article is organised as a description of a living tradition — heritage, resilience, craft, and performance all interlock.",
+      "bulletsZh": [
+        [
+          "文化传承",
+          "讲故事传统源自非洲，帮助几代人保持共同文化活力。"
+        ],
+        [
+          "传统韧性",
+          "尽管有电视和游戏等干扰，家庭依然在户外聆听熟悉的故事。"
+        ],
+        [
+          "技艺与生涯",
+          "成为说书人需多年磨练——积累故事库、家人试演，再走向更广阔的舞台。"
+        ],
+        [
+          "活态表演",
+          "\"克里克-克拉克\"仪式与 Tanti Merle 等角色说明传统仍在与听众共同演变。"
+        ]
+      ],
+      "summaryZh": "全文以分说方式描绘一项活态传统——传承、韧性、技艺与表演彼此交织。",
+      "questionZh": "作者在全文编织了哪四条线索——而不只是三个“大观点”？"
+    },
+    "powerWords": [
+      {
+        "target": "pw-position",
+        "word": "position",
+        "pos": "n.",
+        "meaningEn": "social status / role, not physical \"location\"",
+        "trait": "熟词僻义",
+        "meaningZh": "地位；社会角色（不是物理上的“位置”）"
+      },
+      {
+        "target": "pw-perfect",
+        "word": "perfect",
+        "pos": "v.",
+        "meaningEn": "to refine a skill over time, not \"flawless\"",
+        "trait": "熟词僻义",
+        "meaningZh": "（动词）打磨、精进技艺（不是形容词“完美的”）"
+      },
+      {
+        "target": "pw-catalogue",
+        "word": "catalogue",
+        "pos": "n.",
+        "meaningEn": "a curated collection built up deliberately",
+        "trait": "academic register",
+        "meaningZh": "有意积累的目录 / 汇编（此处指故事库）"
+      },
+      {
+        "target": "pw-participates",
+        "word": "participates",
+        "pos": "v.",
+        "meaningEn": "takes an active part; stresses co-creation, not passive listening",
+        "trait": "formal verb choice",
+        "meaningZh": "参与；强调主动共创，而非被动听讲"
+      },
+      {
+        "target": "pw-lovable",
+        "word": "lovable",
+        "pos": "adj.",
+        "meaningEn": "charming enough to carry social commentary",
+        "trait": "nuanced character word",
+        "meaningZh": "讨人喜爱的——足以承载对社会生活的评论"
+      }
+    ],
+    "phrases": [
+      {
+        "target": "phrase-keep-alive",
+        "word": "keep sth alive",
+        "pos": "phr.",
+        "meaningEn": "sustain a tradition so it does not die out",
+        "trait": "idiomatic",
+        "meaningZh": "让某事物保持活力；维系传统不致消亡"
+      },
+      {
+        "target": "phrase-take-years",
+        "word": "take years to do sth",
+        "pos": "phr.",
+        "meaningEn": "require a long time to master — stresses long apprenticeship",
+        "trait": "collocational pattern",
+        "meaningZh": "需要多年才能做成——强调长期磨练"
+      },
+      {
+        "target": "phrase-international-stage",
+        "word": "make it onto the international stage",
+        "pos": "phr.",
+        "meaningEn": "achieve worldwide recognition / perform globally",
+        "trait": "figurative phrase",
+        "meaningZh": "登上国际舞台；获得世界范围的认可"
+      }
+    ],
+    "structures": [
+      {
+        "title": "Contrast & Concession",
+        "subtitle": "转折与让步",
+        "tag": "despite / but / although",
+        "items": [
+          {
+            "target": "sent-contrast-1",
+            "text": "And despite the modern distractions of television and video games, many Caribbean families still gather..."
+          },
+          {
+            "target": "sent-contrast-2",
+            "text": "But it is not an art that is learned quickly."
+          },
+          {
+            "target": "sent-contrast-3",
+            "text": "But as well as the many traditional tales and myths there are to be told, storytellers also create their own characters..."
+          },
+          {
+            "target": "sent-contrast-4",
+            "text": "Although this may differ a little in each country, the basic idea is..."
+          }
+        ]
+      },
+      {
+        "title": "Relative Clauses",
+        "subtitle": "定语从句（补充说明）",
+        "tag": "that / who / where",
+        "items": [
+          {
+            "target": "sent-rel-1",
+            "text": "It is a tradition that was brought over from Africa by their ancestors..."
+          },
+          {
+            "target": "sent-rel-2",
+            "text": "...is Paul Keens-Douglas, who was born in Trinidad but grew up in Grenada."
+          },
+          {
+            "target": "sent-rel-3",
+            "text": "...in St Lucia, where stories are usually told in French..."
+          },
+          {
+            "target": "sent-rel-4",
+            "text": "Tanti Merle is a woman who is not afraid to say what she thinks..."
+          }
+        ]
+      }
+    ],
+    "trueFalse": [
+      {
+        "n": 1,
+        "text": "Children in the Caribbean don't use modern technology.",
+        "answer": false,
+        "reason": "The article says families still gather to hear stories “despite the modern distractions of television and video games” — implying they do use them."
+      },
+      {
+        "n": 2,
+        "text": "Storytellers have to learn long detailed stories.",
+        "answer": false,
+        "reason": "The article says storytellers collect stories “which are often short and simple.”"
+      },
+      {
+        "n": 3,
+        "text": "Audiences play an important part in the storytelling.",
+        "answer": true,
+        "reason": "“The audience participates in the storytelling” and becomes “almost equally important” as the storyteller."
+      },
+      {
+        "n": 4,
+        "text": "You should shout 'crack' if you want to hear a story.",
+        "answer": true,
+        "reason": "The audience responds ‘Crack!’ to show they want to listen."
+      },
+      {
+        "n": 5,
+        "text": "Storytellers only tell traditional stories.",
+        "answer": false,
+        "reason": "The article says storytellers also “create their own characters,” like Paul Keens-Douglas's Tanti Merle."
+      }
+    ],
+    "vocabMatch": [
+      {
+        "word": "culture",
+        "meaning": "the art, stories and history of a place"
+      },
+      {
+        "word": "distractions",
+        "meaning": "things that take your attention from what you are doing"
+      },
+      {
+        "word": "catalogue",
+        "meaning": "a collection of something"
+      },
+      {
+        "word": "crowds",
+        "meaning": "lots of people together"
+      },
+      {
+        "word": "participates",
+        "meaning": "takes part in something"
+      },
+      {
+        "word": "riddles",
+        "meaning": "short word puzzles"
+      },
+      {
+        "word": "appears",
+        "meaning": "is present"
+      },
+      {
+        "word": "everyday",
+        "meaning": "normal"
+      }
+    ],
+    "vocabMatchHint": "There are eight highlighted words in the text. Match each word with its meaning.",
+    "vocabDoneMessage": "🎉 All matched! Nice work spotting the meanings from context."
+  },
+  "postReading": {
+    "predictionCheck": {
+      "prompt": "Look back at your prediction from the pre-reading stage. Was it correct? What surprised you most about Caribbean storytelling traditions?",
+      "placeholder": "My reflection..."
+    },
+    "speaking": {
+      "hint": "Discuss with a partner in class, or jot down your own thoughts if you're working alone.",
+      "prompts": [
+        {
+          "prompt": "How does the Caribbean storytelling tradition compare with storytelling in your country?",
+          "placeholder": "Notes for discussion..."
+        },
+        {
+          "prompt": "What stories are there about places near where you live?",
+          "placeholder": "Notes for discussion..."
+        }
+      ]
+    },
+    "textToSelf": {
+      "prompt": "If you were to create a recurring character like Tanti Merle, what would they be like? What everyday things happening around you now would they comment on?",
+      "placeholder": "Describe your character..."
+    },
+    "textToWorld": {
+      "prompt": "Can oral storytelling traditions survive in a world dominated by screens and social media? Pick a side, then explain your reasoning.",
+      "placeholder": "Explain your reasoning...",
+      "sides": [
+        {
+          "id": "optimistic",
+          "label": "🌊 更乐观 Optimistic"
+        },
+        {
+          "id": "concerned",
+          "label": "📺 更担忧 Concerned"
+        }
+      ],
+      "extensionPrompt": "The \"crick crack\" call-and-response invites the audience to take part. What similar call-and-response moments exist in your own culture (comedy duos, religious call-and-response, live talk shows)?",
+      "extensionPlaceholder": "Your comparison...",
+      "tipKey": "debate"
+    },
+    "exitTicket": {
+      "prompt": "Complete this sentence, using one of today's target words if you can: \"One thing I learned about Caribbean culture today is ___.\"",
+      "placeholder": "One thing I learned...",
+      "tipKey": "exit"
+    }
+  }
+}
