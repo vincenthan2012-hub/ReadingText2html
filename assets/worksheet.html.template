@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>__TITLE_EN__ — Student Worksheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand:#FBF5E9; --sand-deep:#F2E7D3;
+    --ocean-deep:#0D5A62; --ocean-mid:#16818A; --ocean-light:#DCF0EE;
+    --coral:#E2703A; --coral-light:#FBE4D6;
+    --gold:#E0A233; --gold-light:#FBEBCB;
+    --plum:#6B4E8E; --plum-light:#EDE6F5;
+    --ink:#1C2B2E; --ink-soft:#4B5D60;
+    --white:#FFFFFF; --line:#E4DAC5; --radius:14px;
+    --correct:#1F7A4C; --correct-bg:#EAF6EF;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--sand); color:var(--ink); font-family:'Work Sans',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .display{ font-family:'Fraunces',serif; }
+  .stripe{ height:8px; width:100%; background:repeating-linear-gradient(90deg, var(--coral) 0 24px, var(--gold) 24px 48px, var(--ocean-mid) 48px 72px, var(--ink) 72px 74px); }
+
+  header.hero{ background:linear-gradient(180deg, var(--ocean-deep) 0%, #0A464C 100%); color:var(--sand); padding:32px 24px 28px; }
+  .hero-inner{ max-width:860px; margin:0 auto; }
+  .hero-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:14px; }
+  .badges{ display:flex; gap:10px; flex-wrap:wrap; }
+  .hero-actions{ display:flex; gap:8px; flex-shrink:0; }
+  .hero-btn{ font-family:'Work Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:.04em; padding:7px 14px; border-radius:999px; border:1px solid rgba(251,245,233,.4); background:rgba(251,245,233,.12); color:var(--sand); cursor:pointer; transition:background .15s ease, border-color .15s ease; }
+  .hero-btn:hover{ background:rgba(251,245,233,.22); border-color:rgba(251,245,233,.6); }
+  .hero-btn[aria-pressed="true"]{ background:var(--gold); border-color:var(--gold); color:var(--ink); }
+  body.edit-mode [contenteditable="true"]{ outline:1px dashed rgba(224,162,51,.55); outline-offset:2px; border-radius:4px; }
+  body.edit-mode [contenteditable="true"]:focus{ outline:2px solid var(--gold); }
+  .badge{ font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:6px 12px; border-radius:999px; border:1px solid rgba(251,245,233,.35); color:var(--sand); background:rgba(251,245,233,.08); }
+  h1.title{ font-size:clamp(26px,4vw,36px); font-weight:600; margin:0 0 8px; letter-spacing:-0.01em; }
+  .worksheet-label{ font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+  .intro{ font-size:14px; color:rgba(251,245,233,.88); max-width:640px; line-height:1.55; }
+
+  .export-wrap{ position:relative; }
+  .export-menu{ position:absolute; right:0; top:calc(100% + 6px); min-width:210px; background:var(--white); border:1px solid var(--line); border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.12); padding:6px; z-index:50; display:none; }
+  .export-menu.open{ display:block; }
+  .export-item{ display:block; width:100%; text-align:left; border:none; background:none; padding:9px 12px; font-family:'Work Sans',sans-serif; font-size:12.5px; font-weight:600; color:var(--ink); border-radius:7px; cursor:pointer; }
+  .export-item:hover{ background:var(--sand); }
+
+  @media print{
+    .hero-actions,.submit-bar,.export-menu,.stripe,.blank-clear,.word-bank-tip{ display:none !important; }
+    body{ background:#fff; }
+    header.hero{ background:#0D5A62 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .exercise-box,.imit-card,.pimit-option{ break-inside:avoid; }
+    .word-bank{ background:#fafafa !important; border:1px solid #ccc !important; }
+    .bank-chip{ background:#f5f5f5 !important; border:1px solid #888 !important; color:#000 !important; text-decoration:none !important; opacity:1 !important; box-shadow:none !important; }
+    .blank-slot{
+      border:none !important; border-bottom:1.5px solid #000 !important;
+      background:transparent !important; min-width:110px !important; min-height:1.35em !important;
+      display:inline-block !important; border-radius:0 !important; box-shadow:none !important;
+      vertical-align:baseline !important; margin:0 4px !important; padding:0 !important;
+    }
+    body:not(.submitted) .blank-slot .blank-val{ display:none !important; }
+  }
+
+  main{ max-width:860px; margin:0 auto; padding:28px 24px 120px; }
+  section.wb-section{ margin-bottom:44px; }
+  .section-head{ display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .section-num{ font-family:'Fraunces',serif; font-size:14px; font-weight:600; color:var(--coral); border:1.5px solid var(--coral); border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; flex:none; }
+  h2.section-title{ font-family:'Fraunces',serif; font-size:21px; font-weight:600; margin:0; }
+  .section-hint{ font-size:13px; color:var(--ink-soft); margin:0 0 16px 38px; }
+
+  .exercise-box{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:22px 24px; }
+  
+  /* Word bank styles */
+  .word-bank{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; padding:12px 14px; background:var(--sand); border:1px dashed var(--line); border-radius:10px; }
+  .word-bank-label{ width:100%; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px; display:flex; justify-content:space-between; align-items:center; }
+  .word-bank-tip{ font-size:10.5px; font-weight:500; text-transform:none; color:var(--ink-soft); opacity:.85; }
+  .bank-chip{ font-size:13px; font-weight:600; padding:5px 12px; border-radius:999px; background:var(--gold-light); color:#7A5610; border:1px solid var(--gold); cursor:grab; user-select:none; transition:all .15s ease; display:inline-flex; align-items:center; gap:4px; }
+  .bank-chip:active{ cursor:grabbing; }
+  .bank-chip:hover:not(:disabled){ background:var(--gold); color:var(--white); transform:translateY(-1px); }
+  .bank-chip.active-pick{ outline:2.5px solid var(--coral); outline-offset:2px; background:var(--coral); color:var(--white); border-color:var(--coral); }
+  .bank-chip.used{ opacity:.45; text-decoration:line-through; }
+
+  /* Blank slot interactive & print handwriting */
+  .blank-slot{
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width:105px; min-height:28px; padding:2px 8px; margin:0 3px;
+    border-bottom:2px solid var(--ocean-deep); background:rgba(13,90,98,.05);
+    border-radius:4px 4px 0 0; vertical-align:middle; cursor:pointer;
+    font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600; color:var(--ink);
+    transition:all .15s ease; position:relative; box-sizing:border-box; user-select:none;
+  }
+  .blank-slot:hover:not(.locked){ background:rgba(13,90,98,.12); border-bottom-color:var(--coral); }
+  .blank-slot.waiting-pick{ outline:2px dashed var(--coral); background:var(--coral-light); }
+  .blank-slot.drag-over{ background:var(--gold-light); outline:2px dashed var(--gold); }
+  .blank-slot.filled{ background:var(--ocean-light); color:var(--ocean-deep); border-bottom-color:var(--ocean-mid); }
+  .blank-slot .blank-val{ font-weight:700; color:var(--ocean-deep); }
+  .blank-slot .blank-clear{
+    margin-left:6px; font-size:12px; color:var(--coral); cursor:pointer; font-weight:700;
+    line-height:1; display:inline-flex; align-items:center; justify-content:center;
+    width:15px; height:15px; border-radius:50%; background:rgba(226,112,58,.15);
+  }
+  .blank-slot .blank-clear:hover{ background:var(--coral); color:var(--white); }
+  .blank-slot.correct{ background:var(--correct-bg) !important; color:var(--correct) !important; border-bottom-color:var(--correct) !important; cursor:default; }
+  .blank-slot.wrong{ background:var(--coral-light) !important; color:var(--coral) !important; border-bottom-color:var(--coral) !important; cursor:default; }
+  .blank-slot.correct .blank-clear, .blank-slot.wrong .blank-clear{ display:none; }
+  .blank-slot.locked{ cursor:default; }
+
+  .match-columns{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width:600px){ .match-columns{ grid-template-columns:1fr; } }
+  .match-col-label{ font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; }
+  .chip{ display:block; width:100%; text-align:left; margin-bottom:7px; background:var(--sand); border:1.5px solid var(--line); border-radius:9px; padding:9px 11px; font-size:13px; cursor:pointer; font-family:'Work Sans',sans-serif; color:var(--ink); transition:all .12s ease; }
+  .chip.word{ font-weight:700; }
+  .chip:hover:not(.solved):not(.selected):not(:disabled){ border-color:var(--ocean-mid); background:var(--ocean-light); }
+  .chip.selected{ border-color:var(--coral); background:var(--coral-light); }
+  .chip.solved{ border-color:var(--correct); background:var(--correct-bg); color:var(--correct); cursor:default; }
+  .chip.reveal-wrong{ border-color:var(--coral); background:var(--coral-light); }
+  .chip.reveal-correct{ border-color:var(--correct); background:var(--correct-bg); }
+  .chip:disabled{ cursor:default; opacity:.85; }
+  .chip.shake{ animation:shake .35s ease; }
+  @keyframes shake{ 0%,100%{ transform:translateX(0); } 25%{ transform:translateX(-5px); } 75%{ transform:translateX(5px); } }
+
+  .fill-list{ display:flex; flex-direction:column; gap:14px; }
+  .fill-item{ font-size:14px; line-height:1.8; }
+  .fill-item .num{ font-family:'Fraunces',serif; font-weight:700; color:var(--coral); margin-right:6px; }
+  .fill-answer{ display:none; font-size:12px; color:var(--correct); font-weight:600; margin-left:8px; }
+  body.submitted .fill-answer.show{ display:inline; }
+
+  .imit-list{ display:flex; flex-direction:column; gap:22px; }
+  .imit-card{ border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .imit-header{ background:var(--plum-light); padding:14px 16px; }
+  .imit-pattern{ font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:var(--plum); }
+  .imit-example{ font-size:12.5px; color:var(--ink-soft); margin-top:6px; font-style:italic; }
+  .imit-body{ padding:16px; }
+  .imit-scenario{ margin-bottom:14px; }
+  .imit-scenario:last-child{ margin-bottom:0; }
+  .imit-scenario-label{ font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px; }
+  .imit-scenario p{ margin:0 0 8px; font-size:14px; }
+  .imit-scenario textarea{ width:100%; min-height:56px; resize:vertical; border-radius:8px; border:1px solid var(--line); padding:10px 12px; font-family:'Work Sans',sans-serif; font-size:13.5px; background:var(--sand); outline:none; }
+  .imit-scenario textarea:focus{ border-color:var(--ocean-mid); }
+  .imit-note{ display:none; margin-top:16px; padding:12px 14px; background:var(--ocean-light); border-radius:10px; font-size:13px; color:var(--ocean-deep); }
+  body.submitted .imit-note.show{ display:block; }
+
+  .pimit-label{ font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 8px; }
+  .pimit-model{ margin-bottom:18px; padding:14px 16px; background:var(--sand); border-radius:10px; border:1px solid var(--line); }
+  .pimit-model-meta{ font-size:12px; font-weight:700; color:var(--ocean-deep); margin-bottom:8px; }
+  .pimit-model-text{ margin:0; font-size:13.5px; line-height:1.7; color:var(--ink); font-style:italic; }
+  .pimit-seg{ transition:opacity .15s ease, background .15s ease; border-radius:3px; }
+  .pimit-model-text.pimit-filtering .pimit-seg{ opacity:.28; }
+  .pimit-seg.step-active{ opacity:1 !important; background:linear-gradient(180deg, transparent 58%, rgba(224,162,51,.32) 58%); text-decoration:underline wavy #C97A3D 2px; text-underline-offset:4px; }
+  .pimit-logic{ margin-bottom:18px; }
+  .pimit-flow{ display:flex; align-items:center; flex-wrap:wrap; gap:5px; }
+  .pimit-step{ display:inline-flex; align-items:center; gap:6px; padding:6px 11px; border-radius:999px; border:1.5px solid var(--line); background:var(--white); font-size:11.5px; font-weight:700; color:var(--ink); cursor:pointer; font-family:'Work Sans',sans-serif; transition:all .15s ease; }
+  .pimit-step:hover{ border-color:var(--coral); }
+  .pimit-step.active{ border-color:transparent; background:linear-gradient(135deg, #C97A3D, #C4577E); color:#fff; }
+  .pimit-step.active .num{ background:rgba(255,255,255,.28); color:#fff; }
+  .pimit-step.active .zh{ color:rgba(255,255,255,.88); }
+  .pimit-step .num{ width:16px; height:16px; border-radius:50%; background:linear-gradient(135deg, #C97A3D, #C4577E); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:10px; flex:none; }
+  .pimit-step .zh{ font-weight:500; color:var(--ink-soft); }
+  .pimit-arrow{ color:var(--line); font-size:13px; flex:none; }
+  .pimit-choose{ margin-bottom:16px; }
+  .pimit-scenarios{ display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; align-items:stretch; }
+  @media (max-width:720px){ .pimit-scenarios{ grid-template-columns:1fr; } }
+  .pimit-option{ display:flex; flex-direction:column; width:100%; height:100%; text-align:left; border:1.5px solid var(--line); border-radius:12px; background:var(--white); padding:12px 14px; cursor:pointer; font-family:'Work Sans',sans-serif; color:var(--ink); transition:border-color .12s ease, background .12s ease; }
+  .pimit-option:hover{ border-color:var(--ocean-mid); background:var(--ocean-light); }
+  .pimit-option.selected{ border-color:var(--coral); background:var(--coral-light); }
+  .pimit-option:disabled{ cursor:default; opacity:.9; }
+  .pimit-option-title{ font-family:'Fraunces',serif; font-weight:600; font-size:15px; margin:0 0 4px; }
+  .pimit-option-title .en{ color:var(--ink-soft); font-size:13px; font-weight:500; margin-left:6px; }
+  .pimit-option-prompt{ margin:0; font-size:13px; color:var(--ink-soft); line-height:1.55; }
+  .pimit-write{ margin-top:4px; }
+  .pimit-write textarea{ width:100%; min-height:140px; resize:vertical; border-radius:8px; border:1px solid var(--line); padding:12px 14px; font-family:'Work Sans',sans-serif; font-size:13.5px; background:var(--sand); outline:none; line-height:1.65; }
+  .pimit-write textarea:focus{ border-color:var(--ocean-mid); }
+  .pimit-write textarea:disabled{ opacity:.85; }
+  .pimit-hint{ font-size:12px; color:var(--ink-soft); margin:8px 0 0; }
+  .pimit-note{ display:none; margin-top:16px; padding:12px 14px; background:var(--ocean-light); border-radius:10px; font-size:13px; color:var(--ocean-deep); }
+  body.submitted .pimit-note.show{ display:block; }
+
+  .summary-cloze{ font-size:15px; line-height:2.2; }
+  .summary-para{ margin:0 0 14px; }
+  .summary-para:last-child{ margin-bottom:0; }
+  .summary-answer{ display:none; font-size:12px; color:var(--correct); font-weight:600; margin-left:4px; }
+  body.submitted .summary-answer.show{ display:inline; }
+
+  .submit-bar{ position:sticky; bottom:0; z-index:40; background:rgba(251,245,233,.96); border-top:1px solid var(--line); padding:16px 24px; backdrop-filter:blur(8px); }
+  .submit-inner{ max-width:860px; margin:0 auto; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .submit-btn{ background:var(--ocean-deep); color:var(--white); border:none; padding:12px 24px; border-radius:999px; font-weight:700; font-size:14px; cursor:pointer; }
+  .submit-btn:hover{ background:#0A464C; }
+  .submit-btn:disabled{ opacity:.55; cursor:not-allowed; }
+  .submit-score{ font-size:14px; font-weight:700; color:var(--ink-soft); display:none; }
+  .submit-score.show{ display:inline; }
+  .retry-link{ border:none; background:none; color:var(--ocean-mid); font-size:13px; font-weight:600; cursor:pointer; text-decoration:underline; display:none; padding:0; }
+  .retry-link.show{ display:inline; }
+  .peek-notice{ font-size:12px; color:var(--ink-soft); flex:1; min-width:180px; }
+  body.submitted .peek-notice{ display:none; }
+
+  .match-feedback{ display:none; font-size:13px; margin-top:14px; padding:10px 14px; border-radius:10px; }
+  .match-feedback.show{ display:block; }
+  .match-feedback.ok{ background:var(--correct-bg); color:var(--correct); }
+  .match-feedback.partial{ background:var(--gold-light); color:#7A5610; }
+
+  footer{ text-align:center; font-size:12px; color:var(--ink-soft); padding:20px 24px 40px; }
+
+  body.anti-peek .answer-key{ visibility:hidden; height:0; overflow:hidden; position:absolute; pointer-events:none; }
+  body.submitted.anti-peek .answer-key{ visibility:visible; height:auto; position:static; pointer-events:auto; }
+</style>
+</head>
+<body class="anti-peek">
+
+<header class="hero">
+  <div class="hero-inner" id="heroInner"></div>
+</header>
+
+<div class="stripe"></div>
+
+<main>
+  <section class="wb-section" id="section-matching">
+    <div class="section-head"><span class="section-num">1</span><h2 class="section-title display">Vocabulary Matching</h2></div>
+    <p class="section-hint" id="matchDirections"></p>
+    <div class="exercise-box match-wrap">
+      <div class="match-columns">
+        <div><div class="match-col-label">Words &amp; Phrases</div><div id="matchWordCol"></div></div>
+        <div><div class="match-col-label">Meanings</div><div id="matchMeanCol"></div></div>
+      </div>
+      <div class="match-feedback" id="matchFeedback"></div>
+    </div>
+  </section>
+
+  <section class="wb-section" id="section-fill">
+    <div class="section-head"><span class="section-num">2</span><h2 class="section-title display">Fill in the Blank</h2></div>
+    <p class="section-hint" id="fillDirections"></p>
+    <div class="exercise-box">
+      <div class="word-bank" id="fillWordBank"></div>
+      <div class="fill-list" id="fillList"></div>
+    </div>
+  </section>
+
+  <section class="wb-section" id="section-imitation">
+    <div class="section-head"><span class="section-num">3</span><h2 class="section-title display">Sentence Imitation · 仿写</h2></div>
+    <p class="section-hint" id="imitDirections"></p>
+    <div class="exercise-box">
+      <div class="imit-list" id="imitList"></div>
+      <div class="imit-note" id="imitNote">✓ 仿写练习已提交。本题为开放性练习，无标准答案——请与同伴或教师交流你的句子。</div>
+    </div>
+  </section>
+
+  <section class="wb-section" id="section-para-imitation">
+    <div class="section-head"><span class="section-num">4</span><h2 class="section-title display">Paragraph Imitation · 段落仿写</h2></div>
+    <p class="section-hint" id="pimitDirections"></p>
+    <div class="exercise-box">
+      <div id="pimitRoot"></div>
+      <div class="pimit-note" id="pimitNote">✓ 段落仿写已提交。本题为开放性练习，无标准答案——请对照逻辑链自查，或与同伴、教师交流。</div>
+    </div>
+  </section>
+
+  <section class="wb-section" id="section-summary">
+    <div class="section-head"><span class="section-num">5</span><h2 class="section-title display">Summary · 大意总结</h2></div>
+    <p class="section-hint" id="summaryDirections"></p>
+    <div class="exercise-box">
+      <div class="word-bank" id="summaryWordBank"></div>
+      <div class="summary-cloze" id="summaryCloze"></div>
+    </div>
+  </section>
+</main>
+
+<div class="submit-bar">
+  <div class="submit-inner">
+    <button type="button" class="submit-btn" id="wbSubmit">Submit · 提交</button>
+    <span class="submit-score" id="wbScore"></span>
+    <button type="button" class="retry-link" id="wbRetry">Try again · 重做</button>
+    <span class="peek-notice">客观题答案将在提交后显示 · Answers appear after you submit</span>
+  </div>
+</div>
+
+<footer id="pageFooter"></footer>
+
+<script>
+const INITIAL_DATA = __INITIAL_DATA_JSON__;
+const meta = INITIAL_DATA.meta;
+const matching = INITIAL_DATA.matching;
+const fillIn = INITIAL_DATA.fillInBlank;
+const imitation = INITIAL_DATA.imitation;
+const paraImit = INITIAL_DATA.paragraphImitation || {};
+const summary = INITIAL_DATA.summary;
+
+function esc(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function norm(s) { return String(s ?? '').trim().toLowerCase(); }
+function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+let submitted = false;
+let matchSolved = 0;
+let matchSelected = null;
+
+// Global state for click-to-fill and drag-to-fill
+let activeFillPick = null; // { word, fromSection: 'fill'|'summary', chipEl }
+let waitingSlot = null; // slot element waiting for bank click
+
+/* ---------- Hero ---------- */
+(function renderHero() {
+  const badges = (meta.badges || []).map(b => `<span class="badge">${esc(b)}</span>`).join('');
+  document.getElementById('heroInner').innerHTML = `
+    <div class="hero-top">
+      <div class="badges">${badges}</div>
+      <div class="hero-actions">
+        <button type="button" class="hero-btn" id="editBtn" aria-pressed="false">Edit</button>
+        <div class="export-wrap">
+          <button type="button" class="hero-btn" id="exportBtn" aria-haspopup="true" aria-expanded="false">Export ▾</button>
+          <div class="export-menu" id="exportMenu">
+            <button type="button" class="export-item" data-export="html">Export all as HTML</button>
+            <button type="button" class="export-item" data-export="pdf">Export current as PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="worksheet-label display">Student Worksheet</div>
+    <h1 class="title display">${esc(meta.titleEn)}</h1>
+    ${meta.intro ? `<p class="intro">${esc(meta.intro)}</p>` : ''}`;
+  document.getElementById('pageFooter').textContent = meta.footer || 'Reading & Writing · Student Worksheet';
+})();
+
+document.getElementById('matchDirections').textContent = matching.directions || '';
+document.getElementById('fillDirections').textContent = fillIn.directions || '';
+document.getElementById('imitDirections').textContent = imitation.directions || '';
+document.getElementById('pimitDirections').textContent = paraImit.directions || '';
+document.getElementById('summaryDirections').textContent = summary.directions || '';
+
+/* ---------- Matching ---------- */
+const matchItems = matching.items || [];
+const matchWordCol = document.getElementById('matchWordCol');
+const matchMeanCol = document.getElementById('matchMeanCol');
+
+function buildMatching() {
+  matchWordCol.innerHTML = '';
+  matchMeanCol.innerHTML = '';
+  matchSolved = 0;
+  matchSelected = null;
+  shuffle(matchItems).forEach(item => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip word';
+    b.textContent = item.word;
+    b.dataset.word = item.word;
+    b.addEventListener('click', () => onMatchWordClick(b, item));
+    matchWordCol.appendChild(b);
+  });
+  shuffle(matchItems).forEach(item => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip meaning';
+    b.textContent = item.meaning;
+    b.dataset.word = item.word;
+    b.addEventListener('click', () => onMatchMeanClick(b, item));
+    matchMeanCol.appendChild(b);
+  });
+}
+
+function onMatchWordClick(btn, item) {
+  if (submitted || btn.classList.contains('solved')) return;
+  matchWordCol.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+  btn.classList.add('selected');
+  matchSelected = { btn, item };
+}
+
+function onMatchMeanClick(btn, item) {
+  if (submitted || btn.classList.contains('solved') || !matchSelected) return;
+  if (matchSelected.item.word === item.word) {
+    matchSelected.btn.classList.remove('selected');
+    matchSelected.btn.classList.add('solved');
+    btn.classList.add('solved');
+    matchSelected = null;
+    matchSolved++;
+  } else {
+    btn.classList.add('shake');
+    matchSelected.btn.classList.add('shake');
+    setTimeout(() => {
+      btn.classList.remove('shake');
+      if (matchSelected) {
+        matchSelected.btn.classList.remove('shake', 'selected');
+        matchSelected = null;
+      }
+      matchWordCol.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+    }, 350);
+  }
+}
+
+buildMatching();
+
+/* ---------- Click & Drag Blank Fill Helpers ---------- */
+function clearActivePick() {
+  if (activeFillPick && activeFillPick.chipEl) {
+    activeFillPick.chipEl.classList.remove('active-pick');
+  }
+  activeFillPick = null;
+}
+
+function clearWaitingSlot() {
+  if (waitingSlot) {
+    waitingSlot.classList.remove('waiting-pick');
+    waitingSlot = null;
+  }
+}
+
+function fillSlotWithWord(slot, word) {
+  if (submitted) return;
+  slot.dataset.value = word;
+  slot.innerHTML = `<span class="blank-val">${esc(word)}</span><span class="blank-clear" title="Clear word">×</span>`;
+  slot.classList.add('filled');
+  slot.classList.remove('waiting-pick');
+  
+  const clearBtn = slot.querySelector('.blank-clear');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      clearSlot(slot);
+    });
+  }
+  updateBankChipsUsage();
+}
+
+function clearSlot(slot) {
+  if (submitted) return;
+  delete slot.dataset.value;
+  slot.innerHTML = '';
+  slot.classList.remove('filled', 'waiting-pick', 'correct', 'wrong');
+  updateBankChipsUsage();
+}
+
+function setupBankChip(chip, word, section) {
+  chip.draggable = true;
+  chip.tabIndex = 0;
+  chip.dataset.word = word;
+  chip.dataset.section = section;
+  
+  chip.addEventListener('dragstart', (e) => {
+    if (submitted) { e.preventDefault(); return; }
+    e.dataTransfer.setData('text/plain', word);
+    e.dataTransfer.setData('source-section', section);
+  });
+  
+  chip.addEventListener('click', () => {
+    if (submitted) return;
+    if (waitingSlot && waitingSlot.dataset.section === section) {
+      fillSlotWithWord(waitingSlot, word);
+      clearWaitingSlot();
+      clearActivePick();
+      return;
+    }
+    if (activeFillPick && activeFillPick.chipEl === chip) {
+      clearActivePick();
+    } else {
+      clearActivePick();
+      chip.classList.add('active-pick');
+      activeFillPick = { word, fromSection: section, chipEl: chip };
+    }
+  });
+}
+
+function setupBlankSlot(slot, section) {
+  slot.dataset.section = section;
+  
+  slot.addEventListener('dragover', (e) => {
+    if (submitted) return;
+    e.preventDefault();
+    slot.classList.add('drag-over');
+  });
+  
+  slot.addEventListener('dragleave', () => {
+    slot.classList.remove('drag-over');
+  });
+  
+  slot.addEventListener('drop', (e) => {
+    if (submitted) return;
+    e.preventDefault();
+    slot.classList.remove('drag-over');
+    const word = e.dataTransfer.getData('text/plain');
+    if (word) fillSlotWithWord(slot, word);
+  });
+  
+  slot.addEventListener('click', (e) => {
+    if (submitted) return;
+    if (slot.dataset.value) {
+      // If already filled, clicking outside clear button can still re-pick if active pick exists
+      if (activeFillPick && activeFillPick.fromSection === section) {
+        fillSlotWithWord(slot, activeFillPick.word);
+        clearActivePick();
+      }
+      return;
+    }
+    if (activeFillPick && activeFillPick.fromSection === section) {
+      fillSlotWithWord(slot, activeFillPick.word);
+      clearActivePick();
+      clearWaitingSlot();
+    } else {
+      if (waitingSlot === slot) {
+        clearWaitingSlot();
+      } else {
+        clearWaitingSlot();
+        slot.classList.add('waiting-pick');
+        waitingSlot = slot;
+      }
+    }
+  });
+}
+
+function updateBankChipsUsage() {
+  const fillUsed = new Set();
+  document.querySelectorAll('.blank-slot[data-section="fill"]').forEach(s => {
+    if (s.dataset.value) fillUsed.add(norm(s.dataset.value));
+  });
+  document.querySelectorAll('#fillWordBank .bank-chip').forEach(c => {
+    c.classList.toggle('used', fillUsed.has(norm(c.dataset.word)));
+  });
+
+  const summaryUsed = new Set();
+  document.querySelectorAll('.blank-slot[data-section="summary"]').forEach(s => {
+    if (s.dataset.value) summaryUsed.add(norm(s.dataset.value));
+  });
+  document.querySelectorAll('#summaryWordBank .bank-chip').forEach(c => {
+    c.classList.toggle('used', summaryUsed.has(norm(c.dataset.word)));
+  });
+}
+
+/* ---------- Fill in blank ---------- */
+(function renderFill() {
+  const bank = document.getElementById('fillWordBank');
+  bank.innerHTML = `<div class="word-bank-label"><span>Word Bank</span><span class="word-bank-tip">💡 点击或拖拽词汇填入横线 · Click or drag to fill</span></div>` +
+    shuffle(fillIn.wordBank).map(w => `<span class="bank-chip">${esc(w)}</span>`).join('');
+  
+  bank.querySelectorAll('.bank-chip').forEach(chip => {
+    setupBankChip(chip, chip.textContent, 'fill');
+  });
+
+  const list = document.getElementById('fillList');
+  fillIn.items.forEach((item, i) => {
+    const row = document.createElement('div');
+    row.className = 'fill-item';
+    
+    const slot = document.createElement('span');
+    slot.className = 'blank-slot';
+    slot.dataset.index = i;
+    setupBlankSlot(slot, 'fill');
+
+    row.innerHTML = `<span class="num">${i + 1}.</span>`;
+    row.appendChild(document.createTextNode(item.before + ' '));
+    row.appendChild(slot);
+    row.appendChild(document.createTextNode(' ' + item.after));
+    
+    const ans = document.createElement('span');
+    ans.className = 'fill-answer answer-key';
+    ans.dataset.index = i;
+    row.appendChild(ans);
+    list.appendChild(row);
+  });
+})();
+
+function checkFillAnswer(item, value) {
+  const accepted = [item.answer, ...(item.accepted || [])].map(norm);
+  return accepted.includes(norm(value));
+}
+
+/* ---------- Imitation ---------- */
+(function renderImitation() {
+  const list = document.getElementById('imitList');
+  imitation.items.forEach((item, i) => {
+    const card = document.createElement('div');
+    card.className = 'imit-card';
+    const scenarios = item.scenarios.map((sc, j) => `
+      <div class="imit-scenario">
+        <div class="imit-scenario-label">场景 ${j + 1}</div>
+        <p>${esc(sc)}</p>
+        <textarea placeholder="Write your sentence here..." data-imit="${i}-${j}"></textarea>
+      </div>`).join('');
+    card.innerHTML = `
+      <div class="imit-header">
+        <div class="imit-pattern">${esc(item.pattern)}</div>
+        <div class="imit-example">Example: ${esc(item.example)}</div>
+      </div>
+      <div class="imit-body">${scenarios}</div>`;
+    list.appendChild(card);
+  });
+})();
+
+/* ---------- Paragraph Imitation ---------- */
+let pimitSelected = null;
+let pimitActiveStep = null;
+
+function buildPimitModelHtml() {
+  const segs = paraImit.modelSegments;
+  if (Array.isArray(segs) && segs.length) {
+    return segs.map((seg, i) => {
+      const space = i < segs.length - 1 ? ' ' : '';
+      return `<span class="pimit-seg" data-step="${esc(seg.stepId || seg.id || '')}">${esc(seg.text)}</span>${space}`;
+    }).join('');
+  }
+  return esc(paraImit.modelParagraph || '');
+}
+
+function selectPimitStep(stepId) {
+  const root = document.getElementById('pimitRoot');
+  if (!root) return;
+  const id = stepId == null ? null : String(stepId);
+  if (pimitActiveStep === id) {
+    pimitActiveStep = null;
+  } else {
+    pimitActiveStep = id;
+  }
+  root.querySelectorAll('.pimit-step').forEach(btn => {
+    const on = pimitActiveStep != null && btn.dataset.step === pimitActiveStep;
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  const modelText = root.querySelector('.pimit-model-text');
+  if (modelText) {
+    modelText.classList.toggle('pimit-filtering', pimitActiveStep != null);
+    modelText.querySelectorAll('.pimit-seg').forEach(seg => {
+      seg.classList.toggle('step-active', pimitActiveStep != null && seg.dataset.step === pimitActiveStep);
+    });
+    if (pimitActiveStep) {
+      const hit = modelText.querySelector(`.pimit-seg[data-step="${pimitActiveStep}"]`);
+      if (hit) hit.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+}
+
+(function renderParaImitation() {
+  const root = document.getElementById('pimitRoot');
+  if (!paraImit.modelParagraph) {
+    root.innerHTML = '<p style="font-size:13px;color:var(--ink-soft);">No paragraph imitation in this worksheet.</p>';
+    return;
+  }
+  const steps = paraImit.logicSteps || [];
+  const flowHtml = steps.map((s, idx) => {
+    const chip = `<button type="button" class="pimit-step" data-step="${esc(s.id)}" aria-pressed="false"><span class="num">${idx + 1}</span>${esc(s.labelEn)}<span class="zh">${esc(s.labelZh || '')}</span></button>`;
+    return idx < steps.length - 1 ? chip + '<span class="pimit-arrow" aria-hidden="true">→</span>' : chip;
+  }).join('');
+  const scenarios = paraImit.scenarios || [];
+  const optionsHtml = scenarios.map((sc, i) => `
+    <button type="button" class="pimit-option" data-scenario="${esc(sc.id)}" aria-pressed="false">
+      <div class="pimit-option-title">${esc(sc.titleZh || sc.titleEn || 'Scenario ' + (i + 1))}<span class="en">${esc(sc.titleEn || '')}</span></div>
+      <p class="pimit-option-prompt">${esc(sc.prompt)}</p>
+    </button>`).join('');
+  root.innerHTML = `
+    <div class="pimit-model">
+      <div class="pimit-label">Model paragraph</div>
+      <div class="pimit-model-meta">${esc(paraImit.sourceTag || '')} · ${esc(paraImit.sourceTitle || '')}</div>
+      <p class="pimit-model-text">${buildPimitModelHtml()}</p>
+    </div>
+    <div class="pimit-logic">
+      <div class="pimit-label">Paragraph Logic · 段落发展逻辑</div>
+      <div class="pimit-flow">${flowHtml}</div>
+    </div>
+    <div class="pimit-choose">
+      <div class="pimit-label">Choose one scenario · 任选一个场景</div>
+      <div class="pimit-scenarios" id="pimitScenarios">${optionsHtml}</div>
+    </div>
+    <div class="pimit-write">
+      <div class="pimit-label">Your paragraph · 仿写段落</div>
+      <textarea id="pimitTextarea" placeholder="Write your paragraph here, following the same logic chain..." disabled></textarea>
+      <p class="pimit-hint" id="pimitHint">先选择上方一个场景，再开始仿写。点击逻辑 chip 可高亮原文对应部分。</p>
+    </div>`;
+  root.querySelectorAll('.pimit-step').forEach(btn => {
+    btn.addEventListener('click', () => selectPimitStep(btn.dataset.step));
+  });
+  root.querySelectorAll('.pimit-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (submitted) return;
+      root.querySelectorAll('.pimit-option').forEach(b => {
+        b.classList.remove('selected');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('selected');
+      btn.setAttribute('aria-pressed', 'true');
+      pimitSelected = btn.dataset.scenario;
+      const ta = document.getElementById('pimitTextarea');
+      ta.disabled = false;
+      ta.focus();
+      const sc = scenarios.find(s => s.id === pimitSelected);
+      document.getElementById('pimitHint').textContent = sc
+        ? `已选：${sc.titleZh || sc.titleEn} — 请沿用逻辑链用英文写一段。`
+        : '';
+    });
+  });
+})();
+
+/* ---------- Summary cloze (with multi-paragraph support) ---------- */
+(function renderSummary() {
+  const bank = document.getElementById('summaryWordBank');
+  bank.innerHTML = `<div class="word-bank-label"><span>Word Bank</span><span class="word-bank-tip">💡 点击或拖拽词汇填入横线 · Click or drag to fill</span></div>` +
+    shuffle(summary.wordBank).map(w => `<span class="bank-chip">${esc(w)}</span>`).join('');
+  
+  bank.querySelectorAll('.bank-chip').forEach(chip => {
+    setupBankChip(chip, chip.textContent, 'summary');
+  });
+
+  const cloze = document.getElementById('summaryCloze');
+  const segments = summary.segments || [];
+  
+  let currentPara = document.createElement('div');
+  currentPara.className = 'summary-para';
+  cloze.appendChild(currentPara);
+
+  segments.forEach(seg => {
+    if (typeof seg === 'string') {
+      if (seg.includes('\n\n')) {
+        const parts = seg.split(/\n\n+/);
+        parts.forEach((pText, idx) => {
+          if (idx > 0) {
+            currentPara = document.createElement('div');
+            currentPara.className = 'summary-para';
+            cloze.appendChild(currentPara);
+          }
+          currentPara.appendChild(document.createTextNode(pText));
+        });
+      } else {
+        currentPara.appendChild(document.createTextNode(seg));
+      }
+    } else if (seg.blank !== undefined) {
+      const slot = document.createElement('span');
+      slot.className = 'blank-slot';
+      slot.dataset.blank = seg.blank;
+      setupBlankSlot(slot, 'summary');
+      currentPara.appendChild(slot);
+      
+      const ans = document.createElement('span');
+      ans.className = 'summary-answer answer-key';
+      ans.dataset.blank = seg.blank;
+      currentPara.appendChild(ans);
+    }
+  });
+})();
+
+/* ---------- Submit / Retry ---------- */
+function gradeMatching() {
+  matchWordCol.querySelectorAll('.chip:not(.solved)').forEach(c => c.classList.add('reveal-wrong'));
+  matchMeanCol.querySelectorAll('.chip:not(.solved)').forEach(c => c.classList.add('reveal-correct'));
+  return matchSolved;
+}
+
+function gradeFill() {
+  let correct = 0;
+  fillIn.items.forEach((item, i) => {
+    const slot = document.querySelector(`.blank-slot[data-section="fill"][data-index="${i}"]`);
+    const ansEl = document.querySelector(`.fill-answer[data-index="${i}"]`);
+    const val = slot ? (slot.dataset.value || '') : '';
+    const ok = checkFillAnswer(item, val);
+    if (ok) correct++;
+    if (slot) {
+      slot.classList.add('locked');
+      slot.classList.toggle('correct', ok);
+      slot.classList.toggle('wrong', !ok && Boolean(val));
+    }
+    if (ansEl) {
+      ansEl.textContent = ok ? '' : `(✓ ${item.answer})`;
+      ansEl.classList.toggle('show', !ok);
+    }
+  });
+  return correct;
+}
+
+function gradeSummary() {
+  let correct = 0;
+  const answers = summary.answers || [];
+  answers.forEach((ans, i) => {
+    const slot = document.querySelector(`.blank-slot[data-section="summary"][data-blank="${i}"]`);
+    const ansEl = document.querySelector(`.summary-answer[data-blank="${i}"]`);
+    const val = slot ? (slot.dataset.value || '') : '';
+    const ok = norm(val) === norm(ans);
+    if (ok) correct++;
+    if (slot) {
+      slot.classList.add('locked');
+      slot.classList.toggle('correct', ok);
+      slot.classList.toggle('wrong', !ok && Boolean(val));
+    }
+    if (ansEl) {
+      ansEl.textContent = ok ? '' : `(✓ ${ans})`;
+      ansEl.classList.toggle('show', !ok);
+    }
+  });
+  return correct;
+}
+
+document.getElementById('wbSubmit').addEventListener('click', () => {
+  if (submitted) return;
+  submitted = true;
+  document.body.classList.add('submitted');
+  clearActivePick();
+  clearWaitingSlot();
+
+  const mc = gradeMatching();
+  const fc = gradeFill();
+  const sc = gradeSummary();
+  const total = matchItems.length + fillIn.items.length + summary.answers.length;
+  const score = mc + fc + sc;
+
+  const fb = document.getElementById('matchFeedback');
+  fb.classList.add('show');
+  if (mc === matchItems.length) {
+    fb.className = 'match-feedback show ok';
+    fb.textContent = `Matching: ${mc}/${matchItems.length} — all correct!`;
+  } else {
+    fb.className = 'match-feedback show partial';
+    fb.textContent = `Matching: ${mc}/${matchItems.length} — green pairs are correct; check highlighted meanings.`;
+  }
+
+  document.getElementById('imitNote').classList.add('show');
+  document.getElementById('pimitNote')?.classList.add('show');
+  document.querySelectorAll('.pimit-option').forEach(b => { b.disabled = true; });
+  const pimitTa = document.getElementById('pimitTextarea');
+  if (pimitTa) pimitTa.disabled = true;
+  document.getElementById('wbScore').textContent = `Score: ${score} / ${total} (objective items)`;
+  document.getElementById('wbScore').classList.add('show');
+  document.getElementById('wbSubmit').style.display = 'none';
+  document.getElementById('wbRetry').classList.add('show');
+});
+
+document.getElementById('wbRetry').addEventListener('click', () => {
+  submitted = false;
+  document.body.classList.remove('submitted');
+  clearActivePick();
+  clearWaitingSlot();
+  matchSelected = null;
+  buildMatching();
+  
+  document.querySelectorAll('.blank-slot').forEach(slot => {
+    delete slot.dataset.value;
+    slot.innerHTML = '';
+    slot.className = 'blank-slot';
+  });
+  updateBankChipsUsage();
+  
+  document.querySelectorAll('.fill-answer').forEach(ans => {
+    ans.textContent = '';
+    ans.classList.remove('show');
+  });
+  document.querySelectorAll('.summary-answer').forEach(el => {
+    el.textContent = '';
+    el.classList.remove('show');
+  });
+  
+  document.querySelectorAll('#imitList textarea').forEach(t => { t.value = ''; });
+  pimitSelected = null;
+  pimitActiveStep = null;
+  selectPimitStep(null);
+  document.querySelectorAll('.pimit-option').forEach(b => {
+    b.disabled = false;
+    b.classList.remove('selected');
+    b.setAttribute('aria-pressed', 'false');
+  });
+  const pimitTaRetry = document.getElementById('pimitTextarea');
+  if (pimitTaRetry) { pimitTaRetry.value = ''; pimitTaRetry.disabled = true; }
+  const pimitHint = document.getElementById('pimitHint');
+  if (pimitHint) pimitHint.textContent = '先选择上方一个场景，再开始仿写。点击逻辑 chip 可高亮原文对应部分。';
+  document.getElementById('matchFeedback').className = 'match-feedback';
+  document.getElementById('matchFeedback').textContent = '';
+  document.getElementById('imitNote').classList.remove('show');
+  document.getElementById('pimitNote')?.classList.remove('show');
+  document.getElementById('wbScore').classList.remove('show');
+  document.getElementById('wbSubmit').style.display = 'inline-block';
+  document.getElementById('wbRetry').classList.remove('show');
+});
+
+/* ---------- Edit & Export ---------- */
+const EDITABLE_SEL = [
+  'h1','h2','p','.badge','.section-hint','.intro','.worksheet-label','footer',
+  '.match-col-label','.bank-chip','.word-bank-label','.chip','.fill-item',
+  '.imit-pattern','.imit-example','.imit-scenario p','.imit-scenario-label','.imit-note',
+  '.pimit-label','.pimit-model-meta','.pimit-model-text','.pimit-option-title','.pimit-option-prompt','.pimit-hint','.pimit-note',
+  '.summary-cloze','.peek-notice','.submit-btn','.submit-score','.match-feedback'
+].join(',');
+
+let editMode = false;
+function setEditMode(on) {
+  editMode = on;
+  const editBtn = document.getElementById('editBtn');
+  editBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  editBtn.textContent = on ? 'Done' : 'Edit';
+  document.body.classList.toggle('edit-mode', on);
+  document.querySelectorAll(EDITABLE_SEL).forEach(el => {
+    el.contentEditable = on ? 'true' : 'false';
+  });
+}
+document.getElementById('editBtn').addEventListener('click', () => setEditMode(!editMode));
+
+const exportMenu = document.getElementById('exportMenu');
+const exportBtn = document.getElementById('exportBtn');
+function closeExportMenu() {
+  exportMenu.classList.remove('open');
+  exportBtn.setAttribute('aria-expanded', 'false');
+}
+exportBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = exportMenu.classList.toggle('open');
+  exportBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+document.addEventListener('click', closeExportMenu);
+exportMenu.addEventListener('click', (e) => e.stopPropagation());
+
+function exportWorksheetHtml() {
+  closeExportMenu();
+  const wasEditing = editMode;
+  if (wasEditing) setEditMode(false);
+  const clone = document.documentElement.cloneNode(true);
+  if (wasEditing) setEditMode(true);
+  clone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+  clone.querySelector('body')?.classList.remove('edit-mode');
+  const eb = clone.querySelector('#editBtn');
+  if (eb) { eb.textContent = 'Edit'; eb.setAttribute('aria-pressed', 'false'); }
+  const menu = clone.querySelector('#exportMenu');
+  if (menu) menu.classList.remove('open');
+  const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = (meta.filenameStem || 'worksheet') + '_Student_Worksheet.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function exportWorksheetPdf() {
+  closeExportMenu();
+  const cleanup = () => window.removeEventListener('afterprint', cleanup);
+  window.addEventListener('afterprint', cleanup);
+  window.print();
+}
+
+exportMenu.querySelectorAll('.export-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (item.dataset.export === 'html') exportWorksheetHtml();
+    else exportWorksheetPdf();
+  });
+});
+</script>
+
+</body>
+</html>

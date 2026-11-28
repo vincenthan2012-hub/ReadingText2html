@@ -1,0 +1,290 @@
+{
+  "meta": {
+    "titleEn": "Storytelling in the Caribbean",
+    "filenameStem": "Storytelling_in_the_Caribbean",
+    "badges": [
+      "Student Worksheet",
+      "Storytelling in the Caribbean"
+    ],
+    "intro": "Complete all five parts below, then click Submit to check your objective answers. Sentence and paragraph imitation have no model answers — share your writing with a partner or teacher.",
+    "footer": "Reading & Writing · Student Worksheet · Storytelling in the Caribbean"
+  },
+  "matching": {
+    "directions": "Match each Power Word or Phrase (left) with its English meaning (right). Click a word, then click its meaning.",
+    "items": [
+      {
+        "word": "position",
+        "meaning": "status or role in society (not physical location)"
+      },
+      {
+        "word": "perfect (v.)",
+        "meaning": "to refine or improve a skill over time"
+      },
+      {
+        "word": "catalogue",
+        "meaning": "a deliberately built collection of stories or materials"
+      },
+      {
+        "word": "participates",
+        "meaning": "takes an active part rather than listening passively"
+      },
+      {
+        "word": "lovable",
+        "meaning": "charming enough to carry humour and social comment"
+      },
+      {
+        "word": "keep sth alive",
+        "meaning": "to sustain a tradition so it continues across generations"
+      },
+      {
+        "word": "take years to do sth",
+        "meaning": "to need a long period of practice before mastery"
+      },
+      {
+        "word": "make it onto the international stage",
+        "meaning": "to achieve recognition and success worldwide"
+      }
+    ]
+  },
+  "fillInBlank": {
+    "directions": "Choose the best word from the Word Bank for each sentence. You may use a different form of the word if needed (e.g. perfect → perfected).",
+    "wordBank": [
+      "position",
+      "perfect",
+      "catalogue",
+      "participates",
+      "lovable",
+      "tradition",
+      "distractions",
+      "international"
+    ],
+    "items": [
+      {
+        "before": "The storyteller has an important",
+        "after": "in Caribbean society, not merely a job title.",
+        "answer": "position"
+      },
+      {
+        "before": "Good storytellers take years to",
+        "after": "their performances before facing larger crowds.",
+        "answer": "perfect",
+        "accepted": [
+          "perfected",
+          "perfecting"
+        ]
+      },
+      {
+        "before": "They must first build a",
+        "after": "of short, simple stories that work for all ages.",
+        "answer": "catalogue"
+      },
+      {
+        "before": "In the crick-crack ritual, the audience actively",
+        "after": "through call-and-response.",
+        "answer": "participates"
+      },
+      {
+        "before": "Paul Keens-Douglas uses Tanti Merle as a",
+        "after": "comic figure to comment on everyday life.",
+        "answer": "lovable"
+      }
+    ]
+  },
+  "imitation": {
+    "directions": "Study each sentence pattern and its example from the text. Write a new English sentence for each Chinese scenario, reusing the same structure.",
+    "items": [
+      {
+        "pattern": "Contrast & Concession — despite / although",
+        "example": "And despite the modern distractions of television and video games, many Caribbean families still gather on the steps outside their homes to hear stories.",
+        "scenarios": [
+          "尽管手机和游戏占用大量时间，许多家庭仍然会在周末一起做饭、聊天。",
+          "尽管城市生活节奏很快，不少年轻人仍然坚持每周去公园跑步。"
+        ]
+      },
+      {
+        "pattern": "Contrast — but",
+        "example": "But it is not an art that is learned quickly.",
+        "scenarios": [
+          "写一句：学好一门乐器并不是一朝一夕的事。",
+          "写一句：建立深厚的友谊需要时间和耐心。"
+        ]
+      },
+      {
+        "pattern": "Relative clause — that",
+        "example": "It is a tradition that was brought over from Africa by their ancestors many years ago.",
+        "scenarios": [
+          "写一句描述你们学校或社区里一项传统及其来源。",
+          "写一句介绍你家乡一种美食及其历史由来。"
+        ]
+      },
+      {
+        "pattern": "Relative clause — who",
+        "example": "Tanti Merle is a woman who is not afraid to say what she thinks.",
+        "scenarios": [
+          "描述一位敢说真话、幽默风趣的人物（真实或虚构均可）。",
+          "描述一位你认识的长辈，他/她常常对日常生活发表有趣评论。"
+        ]
+      }
+    ]
+  },
+  "summary": {
+    "directions": "Use the Word Bank to complete this guided summary (~180 words). Draw on the article's description structure: heritage → resilience → craft → living performance.",
+    "wordBank": [
+      "tradition",
+      "Africa",
+      "culture",
+      "Despite",
+      "distractions",
+      "position",
+      "catalogue",
+      "international",
+      "participates",
+      "audience",
+      "lovable",
+      "equally",
+      "evolving",
+      "heritage"
+    ],
+    "segments": [
+      "Storytelling plays a central role in Caribbean childhood and is described as a living ",
+      {
+        "blank": 0
+      },
+      " brought from ",
+      {
+        "blank": 1
+      },
+      " by ancestors many years ago. Rather than disappearing, it functions as a way of keeping shared ",
+      {
+        "blank": 2
+      },
+      " alive and preserving collective ",
+      {
+        "blank": 3
+      },
+      " for future generations. ",
+      {
+        "blank": 4
+      },
+      " the modern ",
+      {
+        "blank": 5
+      },
+      " of television and video games, many families still gather outdoors under the moon to hear familiar tales they have listened to many times before. The storyteller holds an important ",
+      {
+        "blank": 6
+      },
+      " in society, yet the article stresses that this is not an art learned quickly. Performers must build a ",
+      {
+        "blank": 7
+      },
+      " of short, simple stories, test them on family members, and only later perform for larger crowds before the very best reach the ",
+      {
+        "blank": 8
+      },
+      " stage. A distinctive feature is the crick-crack ritual, in which the ",
+      {
+        "blank": 9
+      },
+      " actively ",
+      {
+        "blank": 10
+      },
+      " through call-and-response, questions, and riddles, becoming almost ",
+      {
+        "blank": 11
+      },
+      " important as the teller. The writer closes with Paul Keens-Douglas, whose ",
+      {
+        "blank": 12
+      },
+      " character Tanti Merle comments on everyday life, proving that Caribbean storytelling remains a vibrant, ",
+      {
+        "blank": 13
+      },
+      " tradition today."
+    ],
+    "answers": [
+      "tradition",
+      "Africa",
+      "culture",
+      "heritage",
+      "Despite",
+      "distractions",
+      "position",
+      "catalogue",
+      "international",
+      "audience",
+      "participates",
+      "equally",
+      "lovable",
+      "evolving"
+    ]
+  },
+  "paragraphImitation": {
+    "directions": "Study the model paragraph (¶3) and its Paragraph Logic chain from Text Walkthrough. Choose ONE transferable scenario, then write a new English paragraph that follows the same development: Status claim → Turn: hard craft → Sequence of stages → New medium.",
+    "sourceTag": "¶3",
+    "sourceTitle": "Becoming a Storyteller",
+    "modelParagraph": "The storyteller has an important position in Caribbean society. But it is not an art that is learned quickly. Good storytellers take years to perfect their performances. First, they must collect a catalogue of good stories, which are often short and simple and should work well for people of all ages. They must then practise these on family members to test out their material before moving on to larger crowds in local community centres. From there they may choose to become travelling storytellers and move from town to town looking for new audiences to share their tales with. And the very best storytellers make it onto the international stage and travel the world. More recently many storytellers have started using film to reach even more people.",
+    "logicSteps": [
+      {
+        "id": "1",
+        "labelEn": "Status claim",
+        "labelZh": "点明地位"
+      },
+      {
+        "id": "2",
+        "labelEn": "Turn: hard craft",
+        "labelZh": "转折：非速成"
+      },
+      {
+        "id": "3",
+        "labelEn": "Sequence of stages",
+        "labelZh": "成长路径"
+      },
+      {
+        "id": "4",
+        "labelEn": "New medium",
+        "labelZh": "新媒介延伸"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "chef",
+        "titleZh": "成为一名厨师",
+        "titleEn": "Becoming a chef",
+        "prompt": "厨师在餐饮业中地位重要，但厨艺并非速成。请按逻辑链写一段：收集菜谱 → 在家人面前试做 → 餐馆/社区厨房工作 → 顶尖者登上国际舞台；近年也有人用短视频扩大影响。"
+      },
+      {
+        "id": "athlete",
+        "titleZh": "成为一名运动员",
+        "titleEn": "Training as an athlete",
+        "prompt": "运动员在校园与社会中角色重要，但出色表现需要长期训练。请按同样逻辑链写一段：基础训练 → 校队/俱乐部 → 省市或全国比赛 → 顶尖者登上国际赛场；近年许多人通过直播分享训练日常。"
+      },
+      {
+        "id": "musician",
+        "titleZh": "学好一门乐器",
+        "titleEn": "Learning an instrument",
+        "prompt": "优秀乐手在社区文化中有重要地位，但乐器技艺无法速成。请按同样逻辑链写一段：积累曲目 → 在家人朋友前练习 → 学校/社区演出 → 顶尖者登上更大舞台；近年也有人用线上平台触达更多听众。"
+      }
+    ],
+    "modelSegments": [
+      {
+        "stepId": "1",
+        "text": "The storyteller has an important position in Caribbean society."
+      },
+      {
+        "stepId": "2",
+        "text": "But it is not an art that is learned quickly."
+      },
+      {
+        "stepId": "3",
+        "text": "Good storytellers take years to perfect their performances. First, they must collect a catalogue of good stories, which are often short and simple and should work well for people of all ages. They must then practise these on family members to test out their material before moving on to larger crowds in local community centres. From there they may choose to become travelling storytellers and move from town to town looking for new audiences to share their tales with. And the very best storytellers make it onto the international stage and travel the world."
+      },
+      {
+        "stepId": "4",
+        "text": "More recently many storytellers have started using film to reach even more people."
+      }
+    ]
+  }
+}

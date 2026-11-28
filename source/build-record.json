@@ -1,0 +1,11 @@
+{
+  "builtAt": "2026-09-18T12:38:39.163Z",
+  "stem": "Storytelling_in_the_Caribbean",
+  "source": "/Users/vincenthan/Downloads/ReadingText2html-main/evals/fixtures/caribbean/content.json",
+  "template": "assets/lesson.html.template",
+  "stages": [
+    "preReading",
+    "whileReading",
+    "postReading"
+  ]
+}
